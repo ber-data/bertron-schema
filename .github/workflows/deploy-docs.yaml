@@ -32,7 +32,7 @@ jobs:
 
       - name: Derive files from sources
         run: |
-          make squeaky-clean all
+          make  all
 
       - name: Generate web-based documentation
         run: |
