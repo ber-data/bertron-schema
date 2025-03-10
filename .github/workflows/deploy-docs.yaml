@@ -9,6 +9,8 @@ on:
 jobs:
   build-docs:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Grants permission to push changes    
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -56,3 +58,4 @@ jobs:
       - name: Deploy web-based documentation to GitHub Pages
         run: |
           make mkd-gh-deploy
+
