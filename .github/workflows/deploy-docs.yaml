@@ -37,7 +37,7 @@ jobs:
 
       - name: Derive files from sources
         run: |
-          make  all
+          make all
 
       - name: Generate web-based documentation
         run: |
