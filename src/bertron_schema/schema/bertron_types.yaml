@@ -1,0 +1,119 @@
+id: https://w3id.org/ber-data/bertron_types
+name: bertron_types
+title: Types for the BERtron Schema
+description: Types used in the BERtron Schema
+prefixes:
+  linkml: https://w3id.org/linkml/
+  nmdc: https://w3id.org/nmdc/
+  qud: http://qudt.org/1.1/schema/qudt#
+imports:
+  - linkml:types
+default_prefix: bertron
+default_range: string
+
+slots:
+
+  has_numeric_value:
+    description: Links a quantity value to a number
+    range: decimal
+    mappings:
+      - nmdc:has_numeric_value
+      - qud:quantityValue
+      - schema:value
+
+  has_minimum_numeric_value:
+    is_a: has_numeric_value
+    description: The minimum value part, expressed as number, of the quantity value when the value covers a range.
+    mappings:
+      - nmdc:has_minimum_numeric_value
+
+  has_maximum_numeric_value:
+    is_a: has_numeric_value
+    description: The maximum value part, expressed as number, of the quantity value when the value covers a range.
+    mappings:
+      - nmdc:has_maximum_numeric_value
+
+  has_raw_value:
+    description: The value that was specified for an annotation in raw form, i.e. a string. E.g. "2 cm" or "2-4 cm"
+    range: string
+    mappings:
+      - nmdc:has_raw_value
+
+  has_unit:
+    description: Links a QuantityValue to a unit
+    aliases:
+      - scale
+    range: unit
+    mappings:
+      - nmdc:has_unit
+      - qud:unit
+      - schema:unitCode
+
+  # type:
+  #   required: true
+  #   range: uriorcurie
+  #   slot_uri: rdf:type
+  #   description: the class_uri of the class that has been instantiated
+  #   notes:
+  #     - replaces legacy nmdc:type slot
+  #     - makes it easier to read example data files
+  #     - required for polymorphic MongoDB collections
+  #   see_also:
+  #     - https://github.com/microbiomedata/nmdc-schema/issues/1048
+  #     - https://github.com/microbiomedata/nmdc-schema/issues/1233
+  #     - https://github.com/microbiomedata/nmdc-schema/issues/248
+  #   examples:
+  #     - value: nmdc:Biosample
+  #     - value: nmdc:Study
+  #   mappings:
+  #     - nmdc:type
+  #   designates_type: true
+
+classes:
+
+  AttributeValue:
+    abstract: true
+    class_uri: nmdc:AttributeValue
+    description: >-
+      The value for any value of a attribute for a sample. This object can hold both the un-normalized atomic
+      value and the structured value
+    slots:
+      - has_raw_value
+      # - type
+
+  QuantityValue:
+    class_uri: nmdc:QuantityValue
+    is_a: AttributeValue
+    description: A simple quantity, e.g. 2cm
+    slots:
+      - has_maximum_numeric_value
+      - has_minimum_numeric_value
+      - has_numeric_value
+      - has_raw_value
+      - has_unit
+    slot_usage:
+      has_raw_value:
+        description: Unnormalized atomic string representation, should in syntax {number} {unit}
+      has_unit:
+        description: The unit of the quantity
+      has_numeric_value:
+        description: The number part of the quantity
+    mappings:
+      - schema:QuantityValue
+
+types:
+  dbxref:
+    typeof: uriorcurie
+    uri: xsd:anyURI
+    description: >-
+      A compact URI (CURIE), or permanent identifier that can be resolved to produce a URI.
+    see_also:
+      - https://microbiomedata.github.io/nmdc-schema/identifiers/
+    pattern: '^[a-zA-Z0-9][a-zA-Z0-9_-\.]+:[a-zA-Z0-9_][a-zA-Z0-9_\-\/\.,]*$'
+
+  decimal degree:
+    description: A decimal degree expresses latitude or longitude as decimal fractions.
+    uri: xsd:decimal
+    base: float
+    see_also:
+      - https://en.wikipedia.org/wiki/Decimal_degrees
