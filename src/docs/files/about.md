@@ -1,3 +1,3 @@
 # bertron-schema
 
-LinkML schema for ber data intergration work
+LinkML schema for BER data integration work

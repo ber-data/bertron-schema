@@ -1,6 +1,6 @@
 # bertron-schema
 
-LinkML schema for ber data intergration work
+LinkML schema for BER data integration work
 
 ## Website
 
@@ -21,8 +21,8 @@ LinkML schema for ber data intergration work
 ## Developer Documentation
 
 <details>
-To run commands you may use good old make or the command runner [just](https://github.com/casey/just/) which is a better choice on Windows.
-Use the `make` command or `duty` commands to generate project artefacts:
+To run commands you may use `make` or the command runner [just](https://github.com/casey/just/), which is a better choice on Windows.
+Use the `make` command or `just` commands to generate project artefacts:
 * `make help` or `just --list`: list all pre-defined tasks
 * `make all` or `just all`: make everything
 * `make deploy` or `just deploy`: deploys site
