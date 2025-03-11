@@ -197,6 +197,8 @@ $(DOCDIR):
 gendoc: $(DOCDIR)
 	cp -rf $(SRC)/docs/files/* $(DOCDIR) ; \
 	$(RUN) gen-doc ${GEN_DOC_ARGS} -d $(DOCDIR) $(SOURCE_SCHEMA_PATH)
+	mkdir -p $(DOCDIR)/javascripts
+	$(RUN) cp $(SRC)/docs/js/*.js $(DOCDIR)/javascripts/
 
 testdoc: gendoc serve
 
