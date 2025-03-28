@@ -1,39 +1,142 @@
-[build-system]
-requires = ["poetry-core>=1.0.0", "poetry-dynamic-versioning>=1.0.0,<2.0.0"]
-build-backend = "poetry_dynamic_versioning.backend"
-
 [project]
-name = "bertron_schema"
-description = "LinkML schema for ber data intergration work"
-authors = [
-  {name = "Chuck Parker", email = "ctparker@lbl.gov"},
-]
-license = "BSD-3"
+name = "bertron-schema"
+version = "0.1.0"
+description = "LinkML schema for BER data integration work"
+license = "LICENSE"
 readme = "README.md"
-include = ["README.md", "src/bertron_schema/schema", "project"]
-requires-python = ">=3.10,<4.0"
-dynamic = ["version"]
-
+include = ["README.md", "src/bertron_schema/schema"]
+requires-python = ">=3.12.9"
 dependencies = [
-  "linkml >=1.8.7",
+    "linkml>=1.8.7",
+    "mkdocs-material>=9.6.9",
+    "mkdocs-mermaid2-plugin>=1.2.1",
 ]
 
-[tool.poetry]
-requires-poetry = ">=2.0"
-version = "0.0.0"
+[dependency-groups]
+dev = [
+    "ruff>=0.11.0",
+    "cruft>=2.16.0",
+]
+docs = [
+    "mkdocs-material>=9.6.9",
+    "mkdocs-mermaid2-plugin>=1.2.1",
+]
 
-[tool.poetry.requires-plugins]
-poetry-dynamic-versioning = { version = ">=1.0.0,<2.0.0", extras = ["plugin"] }
+[tool.ruff]
+line-length = 100
 
-[tool.poetry-dynamic-versioning]
-enable = true
-vcs = "git"
-style = "pep440"
+# Assume Python 3.12.
+target-version = "py312"
 
-[tool.poetry.group.docs]
-optional = true
+[tool.ruff.lint]
+select = [
+    # core
+    "F", # Pyflakes
+    "E", # pycodestyle errors
+    "W", # pycodestyle warnings
+    "C90", # mccabe +
+    "I", # isort
+    "N", # pep8-naming
+    "D", # pydocstyle
+    "UP", # pyupgrade
+    # extensions
+    "YTT", # flake8-2020
+    "ANN", # flake8-annotations
+    "ASYNC", # flake8-async
+    "S", # flake8-bandit
+    "BLE", # flake8-blind-except
+    "FBT", # flake8-boolean-trap
+    "B", # flake8-bugbear
+    "A", # flake8-builtins
+    # "COM", # flake8-commas
+    # "CPY", # flake8-copyright
+    "C4", # flake8-comprehensions
+    "DTZ", # flake8-datetimez
+    "T10", # flake8-debugger
+    # "DJ", # flake8-django
+    "EM", # flake8-errmsg
+    "EXE", # flake8-executable
+    "FA", # flake8-future-annotations
+    "ISC", # flake8-implicit-str-concat
+    "ICN", # flake8-import-conventions
+    "G", # flake8-logging-format
+    "INP", # flake8-no-pep420
+    "PIE", # flake8-pie
+    "T20", # flake8-print
+    "PYI", # flake8-pyi
+    "PT", # flake8-pytest-style
+    "Q", # flake8-quotes
+    "RSE", # flake8-raise
+    "RET", # flake8-return
+    "SLF", # flake8-self
+    "SLOT", # flake8-slots
+    "SIM", # flake8-simplify
+    "TID", # flake8-tidy-imports
+    "TCH", # flake8-type-checking
+    "INT", # flake8-gettext
+    "ARG", # flake8-unused-arguments
+    "PTH", # flake8-use-pathlib
+    "TD", # flake8-todos
+    "FIX", # flake8-fixme
+    "ERA", # eradicate
+    # "PD", # pandas-vet
+    "PGH", # pygrep-hooks
+    "PL", # Pylint
+    "TRY", # tryceratops
+    "FLY", # flynt
+    # "NPY", # NumPy-specific rules
+    "AIR", # Airflow
+    "PERF", # Perflint
+    "FURB", # refurb
+    "LOG", # flake8-logging
+    "RUF", # Ruff-specific rules
+]
 
-[tool.poetry.group.docs.dependencies]
-linkml = ">=1.8.7"
-mkdocs-material = ">=9.6.9"
-mkdocs-mermaid2-plugin = ">=1.2.1"
+# D203: one-blank-line-before-class (conflicts with D211)
+# D212: multi-line-summary-first-line (conflicts with D213)
+# E203: whitespace before ',', ';', or ':'
+# E501: line length
+# ISC001: conflicts with Ruff's formatter
+# W503: line break after binary operator
+ignore = [
+    "D203",
+    "D213",
+    "E203",
+    "E501",
+    "ISC001",
+    "S101",
+]
+
+# Allow autofix for all enabled rules (when `--fix`) is provided.
+fixable = ["ALL"]
+unfixable = []
+
+# Exclude a variety of commonly ignored directories.
+exclude = [
+    "__pypackages__",
+    "_build",
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git-rewrite",
+    ".git",
+    ".github",
+    ".hg",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    "*.pyc",
+    "buck-out",
+    "build",
+    "deps",
+    "dist",
+    "node_modules",
+    "python-coverage",
+    "venv",
+]
+per-file-ignores = {}
