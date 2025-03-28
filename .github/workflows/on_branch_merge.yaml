@@ -1,0 +1,11 @@
+name: Merge to main / develop
+
+on:
+    push:
+        branches:
+            - main
+            - develop
+
+jobs:
+    run_tests:
+        uses: ./.github/workflows/run_tests.yaml

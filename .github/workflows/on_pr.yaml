@@ -1,0 +1,13 @@
+name: Standard PR workflow
+
+on:
+    pull_request:
+        types:
+            - opened
+            - reopened
+            - synchronize
+            - ready_for_review
+
+jobs:
+    run_tests:
+        uses: ./.github/workflows/run_tests.yaml

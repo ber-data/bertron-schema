@@ -24,24 +24,16 @@ jobs:
         with:
           python-version: 3.12
 
-      - name: Install Poetry.
-        run: pipx install poetry
-
-      - name: Install dependencies.
-        run: poetry install --with docs
-
-      # Replace the `0.0.0` placeholder `version` number in various files (per the config in `pyproject.toml`).
-      # Reference: https://github.com/mtkennerly/poetry-dynamic-versioning/blob/master/README.md#command-line-mode
-      - name: Replace placeholder version number
+      - name: Install Poetry and dependencies.
         run: |
-          poetry self add "poetry-dynamic-versioning[plugin]"
-          poetry dynamic-versioning
+          pipx install poetry
+          poetry install --with docs
 
       - name: Build documentation and deploy to Github Pages
         run: |
           mkdir -p docs
           touch docs/.nojekyll
           make gendoc
-          # copy in the `about.md` page if it exists
-          ([ ! -f docs/about.md ] && cp src/docs/about.md docs/) || true
+          # copy in the `about.md` and any other docs pages if they exist
+          ([ ! -f docs/about.md ] && cp src/docs/*.md docs/) || true
           make mkd-gh-deploy
