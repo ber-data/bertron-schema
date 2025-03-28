@@ -19,27 +19,32 @@ jobs:
               with:
                 python-version: 3.12
 
-            - name: Install Poetry and dependencies.
+            - name: Install uv
+              uses: astral-sh/setup-uv@v5
+              with:
+                # Install a specific version of uv.
+                version: "0.6.10"
+
+            - name: Install deps
+              id: install_deps
               run: |
-                pipx install poetry
-                poetry install
+                uv sync
 
             - name: Lint linkml file
               id: lint_linkml
               run: |
-                  poetry run linkml-lint ./src/bertron_schema/schema/bertron_schema.yaml --ignore-warnings
+                  uv run linkml-lint ./src/bertron_schema/schema/bertron_schema.yaml --ignore-warnings
               continue-on-error: true
 
             - name: Validate sample data against the schema
               id: validate_sample_data
               run: |
-                  poetry run linkml-validate -s ./src/bertron_schema/schema/bertron_schema.yaml ./src/data/examples/valid/*.json
+                  uv run linkml-validate -s ./src/bertron_schema/schema/bertron_schema.yaml ./src/data/examples/valid/*.json
               continue-on-error: true
 
             - name: Test documentation generation
               id: test_docgen
               run: |
-                poetry install --with docs
                 mkdir -p docs
                 make gendoc
               continue-on-error: true
