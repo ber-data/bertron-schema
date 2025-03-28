@@ -15,7 +15,7 @@ slots:
 
   has_numeric_value:
     description: Links a quantity value to a number
-    range: decimal
+    range: float
     mappings:
       - nmdc:has_numeric_value
       - qud:quantityValue
@@ -102,18 +102,16 @@ classes:
       - schema:QuantityValue
 
 types:
-  dbxref:
-    typeof: uriorcurie
-    uri: xsd:anyURI
-    description: >-
-      A compact URI (CURIE), or permanent identifier that can be resolved to produce a URI.
-    see_also:
-      - https://microbiomedata.github.io/nmdc-schema/identifiers/
-    pattern: '^[a-zA-Z0-9][a-zA-Z0-9_-\.]+:[a-zA-Z0-9_][a-zA-Z0-9_\-\/\.,]*$'
-
   decimal degree:
     description: A decimal degree expresses latitude or longitude as decimal fractions.
     uri: xsd:decimal
     base: float
     see_also:
       - https://en.wikipedia.org/wiki/Decimal_degrees
+
+  unit:
+    base: str
+    uri: xsd:string
+    mappings:
+      - qud:Unit
+      - UO:0000000
