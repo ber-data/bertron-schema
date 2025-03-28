@@ -30,27 +30,5 @@
         }
     ],
     "part_of_collection": [],
-    "uri": "https://gold.jgi.doe.gov/biosample?id=Gb0051341",
-    "credit_metadata": {
-        "dates": [
-            {
-                "event": "added",
-                "date": "2008-11-25"
-            },
-            {
-                "event": "updated",
-                "date": "2022-08-05"
-            }
-        ],
-        "contributors": [
-            {
-                "contributor_type": "Person",
-                "given_name": "Zack",
-                "family_name": "Jay",
-                "contributor_roles": [
-                    "submitter"
-                ]
-            }
-        ]
-    }
+    "uri": "https://gold.jgi.doe.gov/biosample?id=Gb0051341"
 }
