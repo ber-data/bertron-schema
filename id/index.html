@@ -299,21 +299,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Identifier and Mapping Information">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#schema-source" class="md-nav__link">
-    <span class="md-ellipsis">
-      Schema Source
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -354,8 +339,7 @@
 
 
 <h1 id="slot-id">Slot: id</h1>
-<p><em>A unique identifier for a thing</em></p>
-<p>URI: <a href="http://schema.org/identifier">schema:identifier</a></p>
+<p>URI: <a href="https://w3id.org/ber-data/bertron-schema/id">bertron:id</a></p>
 <!-- no inheritance hierarchy -->
 
 <h2 id="applicable-classes">Applicable Classes</h2>
@@ -369,31 +353,22 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../Dataset/">Dataset</a></td>
-<td>Represents a Dataset</td>
+<td><a href="../Entity/">Entity</a></td>
+<td>An object retrieved by BERtron from a BER data API</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../NamedThing/">NamedThing</a></td>
-<td>A generic grouping for any identifiable entity</td>
+<td><a href="../DataCollection/">DataCollection</a></td>
+<td>Administrative unit (e</td>
 <td>no</td>
 </tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>
-<p>Range: <a href="../Uriorcurie/">Uriorcurie</a></p>
-</li>
-<li>
-<p>Required: True</p>
-</li>
+<li>Range: <a href="../String/">String</a></li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
-<h3 id="schema-source">Schema Source</h3>
-<ul>
-<li>from schema: https://w3id.org/ber-data/bertron-schema</li>
-</ul>
 <h2 id="mappings">Mappings</h2>
 <table>
 <thead>
@@ -405,11 +380,11 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>schema:identifier</td>
+<td>bertron:id</td>
 </tr>
 <tr>
 <td>native</td>
-<td>bertron_schema:id</td>
+<td>bertron:id</td>
 </tr>
 </tbody>
 </table>
@@ -417,16 +392,11 @@
 <details>
 
 <pre><code class="language-yaml">name: id
-description: A unique identifier for a thing
-from_schema: https://w3id.org/ber-data/bertron-schema
-rank: 1000
-slot_uri: schema:identifier
-identifier: true
 alias: id
 domain_of:
-- NamedThing
-range: uriorcurie
-required: true
+- Entity
+- DataCollection
+range: string
 
 </code></pre>
 

@@ -299,21 +299,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Identifier and Mapping Information">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#schema-source" class="md-nav__link">
-    <span class="md-ellipsis">
-      Schema Source
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -354,8 +339,7 @@
 
 
 <h1 id="slot-name">Slot: name</h1>
-<p><em>A human-readable name for a thing</em></p>
-<p>URI: <a href="http://schema.org/name">schema:name</a></p>
+<p>URI: <a href="https://w3id.org/ber-data/bertron-schema/name">bertron:name</a></p>
 <!-- no inheritance hierarchy -->
 
 <h2 id="applicable-classes">Applicable Classes</h2>
@@ -369,13 +353,13 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../Dataset/">Dataset</a></td>
-<td>Represents a Dataset</td>
+<td><a href="../Entity/">Entity</a></td>
+<td>An object retrieved by BERtron from a BER data API</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../NamedThing/">NamedThing</a></td>
-<td>A generic grouping for any identifiable entity</td>
+<td><a href="../Name/">Name</a></td>
+<td>The name or label for an entity</td>
 <td>no</td>
 </tr>
 </tbody>
@@ -385,10 +369,6 @@
 <li>Range: <a href="../String/">String</a></li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
-<h3 id="schema-source">Schema Source</h3>
-<ul>
-<li>from schema: https://w3id.org/ber-data/bertron-schema</li>
-</ul>
 <h2 id="mappings">Mappings</h2>
 <table>
 <thead>
@@ -400,11 +380,11 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>schema:name</td>
+<td>bertron:name</td>
 </tr>
 <tr>
 <td>native</td>
-<td>bertron_schema:name</td>
+<td>bertron:name</td>
 </tr>
 </tbody>
 </table>
@@ -412,13 +392,10 @@
 <details>
 
 <pre><code class="language-yaml">name: name
-description: A human-readable name for a thing
-from_schema: https://w3id.org/ber-data/bertron-schema
-rank: 1000
-slot_uri: schema:name
 alias: name
 domain_of:
-- NamedThing
+- Entity
+- Name
 range: string
 
 </code></pre>

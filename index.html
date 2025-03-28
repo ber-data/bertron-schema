@@ -426,8 +426,8 @@
   
 
 
-<h1 id="bertron-schema">bertron-schema</h1>
-<p>LinkML schema for ber data intergration work</p>
+<h1 id="bertron-schema">BERtron schema</h1>
+<p>Schema for BERtron common data model.</p>
 <p>URI: https://w3id.org/ber-data/bertron-schema</p>
 <p>Name: bertron-schema</p>
 <h2 id="classes">Classes</h2>
@@ -440,16 +440,32 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="DatasetCollection/">DatasetCollection</a></td>
-<td>A holder for Dataset objects</td>
+<td><a href="AttributeValue/">AttributeValue</a></td>
+<td>The value for any value of a attribute for a sample. This object can hold both the un-normalized atomic value and the structured value</td>
 </tr>
 <tr>
-<td><a href="NamedThing/">NamedThing</a></td>
-<td>A generic grouping for any identifiable entity</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="QuantityValue/">QuantityValue</a></td>
+<td>A simple quantity, e.g. 2cm</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Dataset/">Dataset</a></td>
-<td>Represents a Dataset</td>
+<td><a href="Coordinates/">Coordinates</a></td>
+<td>The coordinates defining the position associated with the entity.</td>
+</tr>
+<tr>
+<td><a href="DataCollection/">DataCollection</a></td>
+<td>Administrative unit (e.g. project, proposal, etc.) in which one or more entities is collected.</td>
+</tr>
+<tr>
+<td><a href="Entity/">Entity</a></td>
+<td>An object retrieved by BERtron from a BER data API.</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="Name/">Name</a></td>
+<td>The name or label for an entity. This may be a primary name, alternative name, synonym, acronym, or any other label used to refer to an entity.</td>
 </tr>
 </tbody>
 </table>
@@ -463,36 +479,104 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="age_in_years/">age_in_years</a></td>
-<td>Number of years since birth</td>
+<td><a href="alt_ids/">alt_ids</a></td>
+<td>Fully-qualified URI or CURIE used as an identifier for an entity</td>
 </tr>
 <tr>
-<td><a href="birth_date/">birth_date</a></td>
-<td>Date on which a person is born</td>
+<td><a href="alt_names/">alt_names</a></td>
+<td>Textual identifiers for an entity</td>
+</tr>
+<tr>
+<td><a href="alt_titles/">alt_titles</a></td>
+<td>Alternative versions of the title/name of a project</td>
+</tr>
+<tr>
+<td><a href="altitude/">altitude</a></td>
+<td>Altitude is a term used to identify heights of objects such as airplanes, spa...</td>
+</tr>
+<tr>
+<td><a href="ber_data_source/">ber_data_source</a></td>
+<td>The BER member from whence the entity originated</td>
+</tr>
+<tr>
+<td><a href="coordinates/">coordinates</a></td>
+<td>The geographic coordinates associated with an entity</td>
+</tr>
+<tr>
+<td><a href="credit_metadata/">credit_metadata</a></td>
+<td>Citation metadata for the entity</td>
+</tr>
+<tr>
+<td><a href="data_type/">data_type</a></td>
+<td>What kind of data this entity is -- e</td>
+</tr>
+<tr>
+<td><a href="depth/">depth</a></td>
+<td>The vertical distance below local surface, e</td>
 </tr>
 <tr>
 <td><a href="description/">description</a></td>
-<td>A human-readable description for a thing</td>
+<td>Textual description of the entity</td>
 </tr>
 <tr>
-<td><a href="entries/">entries</a></td>
-<td></td>
+<td><a href="elevation/">elevation</a></td>
+<td>Elevation of the sampling site is its height above a fixed reference point, m...</td>
+</tr>
+<tr>
+<td><a href="has_maximum_numeric_value/">has_maximum_numeric_value</a></td>
+<td>The maximum value part, expressed as number, of the quantity value when the v...</td>
+</tr>
+<tr>
+<td><a href="has_minimum_numeric_value/">has_minimum_numeric_value</a></td>
+<td>The minimum value part, expressed as number, of the quantity value when the v...</td>
+</tr>
+<tr>
+<td><a href="has_numeric_value/">has_numeric_value</a></td>
+<td>Links a quantity value to a number</td>
+</tr>
+<tr>
+<td><a href="has_raw_value/">has_raw_value</a></td>
+<td>The value that was specified for an annotation in raw form, i</td>
+</tr>
+<tr>
+<td><a href="has_unit/">has_unit</a></td>
+<td>Links a QuantityValue to a unit</td>
 </tr>
 <tr>
 <td><a href="id/">id</a></td>
-<td>A unique identifier for a thing</td>
+<td>The unique ID used for the entity within the BER resource</td>
+</tr>
+<tr>
+<td><a href="latitude/">latitude</a></td>
+<td>latitude</td>
+</tr>
+<tr>
+<td><a href="longitude/">longitude</a></td>
+<td>longitude</td>
 </tr>
 <tr>
 <td><a href="name/">name</a></td>
-<td>A human-readable name for a thing</td>
+<td>Human-readable string representing an entity</td>
 </tr>
 <tr>
-<td><a href="primary_email/">primary_email</a></td>
-<td>The main email address of a person</td>
+<td><a href="name_type/">name_type</a></td>
+<td>Brief description of the name and/or its relationship to the entity</td>
 </tr>
 <tr>
-<td><a href="vital_status/">vital_status</a></td>
-<td>living or dead status</td>
+<td><a href="part_of_collection/">part_of_collection</a></td>
+<td>Administrative collection (e</td>
+</tr>
+<tr>
+<td><a href="title/">title</a></td>
+<td>Human-readable string representing the project</td>
+</tr>
+<tr>
+<td><a href="uri/">uri</a></td>
+<td>Permanent resolvable URI for the entity at the data source</td>
+</tr>
+<tr>
+<td><a href="url/">url</a></td>
+<td>Permanent resolvable URI for the collection at the data source</td>
 </tr>
 </tbody>
 </table>
@@ -506,8 +590,16 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="PersonStatus/">PersonStatus</a></td>
-<td></td>
+<td><a href="BERSourceType/">BERSourceType</a></td>
+<td>The BER data source from whence the entity originated</td>
+</tr>
+<tr>
+<td><a href="DataTypeTagType/">DataTypeTagType</a></td>
+<td>Tags used to describe an entity</td>
+</tr>
+<tr>
+<td><a href="NameType/">NameType</a></td>
+<td>The relationship between a name and a synonym of that name</td>
 </tr>
 </tbody>
 </table>
@@ -543,6 +635,10 @@
 <tr>
 <td><a href="Decimal/">Decimal</a></td>
 <td>A real number with arbitrary precision that conforms to the xsd:decimal speci...</td>
+</tr>
+<tr>
+<td><a href="DecimalDegree/">DecimalDegree</a></td>
+<td>A decimal degree expresses latitude or longitude as decimal fractions</td>
 </tr>
 <tr>
 <td><a href="Double/">Double</a></td>
@@ -587,6 +683,10 @@
 <tr>
 <td><a href="Time/">Time</a></td>
 <td>A time object represents a (local) time of day, independent of any particular...</td>
+</tr>
+<tr>
+<td><a href="Unit/">Unit</a></td>
+<td></td>
 </tr>
 <tr>
 <td><a href="Uri/">Uri</a></td>
