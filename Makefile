@@ -124,8 +124,10 @@ compile-sheets:
 gen-examples:
 	cp -r $(SOURCE_SAMPLE_DATA_DIR)/* $(EXAMPLEDIR)
 
-# generates all project files
+validate-examples:
+	$(RUN) linkml-validate -s $(SOURCE_SCHEMA_PATH) $(SOURCE_SAMPLE_DATA_DIR)/valid/*.json
 
+# generates all project files
 gen-project: $(PYMODEL)
 	$(RUN) gen-project ${CONFIG_YAML} -d $(DEST) $(SOURCE_SCHEMA_PATH) && mv $(DEST)/*.py $(PYMODEL)
 
@@ -154,6 +156,9 @@ test-python:
 
 lint:
 	$(RUN) linkml-lint $(SOURCE_SCHEMA_PATH)
+
+lint-no-warn:
+	$(RUN) linkml-lint --ignore-warnings $(SOURCE_SCHEMA_PATH)
 
 gen-artefacts: $(PYMODEL) $(JSONSCHEMA_DIR)
 	$(RUN) gen-json-schema $(SOURCE_SCHEMA_PATH) > $(JSONSCHEMA_DIR)/bertron_schema.json
