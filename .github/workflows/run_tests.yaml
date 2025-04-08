@@ -33,19 +33,18 @@ jobs:
             - name: Lint linkml file
               id: lint_linkml
               run: |
-                  uv run linkml-lint ./src/bertron_schema/schema/bertron_schema.yaml --ignore-warnings
+                  make lint-no-warn
               continue-on-error: true
 
             - name: Validate sample data against the schema
               id: validate_sample_data
               run: |
-                  uv run linkml-validate -s ./src/bertron_schema/schema/bertron_schema.yaml ./src/data/examples/valid/*.json
+                  make validate-examples
               continue-on-error: true
 
             - name: Test documentation generation
               id: test_docgen
               run: |
-                mkdir -p docs
                 make gendoc
               continue-on-error: true
 
@@ -54,11 +53,11 @@ jobs:
               run: |
                   echo "linkml linting: ${{ steps.lint_linkml.outcome }}"
                   echo "sample data validation: ${{ steps.validate_sample_data.outcome }}"
+                  echo "documentation generator: ${{ steps.test_docgen.outcome }}"
                   exit 1
 
             - name: outcome success
               if: steps.lint_linkml.outcome == 'success' && steps.validate_sample_data.outcome == 'success' && steps.test_docgen.outcome == 'success'
               run: |
-                  echo "linkml linting: ${{ steps.lint_linkml.outcome }}"
-                  echo "sample data validation: ${{ steps.validate_sample_data.outcome }}"
+                  echo All tests passed successfully!
                   exit 0

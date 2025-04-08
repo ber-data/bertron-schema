@@ -8,12 +8,12 @@
 
 # Note: makefile variables should not be quoted, as makefile handles quoting differently than bash
 LINKML_SCHEMA_NAME="bertron_schema"
-LINKML_SCHEMA_AUTHOR="Chuck Parker <ctparker@lbl.gov>"
-LINKML_SCHEMA_DESCRIPTION="LinkML schema for ber data intergration work"
-LINKML_SCHEMA_SOURCE_PATH="src/bertron_schema/schema/bertron_schema.yaml"
-LINKML_SCHEMA_GOOGLE_SHEET_MODULE="personinfo_enums"
-LINKML_SCHEMA_GOOGLE_SHEET_ID="1wVoaiFg47aT9YWNeRfTZ8tYHN8s8PAuDx5i2HUcDpvQ"
-LINKML_SCHEMA_GOOGLE_SHEET_TABS="personinfo enums"
+LINKML_SCHEMA_AUTHOR="AJ Ireland <aireland@lbl.gov>; Chuck Parker <ctparker@lbl.gov>; BERtron group."
+LINKML_SCHEMA_DESCRIPTION="LinkML schema for BER data integration work"
+LINKML_SCHEMA_SOURCE_PATH="src/schema/linkml/bertron_schema.yaml"
+LINKML_SCHEMA_GOOGLE_SHEET_MODULE="bertron_gsm"
+LINKML_SCHEMA_GOOGLE_SHEET_ID="some_id_here"
+LINKML_SCHEMA_GOOGLE_SHEET_TABS="bertron tabs"
 LINKML_USE_SCHEMASHEETS=No
 
 ###### linkml generator variables, used by makefile

@@ -2,7 +2,7 @@ id: https://w3id.org/ber-data/bertron-schema
 name: bertron-schema
 title: BERtron schema
 description: Schema for BERtron common data model.
-version: 0.0.1
+version: 0.0.2
 license: BSD-3
 see_also:
   - https://ber-data.github.io/bertron-schema
@@ -17,7 +17,6 @@ default_curi_maps:
 imports:
   - linkml:types
   - bertron_types
-
 classes:
 
   Entity:
@@ -30,10 +29,10 @@ classes:
         range: BERSourceType
         required: true
       # TODO!
-      credit_metadata:
-        description: Citation metadata for the entity.
-        todos:
-        - add in credit metadata schema
+      # credit_metadata:
+      #   description: Citation metadata for the entity.
+      #   range: CreditMetadata
+      #   required: true
       coordinates:
         description: The geographic coordinates associated with an entity. For entities with a bounding box, the centroid is used as the geographic reference.
         range: Coordinates
