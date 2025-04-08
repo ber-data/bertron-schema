@@ -15,19 +15,21 @@ include config.public.mk
 endif
 
 RUN = uv run
-SCHEMA_NAME = $(LINKML_SCHEMA_NAME)
-SOURCE_SCHEMA_PATH = $(LINKML_SCHEMA_SOURCE_PATH)
-SOURCE_SCHEMA_DIR = $(dir $(SOURCE_SCHEMA_PATH))
 SRC = src
 DEST = project
-PYMODEL = $(SRC)/$(SCHEMA_NAME)/datamodel
 DOCDIR = docs
-DOCTEMPLATES = $(SRC)/docs/templates
 EXAMPLEDIR = examples
+SCHEMA_NAME = $(LINKML_SCHEMA_NAME)
+SOURCE_SCHEMA_PATH = $(LINKML_SCHEMA_SOURCE_PATH)
+SOURCE_SCHEMA_DIR = $(SRC)/schema
+SOURCE_SAMPLE_DATA_DIR = $(SRC)/sample_data
+PYMODEL = $(SOURCE_SCHEMA_DIR)/datamodel
+JSONSCHEMA_DIR = $(SOURCE_SCHEMA_DIR)/jsonschema
+DOCTEMPLATES = $(SRC)/docs/templates
 SHEET_MODULE = $(LINKML_SCHEMA_GOOGLE_SHEET_MODULE)
 SHEET_ID = $(LINKML_SCHEMA_GOOGLE_SHEET_ID)
 SHEET_TABS = $(LINKML_SCHEMA_GOOGLE_SHEET_TABS)
-SHEET_MODULE_PATH = $(SOURCE_SCHEMA_DIR)/$(SHEET_MODULE).yaml
+SHEET_MODULE_PATH = $(SOURCE_SCHEMA_DIR)/sheets/$(SHEET_MODULE).yaml
 
 # Use += to append variables from the variables file
 CONFIG_YAML =
@@ -120,13 +122,12 @@ compile-sheets:
 
 # In future this will be done by conversion
 gen-examples:
-	cp -r src/data/examples/* $(EXAMPLEDIR)
+	cp -r $(SOURCE_SAMPLE_DATA_DIR)/* $(EXAMPLEDIR)
 
 # generates all project files
 
 gen-project: $(PYMODEL)
 	$(RUN) gen-project ${CONFIG_YAML} -d $(DEST) $(SOURCE_SCHEMA_PATH) && mv $(DEST)/*.py $(PYMODEL)
-
 
 # non-empty arg triggers owl (workaround https://github.com/linkml/linkml/issues/1453)
 ifneq ($(strip ${GEN_OWL_ARGS}),)
@@ -154,6 +155,10 @@ test-python:
 lint:
 	$(RUN) linkml-lint $(SOURCE_SCHEMA_PATH)
 
+gen-artefacts: $(PYMODEL) $(JSONSCHEMA_DIR)
+	$(RUN) gen-json-schema $(SOURCE_SCHEMA_PATH) > $(JSONSCHEMA_DIR)/bertron_schema.json
+	$(RUN) gen-pydantic $(SOURCE_SCHEMA_PATH) > $(PYMODEL)/bertron_schema_pydantic.py
+
 check-config:
 ifndef LINKML_SCHEMA_NAME
 	$(error **Project not configured**:\n\n - See '.env.public'\n\n)
@@ -162,14 +167,14 @@ else
 endif
 
 convert-examples-to-%:
-	$(patsubst %, $(RUN) linkml-convert  % -s $(SOURCE_SCHEMA_PATH) -C Person, $(shell ${SHELL} find src/data/examples -name "*.yaml"))
+	$(patsubst %, $(RUN) linkml-convert  % -s $(SOURCE_SCHEMA_PATH) -C Entity, $(shell ${SHELL} find $(SOURCE_SAMPLE_DATA_DIR) -name "*.yaml"))
 
-examples/%.yaml: src/data/examples/%.yaml
-	$(RUN) linkml-convert -s $(SOURCE_SCHEMA_PATH) -C Person $< -o $@
-examples/%.json: src/data/examples/%.yaml
-	$(RUN) linkml-convert -s $(SOURCE_SCHEMA_PATH) -C Person $< -o $@
-examples/%.ttl: src/data/examples/%.yaml
-	$(RUN) linkml-convert -P EXAMPLE=http://example.org/ -s $(SOURCE_SCHEMA_PATH) -C Person $< -o $@
+examples/%.yaml: $(SOURCE_SAMPLE_DATA_DIR)/%.yaml
+	$(RUN) linkml-convert -s $(SOURCE_SCHEMA_PATH) -C Entity $< -o $@
+examples/%.json: $(SOURCE_SAMPLE_DATA_DIR)/%.yaml
+	$(RUN) linkml-convert -s $(SOURCE_SCHEMA_PATH) -C PEntity $< -o $@
+examples/%.ttl: $(SOURCE_SAMPLE_DATA_DIR)/%.yaml
+	$(RUN) linkml-convert -P EXAMPLE=http://example.org/ -s $(SOURCE_SCHEMA_PATH) -C Entity $< -o $@
 
 test-examples: examples/output
 
@@ -178,8 +183,8 @@ examples/output: src/$(SCHEMA_NAME)/schema/$(SCHEMA_NAME).yaml
 	$(RUN) linkml-run-examples \
 		--output-formats json \
 		--output-formats yaml \
-		--counter-example-input-directory src/data/examples/invalid \
-		--input-directory src/data/examples/valid \
+		--counter-example-input-directory $(SOURCE_SAMPLE_DATA_DIR)/invalid \
+		--input-directory $(SOURCE_SAMPLE_DATA_DIR)/valid \
 		--output-directory $@ \
 		--schema $< > $@/README.md
 
@@ -190,7 +195,11 @@ serve: mkd-serve
 $(PYMODEL):
 	mkdir -p $@
 
+# JSONschema model
+$(JSONSCHEMA_DIR):
+	mkdir -p $@
 
+# documentation
 $(DOCDIR):
 	mkdir -p $@
 
@@ -198,7 +207,12 @@ gendoc: $(DOCDIR)
 	cp -rf $(SRC)/docs/files/* $(DOCDIR) ; \
 	$(RUN) gen-doc ${GEN_DOC_ARGS} -d $(DOCDIR) $(SOURCE_SCHEMA_PATH)
 	mkdir -p $(DOCDIR)/javascripts
-	$(RUN) cp $(SRC)/docs/js/*.js $(DOCDIR)/javascripts/
+	cp $(SRC)/docs/js/*.js $(DOCDIR)/javascripts/
+
+gendoc-gh:
+	touch $(DOCDIR)/.nojekyll
+	make gendoc
+	make mkd-gh-deploy
 
 testdoc: gendoc serve
 

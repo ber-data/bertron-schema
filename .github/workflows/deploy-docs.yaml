@@ -33,9 +33,4 @@ jobs:
       - name: Build documentation and deploy to Github Pages
         run: |
           uv sync
-          mkdir -p docs
-          touch docs/.nojekyll
-          make gendoc
-          # copy in the `about.md` and any other docs pages if they exist
-          ([ ! -f docs/about.md ] && cp src/docs/*.md docs/) || true
-          make mkd-gh-deploy
+          make gendoc-gh
