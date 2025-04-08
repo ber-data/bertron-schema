@@ -59,14 +59,19 @@ generate standard repo artefacts (JSONschema and pydantic versions of the schema
 make gen-artefacts
 ```
 
-generate derived files in all formats:
+generate derived files in all formats and save them to the `project` directory:
 ```sh
-uv run gen-project -d src/schema/ src/schema/linkml/bertron_schema.yaml
+uv run gen-project -d project/ src/schema/linkml/bertron_schema.yaml
+```
+
+validate the linkml schema file:
+```sh
+uv run linkml-lint --validate src/schema/linkml/bertron_schema.yaml
 ```
 
 lint the linkml schema file:
 ```sh
-uv run linkml-lint -f terminal src/schema/linkml/bertron_schema.yaml
+uv run linkml-lint src/schema/linkml/bertron_schema.yaml
 ```
 
 validate data (in file `data.yaml`) against the schema:
@@ -99,11 +104,11 @@ brew install check-jsonschema
 
 To test a file or files against the schema, use the command:
 ```sh
-check-jsonschema --schemafile schema/jsonschema/bertron_schema.schema.json data_file_1.json data_file_2.json
+check-jsonschema --schemafile src/schema/jsonschema/bertron_schema.json data_file_1.json data_file_2.json
 ```
 or
 ```sh
-check-jsonschema --schemafile schema/jsonschema/bertron_schema.schema.json sample_data/**/*_dcm.json
+check-jsonschema --schemafile src/schema/jsonschema/bertron_schema.json src/sample_data/valid/*.json
 ```
 
 

@@ -172,7 +172,7 @@ convert-examples-to-%:
 examples/%.yaml: $(SOURCE_SAMPLE_DATA_DIR)/%.yaml
 	$(RUN) linkml-convert -s $(SOURCE_SCHEMA_PATH) -C Entity $< -o $@
 examples/%.json: $(SOURCE_SAMPLE_DATA_DIR)/%.yaml
-	$(RUN) linkml-convert -s $(SOURCE_SCHEMA_PATH) -C PEntity $< -o $@
+	$(RUN) linkml-convert -s $(SOURCE_SCHEMA_PATH) -C Entity $< -o $@
 examples/%.ttl: $(SOURCE_SAMPLE_DATA_DIR)/%.yaml
 	$(RUN) linkml-convert -P EXAMPLE=http://example.org/ -s $(SOURCE_SCHEMA_PATH) -C Entity $< -o $@
 
