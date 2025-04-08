@@ -15,17 +15,17 @@ include config.public.mk
 endif
 
 RUN = uv run
-SRC = src
-DEST = project
-DOCDIR = docs
-EXAMPLEDIR = examples
+SRC_DIR = src
+DEST_DIR = project
+DOC_DIR = docs
+EXAMPLE_DIR = examples
 SCHEMA_NAME = $(LINKML_SCHEMA_NAME)
 SOURCE_SCHEMA_PATH = $(LINKML_SCHEMA_SOURCE_PATH)
-SOURCE_SCHEMA_DIR = $(SRC)/schema
-SOURCE_SAMPLE_DATA_DIR = $(SRC)/sample_data
-PYMODEL = $(SOURCE_SCHEMA_DIR)/datamodel
+SOURCE_SCHEMA_DIR = $(SRC_DIR)/schema
+SOURCE_SAMPLE_DATA_DIR = $(SRC_DIR)/sample_data
+PYMODEL_DIR = $(SOURCE_SCHEMA_DIR)/datamodel
 JSONSCHEMA_DIR = $(SOURCE_SCHEMA_DIR)/jsonschema
-DOCTEMPLATES = $(SRC)/docs/templates
+DOCTEMPLATES_DIR = $(SRC_DIR)/docs/templates
 SHEET_MODULE = $(LINKML_SCHEMA_GOOGLE_SHEET_MODULE)
 SHEET_ID = $(LINKML_SCHEMA_GOOGLE_SHEET_ID)
 SHEET_TABS = $(LINKML_SCHEMA_GOOGLE_SHEET_TABS)
@@ -122,28 +122,28 @@ compile-sheets:
 
 # In future this will be done by conversion
 gen-examples:
-	cp -r $(SOURCE_SAMPLE_DATA_DIR)/* $(EXAMPLEDIR)
+	cp -r $(SOURCE_SAMPLE_DATA_DIR)/* $(EXAMPLE_DIR)
 
 validate-examples:
 	$(RUN) linkml-validate -s $(SOURCE_SCHEMA_PATH) $(SOURCE_SAMPLE_DATA_DIR)/valid/*.json
 
 # generates all project files
-gen-project: $(PYMODEL)
-	$(RUN) gen-project ${CONFIG_YAML} -d $(DEST) $(SOURCE_SCHEMA_PATH) && mv $(DEST)/*.py $(PYMODEL)
+gen-project: $(PYMODEL_DIR)
+	$(RUN) gen-project ${CONFIG_YAML} -d $(DEST_DIR) $(SOURCE_SCHEMA_PATH) && mv $(DEST_DIR)/*.py $(PYMODEL_DIR)
 
 # non-empty arg triggers owl (workaround https://github.com/linkml/linkml/issues/1453)
 ifneq ($(strip ${GEN_OWL_ARGS}),)
-	mkdir -p ${DEST}/owl || true
-	$(RUN) gen-owl ${GEN_OWL_ARGS} $(SOURCE_SCHEMA_PATH) >${DEST}/owl/${SCHEMA_NAME}.owl.ttl
+	mkdir -p ${DEST_DIR}/owl || true
+	$(RUN) gen-owl ${GEN_OWL_ARGS} $(SOURCE_SCHEMA_PATH) >${DEST_DIR}/owl/${SCHEMA_NAME}.owl.ttl
 endif
 # non-empty arg triggers java
 ifneq ($(strip ${GEN_JAVA_ARGS}),)
-	$(RUN) gen-java ${GEN_JAVA_ARGS} --output-directory ${DEST}/java/ $(SOURCE_SCHEMA_PATH)
+	$(RUN) gen-java ${GEN_JAVA_ARGS} --output-directory ${DEST_DIR}/java/ $(SOURCE_SCHEMA_PATH)
 endif
 # non-empty arg triggers typescript
 ifneq ($(strip ${GEN_TS_ARGS}),)
-	mkdir -p ${DEST}/typescript || true
-	$(RUN) gen-typescript ${GEN_TS_ARGS} $(SOURCE_SCHEMA_PATH) >${DEST}/typescript/${SCHEMA_NAME}.ts
+	mkdir -p ${DEST_DIR}/typescript || true
+	$(RUN) gen-typescript ${GEN_TS_ARGS} $(SOURCE_SCHEMA_PATH) >${DEST_DIR}/typescript/${SCHEMA_NAME}.ts
 endif
 
 test: test-schema test-python test-examples
@@ -154,15 +154,16 @@ test-schema:
 test-python:
 	$(RUN) python -m pytest
 
-lint:
+lint:  ## lint the schema; warnings or errors result in a non-zero exit code
 	$(RUN) linkml-lint $(SOURCE_SCHEMA_PATH)
 
-lint-no-warn:
+lint-no-warn:  ## lint the schema; warnings do not result in a non-zero exit code
 	$(RUN) linkml-lint --ignore-warnings $(SOURCE_SCHEMA_PATH)
 
-gen-artefacts: $(PYMODEL) $(JSONSCHEMA_DIR)
+
+gen-artefacts: $(PYMODEL_DIR) $(JSONSCHEMA_DIR)  ## generate standard repo artefacts (JSON Schema and Pydantic versions of the schema)
 	$(RUN) gen-json-schema $(SOURCE_SCHEMA_PATH) > $(JSONSCHEMA_DIR)/bertron_schema.json
-	$(RUN) gen-pydantic $(SOURCE_SCHEMA_PATH) > $(PYMODEL)/bertron_schema_pydantic.py
+	$(RUN) gen-pydantic $(SOURCE_SCHEMA_PATH) > $(PYMODEL_DIR)/bertron_schema_pydantic.py
 
 check-config:
 ifndef LINKML_SCHEMA_NAME
@@ -193,29 +194,29 @@ examples/output: src/$(SCHEMA_NAME)/schema/$(SCHEMA_NAME).yaml
 		--output-directory $@ \
 		--schema $< > $@/README.md
 
-# Test documentation locally
-serve: mkd-serve
 
-# Python datamodel
-$(PYMODEL):
+serve: mkd-serve ## Test documentation locally
+
+# Python datamodel directory
+$(PYMODEL_DIR):
 	mkdir -p $@
 
-# JSONschema model
+# JSON Schema model directory
 $(JSONSCHEMA_DIR):
 	mkdir -p $@
 
-# documentation
-$(DOCDIR):
+# documentation directory
+$(DOC_DIR):
 	mkdir -p $@
 
-gendoc: $(DOCDIR)
-	cp -rf $(SRC)/docs/files/* $(DOCDIR) ; \
-	$(RUN) gen-doc ${GEN_DOC_ARGS} -d $(DOCDIR) $(SOURCE_SCHEMA_PATH)
-	mkdir -p $(DOCDIR)/javascripts
-	cp $(SRC)/docs/js/*.js $(DOCDIR)/javascripts/
+gendoc: $(DOC_DIR)  ## generate Markdown documentation locally
+	cp -rf $(SRC_DIR)/docs/files/* $(DOC_DIR) ; \
+	$(RUN) gen-doc ${GEN_DOC_ARGS} -d $(DOC_DIR) $(SOURCE_SCHEMA_PATH)
+	mkdir -p $(DOC_DIR)/javascripts
+	cp $(SRC_DIR)/docs/js/*.js $(DOC_DIR)/javascripts/
 
-gendoc-gh:
-	touch $(DOCDIR)/.nojekyll
+gendoc-gh: ## generate HTML documentation for deployment on GitHub Pages
+	touch $(DOC_DIR)/.nojekyll
 	make gendoc
 	make mkd-gh-deploy
 
@@ -241,9 +242,9 @@ git-status:
 	touch $@
 
 clean:
-	rm -rf $(DEST)
+	rm -rf $(DEST_DIR)
 	rm -rf tmp
-	rm -fr $(DOCDIR)/*
-	rm -fr $(PYMODEL)/*
+	rm -fr $(DOC_DIR)/*
+	rm -fr $(PYMODEL_DIR)/*
 
 include project.Makefile
