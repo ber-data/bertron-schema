@@ -7,8 +7,6 @@ jobs:
 
     run_linkml_tasks:
         runs-on: ubuntu-latest
-        strategy:
-            fail-fast: false
 
         steps:
             - name: Repo checkout
@@ -21,9 +19,6 @@ jobs:
 
             - name: Install uv
               uses: astral-sh/setup-uv@v5
-              with:
-                # Install a specific version of uv.
-                version: "0.6.10"
 
             - name: Install deps
               id: install_deps
