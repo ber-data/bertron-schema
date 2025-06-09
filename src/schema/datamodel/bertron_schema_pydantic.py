@@ -1,14 +1,9 @@
 from __future__ import annotations
 
-import re
-import sys
-from datetime import date, datetime, time
-from decimal import Decimal
 from enum import Enum
-from typing import Any, ClassVar, Dict, List, Literal, Optional, Union
+from typing import Any, ClassVar
 
-from pydantic import BaseModel, ConfigDict, Field, RootModel, field_validator
-
+from pydantic import BaseModel, ConfigDict, Field, RootModel
 
 metamodel_version = "None"
 version = "0.0.2"
@@ -27,7 +22,7 @@ class ConfiguredBaseModel(BaseModel):
 
 
 class LinkMLMeta(RootModel):
-    root: Dict[str, Any] = {}
+    root: dict[str, Any] = {}
     model_config = ConfigDict(frozen=True)
 
     def __getattr__(self, key: str):
@@ -54,6 +49,12 @@ linkml_meta = LinkMLMeta(
         "license": "BSD-3",
         "name": "bertron-schema",
         "prefixes": {
+            "MIXS": {"prefix_prefix": "MIXS", "prefix_reference": "https://w3id.org/mixs/"},
+            "UO": {"prefix_prefix": "UO", "prefix_reference": "http://purl.obolibrary.org/obo/UO_"},
+            "WGS84": {
+                "prefix_prefix": "WGS84",
+                "prefix_reference": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+            },
             "bertron": {
                 "prefix_prefix": "bertron",
                 "prefix_reference": "https://w3id.org/ber-data/bertron-schema/",
@@ -97,16 +98,26 @@ class NameType(str, Enum):
     The relationship between a name and a synonym of that name.
     """
 
-    # The synonym refers to a broader group of entities than the name.
     broad_synonym = "broad_synonym"
-    # String with exactly the same meaning and connotations as the original name.
+    """
+    The synonym refers to a broader group of entities than the name.
+    """
     exact_synonym = "exact_synonym"
-    # The synonym refers to a narrower group of entities than the name.
+    """
+    String with exactly the same meaning and connotations as the original name.
+    """
     narrow_synonym = "narrow_synonym"
-    # The synonym has overlap with the name but the precise relationship is not defined.
+    """
+    The synonym refers to a narrower group of entities than the name.
+    """
     related_synonym = "related_synonym"
-    # An acronym or abbreviation for the name.
+    """
+    The synonym has overlap with the name but the precise relationship is not defined.
+    """
     acronym = "acronym"
+    """
+    An acronym or abbreviation for the name.
+    """
 
 
 class AttributeValue(ConfiguredBaseModel):
@@ -122,7 +133,7 @@ class AttributeValue(ConfiguredBaseModel):
         }
     )
 
-    has_raw_value: Optional[str] = Field(
+    has_raw_value: str | None = Field(
         default=None,
         description="""The value that was specified for an annotation in raw form, i.e. a string. E.g. \"2 cm\" or \"2-4 cm\"""",
         json_schema_extra={
@@ -161,7 +172,7 @@ class QuantityValue(AttributeValue):
         }
     )
 
-    has_maximum_numeric_value: Optional[float] = Field(
+    has_maximum_numeric_value: float | None = Field(
         default=None,
         description="""The maximum value part, expressed as number, of the quantity value when the value covers a range.""",
         json_schema_extra={
@@ -173,7 +184,7 @@ class QuantityValue(AttributeValue):
             }
         },
     )
-    has_minimum_numeric_value: Optional[float] = Field(
+    has_minimum_numeric_value: float | None = Field(
         default=None,
         description="""The minimum value part, expressed as number, of the quantity value when the value covers a range.""",
         json_schema_extra={
@@ -185,7 +196,7 @@ class QuantityValue(AttributeValue):
             }
         },
     )
-    has_numeric_value: Optional[float] = Field(
+    has_numeric_value: float | None = Field(
         default=None,
         description="""The number part of the quantity""",
         json_schema_extra={
@@ -196,7 +207,7 @@ class QuantityValue(AttributeValue):
             }
         },
     )
-    has_raw_value: Optional[str] = Field(
+    has_raw_value: str | None = Field(
         default=None,
         description="""Unnormalized atomic string representation, should in syntax {number} {unit}""",
         json_schema_extra={
@@ -207,7 +218,7 @@ class QuantityValue(AttributeValue):
             }
         },
     )
-    has_unit: Optional[str] = Field(
+    has_unit: str | None = Field(
         default=None,
         description="""The unit of the quantity""",
         json_schema_extra={
@@ -241,12 +252,12 @@ class Entity(ConfiguredBaseModel):
         description="""The geographic coordinates associated with an entity. For entities with a bounding box, the centroid is used as the geographic reference.""",
         json_schema_extra={"linkml_meta": {"alias": "coordinates", "domain_of": ["Entity"]}},
     )
-    data_type: List[DataTypeTagType] = Field(
+    data_type: list[DataTypeTagType] = Field(
         default=...,
         description="""What kind of data this entity is -- e.g. sequence data; a soil core; a well; etc.""",
         json_schema_extra={"linkml_meta": {"alias": "data_type", "domain_of": ["Entity"]}},
     )
-    description: Optional[str] = Field(
+    description: str | None = Field(
         default=None,
         description="""Textual description of the entity.""",
         json_schema_extra={
@@ -261,7 +272,7 @@ class Entity(ConfiguredBaseModel):
             }
         },
     )
-    id: Optional[str] = Field(
+    id: str | None = Field(
         default=None,
         description="""The unique ID used for the entity within the BER resource. It may not necessarily be resolvable outside the resource.""",
         json_schema_extra={
@@ -277,7 +288,7 @@ class Entity(ConfiguredBaseModel):
             }
         },
     )
-    name: Optional[str] = Field(
+    name: str | None = Field(
         default=None,
         description="""Human-readable string representing an entity.""",
         json_schema_extra={
@@ -292,7 +303,7 @@ class Entity(ConfiguredBaseModel):
             }
         },
     )
-    alt_ids: Optional[List[str]] = Field(
+    alt_ids: list[str] | None = Field(
         default=None,
         description="""Fully-qualified URI or CURIE used as an identifier for an entity.""",
         json_schema_extra={
@@ -314,7 +325,7 @@ class Entity(ConfiguredBaseModel):
             }
         },
     )
-    alt_names: Optional[List[Name]] = Field(
+    alt_names: list[Name] | None = Field(
         default=None,
         description="""Textual identifiers for an entity.""",
         json_schema_extra={
@@ -326,7 +337,7 @@ class Entity(ConfiguredBaseModel):
             }
         },
     )
-    part_of_collection: Optional[List[DataCollection]] = Field(
+    part_of_collection: list[DataCollection] | None = Field(
         default=None,
         description="""Administrative collection (e.g. project, campaign, whatever) that the entity was generated as part of. May also be called a project.""",
         json_schema_extra={"linkml_meta": {"alias": "part_of_collection", "domain_of": ["Entity"]}},
@@ -349,7 +360,7 @@ class Coordinates(ConfiguredBaseModel):
         {"from_schema": "https://w3id.org/ber-data/bertron-schema"}
     )
 
-    altitude: Optional[QuantityValue] = Field(
+    altitude: QuantityValue | None = Field(
         default=None,
         title="altitude",
         description="""Altitude is a term used to identify heights of objects such as airplanes, space shuttles, rockets, atmospheric balloons and heights of places such as atmospheric layers and clouds. It is used to measure the height of an object which is above the earth's surface. In this context, the altitude measurement is the vertical distance between the earth's surface above sea level and the sampled position in the air""",
@@ -365,7 +376,7 @@ class Coordinates(ConfiguredBaseModel):
             }
         },
     )
-    depth: Optional[QuantityValue] = Field(
+    depth: QuantityValue | None = Field(
         default=None,
         title="depth",
         description="""The vertical distance below local surface, e.g. for sediment or soil samples depth is measured from sediment or soil surface, respectively. Depth can be reported as an interval for subsurface samples.""",
@@ -382,7 +393,7 @@ class Coordinates(ConfiguredBaseModel):
             }
         },
     )
-    elevation: Optional[QuantityValue] = Field(
+    elevation: QuantityValue | None = Field(
         default=None,
         title="elevation",
         description="""Elevation of the sampling site is its height above a fixed reference point, most commonly the mean sea level. Elevation is mainly used when referring to points on the earth's surface, while altitude is used for points above the surface, such as an aircraft in flight or a spacecraft in orbit.""",
@@ -408,7 +419,7 @@ class Coordinates(ConfiguredBaseModel):
                 "domain_of": ["Coordinates"],
                 "examples": [{"value": "-33.460524"}],
                 "mappings": ["schema:latitude"],
-                "slot_uri": "wgs84:lat",
+                "slot_uri": "WGS84:lat",
             }
         },
     )
@@ -421,7 +432,7 @@ class Coordinates(ConfiguredBaseModel):
                 "domain_of": ["Coordinates"],
                 "examples": [{"value": "150.168149"}],
                 "mappings": ["schema:longitude"],
-                "slot_uri": "wgs84:long",
+                "slot_uri": "WGS84:long",
             }
         },
     )
@@ -436,7 +447,7 @@ class Name(ConfiguredBaseModel):
         {"from_schema": "https://w3id.org/ber-data/bertron-schema"}
     )
 
-    name_type: Optional[NameType] = Field(
+    name_type: NameType | None = Field(
         default=None,
         description="""Brief description of the name and/or its relationship to the entity.""",
         json_schema_extra={"linkml_meta": {"alias": "name_type", "domain_of": ["Name"]}},
@@ -470,7 +481,7 @@ class DataCollection(ConfiguredBaseModel):
         }
     )
 
-    id: Optional[str] = Field(
+    id: str | None = Field(
         default=None,
         description="""The unique ID used for the project within the BER resource. It may not necessarily be resolvable outside the resource.""",
         json_schema_extra={
@@ -486,7 +497,7 @@ class DataCollection(ConfiguredBaseModel):
             }
         },
     )
-    title: Optional[str] = Field(
+    title: str | None = Field(
         default=None,
         description="""Human-readable string representing the project.""",
         json_schema_extra={
@@ -498,7 +509,7 @@ class DataCollection(ConfiguredBaseModel):
             }
         },
     )
-    description: Optional[str] = Field(
+    description: str | None = Field(
         default=None,
         description="""Textual description of the project.""",
         json_schema_extra={
@@ -509,7 +520,7 @@ class DataCollection(ConfiguredBaseModel):
             }
         },
     )
-    alt_ids: Optional[List[str]] = Field(
+    alt_ids: list[str] | None = Field(
         default=None,
         description="""Fully-qualified URI or CURIE used as an identifier for a project.""",
         json_schema_extra={
@@ -530,7 +541,7 @@ class DataCollection(ConfiguredBaseModel):
             }
         },
     )
-    alt_titles: Optional[List[Name]] = Field(
+    alt_titles: list[Name] | None = Field(
         default=None,
         description="""Alternative versions of the title/name of a project.""",
         json_schema_extra={

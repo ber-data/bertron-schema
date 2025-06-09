@@ -7,7 +7,8 @@ readme = "README.md"
 include = ["README.md", "src/bertron_schema/schema"]
 requires-python = ">=3.12.9"
 dependencies = [
-    "linkml>=1.8.7",
+    "linkml>=1.9.2",
+    "linkml-runtime>=1.9.3",
     "mkdocs-material>=9.6.9",
     "mkdocs-mermaid2-plugin>=1.2.1",
 ]
