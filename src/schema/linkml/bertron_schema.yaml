@@ -161,6 +161,8 @@ classes:
           - value: "-33.460524"
         mappings:
           - schema:latitude
+        broad_mappings: 
+          - MIXS:0000009
         range: decimal degree
         required: true
         slot_uri: WGS84:lat
@@ -170,6 +172,8 @@ classes:
           - value: "150.168149"
         mappings:
           - schema:longitude
+        broad_mappings: 
+          - MIXS:0000009
         range: decimal degree
         required: true
         slot_uri: WGS84:long
