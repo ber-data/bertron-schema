@@ -1,17 +1,14 @@
 {
     "ber_data_source": "MONET",
     "coordinates": {
-        "latitude": "34",
-        "longitude": "118.0",
+        "latitude": 34,
+        "longitude": 118.0,
         "altitude": null,
         "depth": null,
-        "elevation": {
-            "has_numeric_value": "722.613",
-            "has_unit": "unknown"
-        }
+        "elevation": null
     },
     "data_type": [
-        "emsl_sample"
+        "sample"
     ],
     "description": "Clostridium thermocellum protein extracts",
     "id": "EMSL:c9405190-e962-4ba5-93f0-e3ff499f4488",
@@ -19,5 +16,5 @@
     "alt_ids": null,
     "alt_names": null,
     "part_of_collection": null,
-    "uri": null
+    "uri": "https://sc-data.emsl.pnnl.gov/?projectId=61815"
 }
