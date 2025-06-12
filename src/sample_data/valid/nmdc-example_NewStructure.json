@@ -32,7 +32,8 @@
         },
         "has_raw_value": "2.2 ppm",
         "has_unit": "ppm",
-        "has_numeric_value": "2.2"
+        "has_numeric_value": "2.2",
+        "type": "QuantityValue"
         },
         {"attribute": {
             "id": "MIXS:0000011",
