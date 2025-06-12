@@ -7,7 +7,7 @@
         "depth": null,
         "elevation": null
     },
-    "data_type": [
+    "entity_type": [
         "sample"
     ],
     "description": "Clostridium thermocellum protein extracts",

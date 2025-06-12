@@ -40,9 +40,9 @@ classes:
         description: The geographic coordinates associated with an entity. For entities with a bounding box, the centroid is used as the geographic reference.
         range: Coordinates
         required: true
-      data_type:
-        description: What kind of data this entity is -- e.g. sequence data; a soil core; a well; etc.
-        range: DataTypeTagType
+      entity_type:
+        description: What kind of entity is this -- e.g. sequence data; a soil core; a well; field site; sample; etc.
+        range: EntityType
         multivalued: true
         required: true
       description:
@@ -262,7 +262,7 @@ enums:
       MONET:
       NMDC:
 
-  DataTypeTagType:
+  EntityTypee:
     description: Tags used to describe an entity.
     todos:
     - Complete this list!
