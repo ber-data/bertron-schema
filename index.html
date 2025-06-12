@@ -16,7 +16,7 @@
       
       
       <link rel="icon" href="assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.9">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.12">
     
     
       
@@ -24,7 +24,7 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.4af4bdda.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.2afb09e1.min.css">
       
       
 
@@ -110,11 +110,13 @@
     
     
     
-      <label class="md-header__button md-icon" for="__search">
-        
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
-      </label>
-      <div class="md-search" data-md-component="search" role="dialog">
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
@@ -146,6 +148,7 @@
     </div>
   </div>
 </div>
+      
     
     
       <div class="md-header__source">
@@ -227,6 +230,7 @@
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
   
+  
   <span class="md-ellipsis">
     Index
     
@@ -238,6 +242,7 @@
       
       <a href="." class="md-nav__link md-nav__link--active">
         
+  
   
   <span class="md-ellipsis">
     Index
@@ -324,6 +329,7 @@
     <li class="md-nav__item">
       <a href="about/" class="md-nav__link">
         
+  
   
   <span class="md-ellipsis">
     About
@@ -460,10 +466,6 @@
 <td>An object retrieved by BERtron from a BER data API.</td>
 </tr>
 <tr>
-<td></td>
-<td></td>
-</tr>
-<tr>
 <td><a href="Name/">Name</a></td>
 <td>The name or label for an entity. This may be a primary name, alternative name, synonym, acronym, or any other label used to refer to an entity.</td>
 </tr>
@@ -480,55 +482,51 @@
 <tbody>
 <tr>
 <td><a href="alt_ids/">alt_ids</a></td>
-<td>Fully-qualified URI or CURIE used as an identifier for an entity</td>
+<td>Fully-qualified URI or CURIE used as an identifier for an entity.</td>
 </tr>
 <tr>
 <td><a href="alt_names/">alt_names</a></td>
-<td>Textual identifiers for an entity</td>
+<td>Textual identifiers for an entity.</td>
 </tr>
 <tr>
 <td><a href="alt_titles/">alt_titles</a></td>
-<td>Alternative versions of the title/name of a project</td>
+<td>Alternative versions of the title/name of a project.</td>
 </tr>
 <tr>
 <td><a href="altitude/">altitude</a></td>
-<td>Altitude is a term used to identify heights of objects such as airplanes, spa...</td>
+<td>Altitude is a term used to identify heights of objects such as airplanes, space shuttles, rockets, atmospheric balloons and heights of places such as atmospheric layers and clouds. It is used to measure the height of an object which is above the earth's surface. In this context, the altitude measurement is the vertical distance between the earth's surface above sea level and the sampled position in the air</td>
 </tr>
 <tr>
 <td><a href="ber_data_source/">ber_data_source</a></td>
-<td>The BER member from whence the entity originated</td>
+<td>The BER member from whence the entity originated.</td>
 </tr>
 <tr>
 <td><a href="coordinates/">coordinates</a></td>
-<td>The geographic coordinates associated with an entity</td>
-</tr>
-<tr>
-<td><a href="credit_metadata/">credit_metadata</a></td>
-<td>Citation metadata for the entity</td>
+<td>The geographic coordinates associated with an entity. For entities with a bounding box, the centroid is used as the geographic reference.</td>
 </tr>
 <tr>
 <td><a href="data_type/">data_type</a></td>
-<td>What kind of data this entity is -- e</td>
+<td>What kind of data this entity is -- e.g. sequence data; a soil core; a well; etc.</td>
 </tr>
 <tr>
 <td><a href="depth/">depth</a></td>
-<td>The vertical distance below local surface, e</td>
+<td>The vertical distance below local surface, e.g. for sediment or soil samples depth is measured from sediment or soil surface, respectively. Depth can be reported as an interval for subsurface samples.</td>
 </tr>
 <tr>
 <td><a href="description/">description</a></td>
-<td>Textual description of the entity</td>
+<td>Textual description of the entity.</td>
 </tr>
 <tr>
 <td><a href="elevation/">elevation</a></td>
-<td>Elevation of the sampling site is its height above a fixed reference point, m...</td>
+<td>Elevation of the sampling site is its height above a fixed reference point, most commonly the mean sea level. Elevation is mainly used when referring to points on the earth's surface, while altitude is used for points above the surface, such as an aircraft in flight or a spacecraft in orbit.</td>
 </tr>
 <tr>
 <td><a href="has_maximum_numeric_value/">has_maximum_numeric_value</a></td>
-<td>The maximum value part, expressed as number, of the quantity value when the v...</td>
+<td>The maximum value part, expressed as number, of the quantity value when the value covers a range.</td>
 </tr>
 <tr>
 <td><a href="has_minimum_numeric_value/">has_minimum_numeric_value</a></td>
-<td>The minimum value part, expressed as number, of the quantity value when the v...</td>
+<td>The minimum value part, expressed as number, of the quantity value when the value covers a range.</td>
 </tr>
 <tr>
 <td><a href="has_numeric_value/">has_numeric_value</a></td>
@@ -536,7 +534,7 @@
 </tr>
 <tr>
 <td><a href="has_raw_value/">has_raw_value</a></td>
-<td>The value that was specified for an annotation in raw form, i</td>
+<td>The value that was specified for an annotation in raw form, i.e. a string. E.g. "2 cm" or "2-4 cm"</td>
 </tr>
 <tr>
 <td><a href="has_unit/">has_unit</a></td>
@@ -544,7 +542,7 @@
 </tr>
 <tr>
 <td><a href="id/">id</a></td>
-<td>The unique ID used for the entity within the BER resource</td>
+<td>The unique ID used for the entity within the BER resource. It may not necessarily be resolvable outside the resource.</td>
 </tr>
 <tr>
 <td><a href="latitude/">latitude</a></td>
@@ -556,27 +554,27 @@
 </tr>
 <tr>
 <td><a href="name/">name</a></td>
-<td>Human-readable string representing an entity</td>
+<td>Human-readable string representing an entity.</td>
 </tr>
 <tr>
 <td><a href="name_type/">name_type</a></td>
-<td>Brief description of the name and/or its relationship to the entity</td>
+<td>Brief description of the name and/or its relationship to the entity.</td>
 </tr>
 <tr>
 <td><a href="part_of_collection/">part_of_collection</a></td>
-<td>Administrative collection (e</td>
+<td>Administrative collection (e.g. project, campaign, whatever) that the entity was generated as part of. May also be called a project.</td>
 </tr>
 <tr>
 <td><a href="title/">title</a></td>
-<td>Human-readable string representing the project</td>
+<td>Human-readable string representing the project.</td>
 </tr>
 <tr>
 <td><a href="uri/">uri</a></td>
-<td>Permanent resolvable URI for the entity at the data source</td>
+<td>Permanent resolvable URI for the entity at the data source.</td>
 </tr>
 <tr>
 <td><a href="url/">url</a></td>
-<td>Permanent resolvable URI for the collection at the data source</td>
+<td>Permanent resolvable URI for the collection at the data source.</td>
 </tr>
 </tbody>
 </table>
@@ -591,15 +589,15 @@
 <tbody>
 <tr>
 <td><a href="BERSourceType/">BERSourceType</a></td>
-<td>The BER data source from whence the entity originated</td>
+<td>The BER data source from whence the entity originated.</td>
 </tr>
 <tr>
 <td><a href="DataTypeTagType/">DataTypeTagType</a></td>
-<td>Tags used to describe an entity</td>
+<td>Tags used to describe an entity.</td>
 </tr>
 <tr>
 <td><a href="NameType/">NameType</a></td>
-<td>The relationship between a name and a synonym of that name</td>
+<td>The relationship between a name and a synonym of that name.</td>
 </tr>
 </tbody>
 </table>
@@ -634,11 +632,11 @@
 </tr>
 <tr>
 <td><a href="Decimal/">Decimal</a></td>
-<td>A real number with arbitrary precision that conforms to the xsd:decimal speci...</td>
+<td>A real number with arbitrary precision that conforms to the xsd:decimal specification</td>
 </tr>
 <tr>
 <td><a href="DecimalDegree/">DecimalDegree</a></td>
-<td>A decimal degree expresses latitude or longitude as decimal fractions</td>
+<td>A decimal degree expresses latitude or longitude as decimal fractions.</td>
 </tr>
 <tr>
 <td><a href="Double/">Double</a></td>
@@ -654,11 +652,11 @@
 </tr>
 <tr>
 <td><a href="Jsonpath/">Jsonpath</a></td>
-<td>A string encoding a JSON Path</td>
+<td>A string encoding a JSON Path. The value of the string MUST conform to JSON Point syntax and SHOULD dereference to zero or more valid objects within the current instance document when encoded in tree form.</td>
 </tr>
 <tr>
 <td><a href="Jsonpointer/">Jsonpointer</a></td>
-<td>A string encoding a JSON Pointer</td>
+<td>A string encoding a JSON Pointer. The value of the string MUST conform to JSON Point syntax and SHOULD dereference to a valid object within the current instance document when encoded in tree form.</td>
 </tr>
 <tr>
 <td><a href="Ncname/">Ncname</a></td>
@@ -666,15 +664,15 @@
 </tr>
 <tr>
 <td><a href="Nodeidentifier/">Nodeidentifier</a></td>
-<td>A URI, CURIE or BNODE that represents a node in a model</td>
+<td>A URI, CURIE or BNODE that represents a node in a model.</td>
 </tr>
 <tr>
 <td><a href="Objectidentifier/">Objectidentifier</a></td>
-<td>A URI or CURIE that represents an object in the model</td>
+<td>A URI or CURIE that represents an object in the model.</td>
 </tr>
 <tr>
 <td><a href="Sparqlpath/">Sparqlpath</a></td>
-<td>A string encoding a SPARQL Property Path</td>
+<td>A string encoding a SPARQL Property Path. The value of the string MUST conform to SPARQL syntax and SHOULD dereference to zero or more valid objects within the current instance document when encoded as RDF.</td>
 </tr>
 <tr>
 <td><a href="String/">String</a></td>
@@ -682,7 +680,7 @@
 </tr>
 <tr>
 <td><a href="Time/">Time</a></td>
-<td>A time object represents a (local) time of day, independent of any particular...</td>
+<td>A time object represents a (local) time of day, independent of any particular day</td>
 </tr>
 <tr>
 <td><a href="Unit/">Unit</a></td>
@@ -761,7 +759,9 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": ".", "features": ["content.tabs.link"], "search": "assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+      
+      <script id="__config" type="application/json">{"base": ".", "features": ["content.tabs.link"], "search": "assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="assets/javascripts/bundle.c8b220af.min.js"></script>

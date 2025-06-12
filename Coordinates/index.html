@@ -7,9 +7,9 @@
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <link href="https://ber-data.github.io/bertron-schema/Coordinates/" rel="canonical"/>
 <link href="../assets/images/favicon.png" rel="icon"/>
-<meta content="mkdocs-1.6.1, mkdocs-material-9.6.9" name="generator"/>
+<meta content="mkdocs-1.6.1, mkdocs-material-9.6.12" name="generator"/>
 <title>Class: Coordinates - bertron-schema</title>
-<link href="../assets/stylesheets/main.4af4bdda.min.css" rel="stylesheet"/>
+<link href="../assets/stylesheets/main.2afb09e1.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
 <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
@@ -229,8 +229,10 @@
 
 
 
-    Coordinates --&gt; "0..1" QuantityValue : altitude
-    click QuantityValue href "../QuantityValue"
+
+        Coordinates --&gt; "0..1" QuantityValue : altitude
+        click QuantityValue href "../QuantityValue"
+
 
 
       Coordinates : depth
@@ -238,8 +240,10 @@
 
 
 
-    Coordinates --&gt; "0..1" QuantityValue : depth
-    click QuantityValue href "../QuantityValue"
+
+        Coordinates --&gt; "0..1" QuantityValue : depth
+        click QuantityValue href "../QuantityValue"
+
 
 
       Coordinates : elevation
@@ -247,8 +251,10 @@
 
 
 
-    Coordinates --&gt; "0..1" QuantityValue : elevation
-    click QuantityValue href "../QuantityValue"
+
+        Coordinates --&gt; "0..1" QuantityValue : elevation
+        click QuantityValue href "../QuantityValue"
+
 
 
       Coordinates : latitude
@@ -272,19 +278,19 @@
 <tr>
 <td><a href="../altitude/">altitude</a></td>
 <td>0..1 <br/> <a href="../QuantityValue/">QuantityValue</a></td>
-<td>Altitude is a term used to identify heights of objects such as airplanes, spa...</td>
+<td>Altitude is a term used to identify heights of objects such as airplanes, space shuttles, rockets, atmospheric balloons and heights of places such as atmospheric layers and clouds. It is used to measure the height of an object which is above the earth's surface. In this context, the altitude measurement is the vertical distance between the earth's surface above sea level and the sampled position in the air</td>
 <td>direct</td>
 </tr>
 <tr>
 <td><a href="../depth/">depth</a></td>
 <td>0..1 <br/> <a href="../QuantityValue/">QuantityValue</a></td>
-<td>The vertical distance below local surface, e</td>
+<td>The vertical distance below local surface, e.g. for sediment or soil samples depth is measured from sediment or soil surface, respectively. Depth can be reported as an interval for subsurface samples.</td>
 <td>direct</td>
 </tr>
 <tr>
 <td><a href="../elevation/">elevation</a></td>
 <td>0..1 <br/> <a href="../QuantityValue/">QuantityValue</a></td>
-<td>Elevation of the sampling site is its height above a fixed reference point, m...</td>
+<td>Elevation of the sampling site is its height above a fixed reference point, most commonly the mean sea level. Elevation is mainly used when referring to points on the earth's surface, while altitude is used for points above the surface, such as an aircraft in flight or a spacecraft in orbit.</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -426,7 +432,7 @@ attributes:
     mappings:
     - schema:latitude
     rank: 1000
-    slot_uri: wgs84:lat
+    slot_uri: WGS84:lat
     domain_of:
     - Coordinates
     range: decimal degree
@@ -440,7 +446,7 @@ attributes:
     mappings:
     - schema:longitude
     rank: 1000
-    slot_uri: wgs84:long
+    slot_uri: WGS84:long
     domain_of:
     - Coordinates
     range: decimal degree
@@ -534,7 +540,7 @@ attributes:
     mappings:
     - schema:latitude
     rank: 1000
-    slot_uri: wgs84:lat
+    slot_uri: WGS84:lat
     alias: latitude
     owner: Coordinates
     domain_of:
@@ -550,7 +556,7 @@ attributes:
     mappings:
     - schema:longitude
     rank: 1000
-    slot_uri: wgs84:long
+    slot_uri: WGS84:long
     alias: longitude
     owner: Coordinates
     domain_of:
@@ -584,11 +590,10 @@ attributes:
 <div class="md-dialog" data-md-component="dialog">
 <div class="md-dialog__inner md-typeset"></div>
 </div>
-<script id="__config" type="application/json">{"base": "..", "features": ["content.tabs.link"], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+<script id="__config" type="application/json">{"base": "..", "features": ["content.tabs.link"], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
 <script src="../assets/javascripts/bundle.c8b220af.min.js"></script>
 <script src="https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js"></script>
 <script src="../javascripts/tablesort.js"></script>
-<script type="module">import mermaid from "https://unpkg.com/mermaid@10.4.0/dist/mermaid.esm.min.mjs";
-mermaid.initialize({});</script><script type="module">import mermaid from "https://unpkg.com/mermaid@10.9.0/dist/mermaid.esm.min.mjs";
+<script type="module">import mermaid from "https://unpkg.com/mermaid@10.9.0/dist/mermaid.esm.min.mjs";
 mermaid.initialize({});</script></body>
 </html>
