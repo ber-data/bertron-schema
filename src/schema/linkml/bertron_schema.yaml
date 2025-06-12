@@ -262,7 +262,7 @@ enums:
       MONET:
       NMDC:
 
-  EntityTypee:
+  EntityType:
     description: Tags used to describe an entity.
     todos:
     - Complete this list!
