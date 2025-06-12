@@ -25,7 +25,7 @@
     "alt_names": null,
     "part_of_collection": null,
     "uri": "https://api.microbiomedata.org/biosamples/nmdc%3Absm-11-bsf8yq62",
-    "attribute_values": [
+    "properties": [
         {"attribute": {
             "id": "MIXS:0000117",
             "label": "total phoshorous"
@@ -39,6 +39,12 @@
             "label": "collection date"
         },
         "has_raw_value": "2025-06-12"
+        },
+        {"attribute": {
+            "id": "MIXS:0000012",
+            "label": "env_broad_scale"
+        },
+        "has_raw_value": "terrestrial biome [ENVO:00000446]"
         }
     ]
 }
