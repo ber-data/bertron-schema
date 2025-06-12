@@ -10,7 +10,7 @@
             "has_unit": "meter (UO:0000008)"
         }
     },
-    "data_type": [
+    "entity_type": [
         "jgi_biosample"
     ],
     "description": "Small acidic pool on hillside north of Nymph Lake.",

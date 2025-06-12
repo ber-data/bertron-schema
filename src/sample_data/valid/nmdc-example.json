@@ -15,7 +15,7 @@
             "has_unit": "m"
         }
     },
-    "data_type": [
+    "entity_type": [
         "sample"
     ],
     "description": "MONet sample represented in NMDC",
