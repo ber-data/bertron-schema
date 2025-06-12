@@ -216,8 +216,8 @@ gendoc: $(DOC_DIR)  ## generate Markdown documentation locally
 	cp $(SRC_DIR)/docs/js/*.js $(DOC_DIR)/javascripts/
 
 gendoc-gh: ## generate HTML documentation for deployment on GitHub Pages
-	touch $(DOC_DIR)/.nojekyll
 	make gendoc
+	touch $(DOC_DIR)/.nojekyll
 	make mkd-gh-deploy
 
 testdoc: gendoc serve
