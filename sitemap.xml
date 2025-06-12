@@ -29,10 +29,6 @@
          <lastmod>2025-06-12</lastmod>
     </url>
     <url>
-         <loc>https://ber-data.github.io/bertron-schema/DataTypeTagType/</loc>
-         <lastmod>2025-06-12</lastmod>
-    </url>
-    <url>
          <loc>https://ber-data.github.io/bertron-schema/Date/</loc>
          <lastmod>2025-06-12</lastmod>
     </url>
@@ -58,6 +54,10 @@
     </url>
     <url>
          <loc>https://ber-data.github.io/bertron-schema/Entity/</loc>
+         <lastmod>2025-06-12</lastmod>
+    </url>
+    <url>
+         <loc>https://ber-data.github.io/bertron-schema/EntityType/</loc>
          <lastmod>2025-06-12</lastmod>
     </url>
     <url>
@@ -157,10 +157,6 @@
          <lastmod>2025-06-12</lastmod>
     </url>
     <url>
-         <loc>https://ber-data.github.io/bertron-schema/data_type/</loc>
-         <lastmod>2025-06-12</lastmod>
-    </url>
-    <url>
          <loc>https://ber-data.github.io/bertron-schema/depth/</loc>
          <lastmod>2025-06-12</lastmod>
     </url>
@@ -170,6 +166,10 @@
     </url>
     <url>
          <loc>https://ber-data.github.io/bertron-schema/elevation/</loc>
+         <lastmod>2025-06-12</lastmod>
+    </url>
+    <url>
+         <loc>https://ber-data.github.io/bertron-schema/entity_type/</loc>
          <lastmod>2025-06-12</lastmod>
     </url>
     <url>

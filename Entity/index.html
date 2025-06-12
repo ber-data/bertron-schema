@@ -253,18 +253,18 @@
 
 
 
-      Entity : data_type
-
-
-
-
-
-        Entity --&gt; "1..*" DataTypeTagType : data_type
-        click DataTypeTagType href "../DataTypeTagType"
-
-
-
       Entity : description
+
+      Entity : entity_type
+
+
+
+
+
+        Entity --&gt; "1..*" EntityType : entity_type
+        click EntityType href "../EntityType"
+
+
 
       Entity : id
 
@@ -310,9 +310,9 @@
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../data_type/">data_type</a></td>
-<td>1..* <br/> <a href="../DataTypeTagType/">DataTypeTagType</a></td>
-<td>What kind of data this entity is -- e.g. sequence data; a soil core; a well; etc.</td>
+<td><a href="../entity_type/">entity_type</a></td>
+<td>1..* <br/> <a href="../EntityType/">EntityType</a></td>
+<td>What kind of entity is this -- e.g. sequence data; a soil core; a well; field site; sample; etc.</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -412,15 +412,15 @@ attributes:
     - Entity
     range: Coordinates
     required: true
-  data_type:
-    name: data_type
-    description: What kind of data this entity is -- e.g. sequence data; a soil core;
-      a well; etc.
+  entity_type:
+    name: entity_type
+    description: What kind of entity is this -- e.g. sequence data; a soil core; a
+      well; field site; sample; etc.
     from_schema: https://w3id.org/ber-data/bertron-schema
     rank: 1000
     domain_of:
     - Entity
-    range: DataTypeTagType
+    range: EntityType
     required: true
     multivalued: true
   description:
@@ -561,17 +561,17 @@ attributes:
     - Entity
     range: Coordinates
     required: true
-  data_type:
-    name: data_type
-    description: What kind of data this entity is -- e.g. sequence data; a soil core;
-      a well; etc.
+  entity_type:
+    name: entity_type
+    description: What kind of entity is this -- e.g. sequence data; a soil core; a
+      well; field site; sample; etc.
     from_schema: https://w3id.org/ber-data/bertron-schema
     rank: 1000
-    alias: data_type
+    alias: entity_type
     owner: Entity
     domain_of:
     - Entity
-    range: DataTypeTagType
+    range: EntityType
     required: true
     multivalued: true
   description:

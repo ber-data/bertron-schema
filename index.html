@@ -505,10 +505,6 @@
 <td>The geographic coordinates associated with an entity. For entities with a bounding box, the centroid is used as the geographic reference.</td>
 </tr>
 <tr>
-<td><a href="data_type/">data_type</a></td>
-<td>What kind of data this entity is -- e.g. sequence data; a soil core; a well; etc.</td>
-</tr>
-<tr>
 <td><a href="depth/">depth</a></td>
 <td>The vertical distance below local surface, e.g. for sediment or soil samples depth is measured from sediment or soil surface, respectively. Depth can be reported as an interval for subsurface samples.</td>
 </tr>
@@ -519,6 +515,10 @@
 <tr>
 <td><a href="elevation/">elevation</a></td>
 <td>Elevation of the sampling site is its height above a fixed reference point, most commonly the mean sea level. Elevation is mainly used when referring to points on the earth's surface, while altitude is used for points above the surface, such as an aircraft in flight or a spacecraft in orbit.</td>
+</tr>
+<tr>
+<td><a href="entity_type/">entity_type</a></td>
+<td>What kind of entity is this -- e.g. sequence data; a soil core; a well; field site; sample; etc.</td>
 </tr>
 <tr>
 <td><a href="has_maximum_numeric_value/">has_maximum_numeric_value</a></td>
@@ -592,7 +592,7 @@
 <td>The BER data source from whence the entity originated.</td>
 </tr>
 <tr>
-<td><a href="DataTypeTagType/">DataTypeTagType</a></td>
+<td><a href="EntityType/">EntityType</a></td>
 <td>Tags used to describe an entity.</td>
 </tr>
 <tr>
