@@ -4,7 +4,12 @@
         "latitude": 28.125842,
         "longitude": -81.434174,
         "altitude": null,
-        "depth": "0-0.1 m",
+        "depth": {
+             "has_minimum_numeric_value": 0,
+             "has_maximum_numeric_value": 0.1,
+             "has_unit": "m",
+             "has_raw_value": "0 - 0.1m"
+         },
         "elevation": {
             "has_numeric_value": 24,
             "has_unit": "m"
