@@ -1,3 +1,5 @@
+# yaml-language-server: $schema=https://linkml.io/linkml-model/linkml_model/jsonschema/meta.schema.json
+
 id: https://w3id.org/ber-data/bertron-schema
 name: bertron-schema
 title: BERtron schema
@@ -108,36 +110,35 @@ classes:
         description: Permanent resolvable URI for the entity at the data source.
         range: uriorcurie
         required: true
-      properties: 
+      properties:
         description: Provide metadata that may be relevant and applicable to the entity you're describing.
         multivalued: true
         required: false ## I think at least 1 metadata attribute should be required?
-        range: text
+        range: Any
+        any_of:
+          - range:
+              TextValue
+          - range:
+              QuantityValue
         examples:
           - object:
-            - attribute: 
-                id: MIXS:nnnnn
-                label: total phosphorus
-              has_raw_value: "2.2 ppm"
-              has_unit: ppm
-              has_numeric_value: 2.2
-          - object:
-            - attribute: 
+              attribute:
                 id: MIXS:0000117
                 label: total phosphorus
               has_raw_value: "2.2 ppm"
               has_unit: ppm
               has_numeric_value: 2.2
-              type: QuantityValue
-            - attribute:
+          - object:
+              attribute:
                 id: MIXS:0000011
                 label: collection date
-              has_raw_value: 2025-06-12
+              has_raw_value: "2025-06-12"
           - object:
-            - attrbutes:
+              attribute:
                 id: MIXS:0000012
                 label: env_broad_scale
-              has_raw_value: "terrestrial biome [ENVO:00000446]"
+              value: "terrestrial biome"
+              value_cv_id: "ENVO:00000446"
 
   Coordinates:
     description: The coordinates defining the position associated with the entity.

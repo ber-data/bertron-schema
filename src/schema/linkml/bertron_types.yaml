@@ -1,3 +1,5 @@
+# yaml-language-server: $schema=https://linkml.io/linkml-model/linkml_model/jsonschema/meta.schema.json
+
 id: https://w3id.org/ber-data/bertron_types
 name: bertron_types
 title: Types for the BERtron Schema
@@ -71,15 +73,32 @@ slots:
 
 classes:
 
+  Any:
+    class_uri: linkml:Any
+
   AttributeValue:
     abstract: true
     class_uri: nmdc:AttributeValue
     description: >-
-      The value for any value of a attribute for a sample. This object can hold both the un-normalized atomic
-      value and the structured value
-    slots:
-      - has_raw_value
-      # - type
+      The value for any value of attribute for an entity. This object can hold both the un-normalized atomic value and the structured value.
+    attributes:
+      attribute:
+        description: The attribute being represented.
+        range: Attribute
+      has_raw_value:
+        range: string
+        description: The raw value.
+
+  Attribute:
+    description: A domain, measurement, attribute, property, or whatever.
+    attributes:
+      id:
+        description: CURIE for this term
+      label:
+        aliases:
+          - name
+          - title
+        description: Text string for the term
 
   QuantityValue:
     class_uri: nmdc:QuantityValue
@@ -89,7 +108,6 @@ classes:
       - has_maximum_numeric_value
       - has_minimum_numeric_value
       - has_numeric_value
-      - has_raw_value
       - has_unit
     slot_usage:
       has_raw_value:
@@ -100,6 +118,16 @@ classes:
         description: The number part of the quantity
     mappings:
       - schema:QuantityValue
+
+  TextValue:
+    class_uri: nmdc:TextValue
+    is_a: AttributeValue
+    description: A quality, described using a text string.
+    attributes:
+      value:
+        description: The value, as a text string.
+      value_cv_id:
+        description: For values that are in a controlled vocabulary (CV), this attribute should capture the controlled vocabulary ID for the value.
 
 types:
   decimal degree:
@@ -115,7 +143,3 @@ types:
     mappings:
       - qud:Unit
       - UO:0000000
-    
-  text:
-    base: str
-    uri: xsd:string
