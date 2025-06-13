@@ -117,14 +117,14 @@ classes:
           - object:
             - attribute: 
                 id: MIXS:nnnnn
-                label: total phoshorous
+                label: total phosphorus
               has_raw_value: "2.2 ppm"
               has_unit: ppm
               has_numeric_value: 2.2
           - object:
             - attribute: 
                 id: MIXS:0000117
-                label: total phoshorous
+                label: total phosphorus
               has_raw_value: "2.2 ppm"
               has_unit: ppm
               has_numeric_value: 2.2
