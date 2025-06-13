@@ -212,7 +212,8 @@
                 "jgi_biosample",
                 "sample",
                 "sequence",
-                "taxon"
+                "taxon",
+                "unspecified"
             ],
             "title": "EntityType",
             "type": "string"
