@@ -90,15 +90,15 @@ classes:
         description: The raw value.
 
   Attribute:
-    description: A domain, measurement, attribute, property, or whatever.
+    description: A domain, measurement, attribute, property, or any descriptor for additional properties to be added to an entity.
     attributes:
       id:
-        description: CURIE for this term
+        description: A CURIE for the attribute, should one exist.
       label:
         aliases:
           - name
           - title
-        description: Text string for the term
+        description: Text string to describe the attribute.
 
   QuantityValue:
     class_uri: nmdc:QuantityValue
@@ -111,7 +111,7 @@ classes:
       - has_unit
     slot_usage:
       has_raw_value:
-        description: Unnormalized atomic string representation, should in syntax {number} {unit}
+        description: Unnormalized atomic string representation, suggested syntax {number} {unit}
       has_unit:
         description: The unit of the quantity
       has_numeric_value:
