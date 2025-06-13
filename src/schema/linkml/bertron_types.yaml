@@ -115,3 +115,7 @@ types:
     mappings:
       - qud:Unit
       - UO:0000000
+    
+  text:
+    base: str
+    uri: xsd:string
