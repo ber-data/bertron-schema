@@ -114,14 +114,14 @@ classes:
         required: false ## I think at least 1 metadata attribute should be required?
         range: string
         examples:
-          - value_object:
+          - object:
             - attribute: 
                 id: MIXS:nnnnn
                 label: total phoshorous
               has_raw_value: "2.2 ppm"
               has_unit: ppm
               has_numeric_value: 2.2
-          - value_objects:
+          - object:
             - attribute: 
                 id: MIXS:0000117
                 label: total phoshorous
@@ -133,7 +133,7 @@ classes:
                 id: MIXS:0000011
                 label: collection date
               has_raw_value: 2025-06-12
-          - value_objects:
+          - object:
             - attrbutes:
                 id: MIXS:0000012
                 label: env_broad_scale
