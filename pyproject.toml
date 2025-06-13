@@ -2,9 +2,8 @@
 name = "bertron-schema"
 version = "0.1.0"
 description = "LinkML schema for BER data integration work"
-license = "LICENSE"
+license = "BSD-3-Clause"
 readme = "README.md"
-include = ["README.md", "src/bertron_schema/schema"]
 requires-python = ">=3.12.9"
 dependencies = [
     "linkml>=1.9.2",
@@ -141,3 +140,13 @@ exclude = [
     "venv",
 ]
 per-file-ignores = {}
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-dir]
+"" = "src"
