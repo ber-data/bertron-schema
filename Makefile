@@ -157,6 +157,11 @@ test-python:
 lint:  ## lint the schema; warnings or errors result in a non-zero exit code
 	$(RUN) linkml-lint $(SOURCE_SCHEMA_PATH)
 
+
+lint-validate:  ## lint and validate the schema; warnings or errors result in a non-zero exit code
+	$(RUN) linkml-lint --validate $(SOURCE_SCHEMA_PATH)
+
+
 lint-no-warn:  ## lint the schema; warnings do not result in a non-zero exit code
 	$(RUN) linkml-lint --ignore-warnings $(SOURCE_SCHEMA_PATH)
 
