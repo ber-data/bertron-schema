@@ -121,18 +121,6 @@
             "title": "DataCollection",
             "type": "object"
         },
-        "DataTypeTagType": {
-            "description": "Tags used to describe an entity.",
-            "enum": [
-                "biodata",
-                "jgi_biosample",
-                "sample",
-                "sequence",
-                "taxon"
-            ],
-            "title": "DataTypeTagType",
-            "type": "string"
-        },
         "Entity": {
             "additionalProperties": false,
             "description": "An object retrieved by BERtron from a BER data API.",
@@ -165,19 +153,19 @@
                     "$ref": "#/$defs/Coordinates",
                     "description": "The geographic coordinates associated with an entity. For entities with a bounding box, the centroid is used as the geographic reference."
                 },
-                "data_type": {
-                    "description": "What kind of data this entity is -- e.g. sequence data; a soil core; a well; etc.",
-                    "items": {
-                        "$ref": "#/$defs/DataTypeTagType"
-                    },
-                    "type": "array"
-                },
                 "description": {
                     "description": "Textual description of the entity.",
                     "type": [
                         "string",
                         "null"
                     ]
+                },
+                "entity_type": {
+                    "description": "What kind of entity is this -- e.g. sequence data; a soil core; a well; field site; sample; etc.",
+                    "items": {
+                        "$ref": "#/$defs/EntityType"
+                    },
+                    "type": "array"
                 },
                 "id": {
                     "description": "The unique ID used for the entity within the BER resource. It may not necessarily be resolvable outside the resource.",
@@ -211,11 +199,23 @@
             "required": [
                 "ber_data_source",
                 "coordinates",
-                "data_type",
+                "entity_type",
                 "uri"
             ],
             "title": "Entity",
             "type": "object"
+        },
+        "EntityType": {
+            "description": "Tags used to describe an entity.",
+            "enum": [
+                "biodata",
+                "jgi_biosample",
+                "sample",
+                "sequence",
+                "taxon"
+            ],
+            "title": "EntityType",
+            "type": "string"
         },
         "Name": {
             "additionalProperties": false,
