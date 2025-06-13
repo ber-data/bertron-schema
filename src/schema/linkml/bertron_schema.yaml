@@ -323,3 +323,4 @@ enums:
       acronym:
         title: acronym
         description: An acronym or abbreviation for the name.
+        
