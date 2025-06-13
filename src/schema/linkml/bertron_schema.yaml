@@ -161,7 +161,7 @@ classes:
           - value: "-33.460524"
         mappings:
           - schema:latitude
-        broad_mappings: 
+        broad_mappings:
           - MIXS:0000009
         range: decimal degree
         required: true
@@ -172,7 +172,7 @@ classes:
           - value: "150.168149"
         mappings:
           - schema:longitude
-        broad_mappings: 
+        broad_mappings:
           - MIXS:0000009
         range: decimal degree
         required: true
@@ -272,6 +272,7 @@ enums:
       sample:
       sequence:
       taxon:
+      unspecified:
 
   NameType:
     description: The relationship between a name and a synonym of that name.
