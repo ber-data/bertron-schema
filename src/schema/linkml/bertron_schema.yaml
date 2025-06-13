@@ -112,7 +112,7 @@ classes:
         description: Provide metadata that may be relevant and applicable to the entity you're describing.
         multivalued: true
         required: false ## I think at least 1 metadata attribute should be required?
-        range: string
+        range: text
         examples:
           - object:
             - attribute: 
