@@ -401,6 +401,21 @@
 <td>None</td>
 <td></td>
 </tr>
+<tr>
+<td>project</td>
+<td>None</td>
+<td>An enterprise (potentially individual but typically collaborative), planned to achieve a particular aim.</td>
+</tr>
+<tr>
+<td>site</td>
+<td>None</td>
+<td>An entity that describes a location of experimentation or sample collection</td>
+</tr>
+<tr>
+<td>data set</td>
+<td>None</td>
+<td>A single or collection or data generated from an experimental entity</td>
+</tr>
 </tbody>
 </table>
 <h2 id="slots">Slots</h2>
@@ -449,6 +464,24 @@ permissible_values:
     text: taxon
   unspecified:
     text: unspecified
+  project:
+    text: project
+    description: An enterprise (potentially individual but typically collaborative),
+      planned to achieve a particular aim.
+    aliases:
+    - study
+    - proposal
+  site:
+    text: site
+    description: An entity that describes a location of experimentation or sample
+      collection
+    todos:
+    - Better description from an ontology!
+  data set:
+    text: data set
+    description: A single or collection or data generated from an experimental entity
+    todos:
+    - Better description from an ontology!
 
 </code></pre>
 
