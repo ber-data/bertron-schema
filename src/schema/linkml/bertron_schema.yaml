@@ -273,6 +273,19 @@ enums:
       sequence:
       taxon:
       unspecified:
+      project:
+        description: An enterprise (potentially individual but typically collaborative), planned to achieve a particular aim.
+        aliases:
+          - study
+          - proposal
+      site:
+        description: An entity that describes a location of experimentation or sample collection
+        todos:
+          - Better description from an ontology!
+      data set:
+        description: A single or collection or data generated from an experimental entity
+        todos:
+          - Better description from an ontology!
 
   NameType:
     description: The relationship between a name and a synonym of that name.
