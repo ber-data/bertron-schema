@@ -79,8 +79,6 @@ linkml_meta = LinkMLMeta({'default_curi_maps': ['semweb_context'],
                               'prefix_reference': 'https://w3id.org/ber-data/bertron-schema/'},
                   'linkml': {'prefix_prefix': 'linkml',
                              'prefix_reference': 'https://w3id.org/linkml/'},
-                  'nmdc': {'prefix_prefix': 'nmdc',
-                           'prefix_reference': 'https://w3id.org/nmdc/'},
                   'schema': {'prefix_prefix': 'schema',
                              'prefix_reference': 'http://schema.org/'}},
      'see_also': ['https://ber-data.github.io/bertron-schema'],
@@ -157,18 +155,20 @@ class AttributeValue(ConfiguredBaseModel):
          'class_uri': 'nmdc:AttributeValue',
          'from_schema': 'https://w3id.org/ber-data/bertron_types'})
 
-    attribute: Optional[Attribute] = Field(default=None, description="""The attribute being represented.""", json_schema_extra = { "linkml_meta": {'alias': 'attribute', 'domain_of': ['AttributeValue']} })
-    raw_value: Optional[str] = Field(default=None, description="""The raw value.""", json_schema_extra = { "linkml_meta": {'alias': 'raw_value', 'domain_of': ['AttributeValue']} })
+    attribute: Attribute = Field(default=..., description="""The attribute being represented.""", json_schema_extra = { "linkml_meta": {'alias': 'attribute', 'domain_of': ['AttributeValue']} })
+    raw_value: Optional[str] = Field(default=None, description="""The raw value.""", json_schema_extra = { "linkml_meta": {'alias': 'raw_value', 'domain_of': ['AttributeValue', 'NamedQuantityValue']} })
 
 
 class Attribute(ConfiguredBaseModel):
     """
-    A domain, measurement, attribute, property, or any descriptor for additional properties to be added to an entity.
+    A domain, measurement, attribute, property, or any descriptor for additional properties to be added to an entity. Where available, please use OBO Foundry ontologies or other controlled vocabularies for attributes; the label should be the term name from the ontology and the id should be the fully-qualified CURIE.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/ber-data/bertron_types'})
 
-    id: Optional[str] = Field(default=None, description="""A CURIE for the attribute, should one exist.""", json_schema_extra = { "linkml_meta": {'alias': 'id', 'domain_of': ['Attribute', 'Entity', 'DataCollection']} })
-    label: Optional[str] = Field(default=None, description="""Text string to describe the attribute.""", json_schema_extra = { "linkml_meta": {'alias': 'label', 'aliases': ['name', 'title'], 'domain_of': ['Attribute']} })
+    id: Optional[str] = Field(default=None, description="""A CURIE for the attribute, should one exist. Where available, please use OBO Foundry ontologies or other controlled vocabularies for labelling attributes; the id should be the term ID from the ontology.""", json_schema_extra = { "linkml_meta": {'alias': 'id',
+         'domain_of': ['Attribute', 'Entity', 'DataCollection'],
+         'recommended': True} })
+    label: str = Field(default=..., description="""Text string to describe the attribute. Where available, please use OBO Foundry ontologies or other controlled vocabularies for labelling attributes; the label should be the term name from the ontology.""", json_schema_extra = { "linkml_meta": {'alias': 'label', 'aliases': ['name', 'title'], 'domain_of': ['Attribute']} })
 
 
 class QuantityValue(AttributeValue):
@@ -189,22 +189,48 @@ class QuantityValue(AttributeValue):
                                  'name': 'unit'}}})
 
     maximum_numeric_value: Optional[float] = Field(default=None, description="""The maximum value part, expressed as number, of the quantity value when the value covers a range.""", json_schema_extra = { "linkml_meta": {'alias': 'maximum_numeric_value',
-         'domain_of': ['QuantityValue'],
+         'domain_of': ['QuantityValue', 'NamedQuantityValue'],
          'is_a': 'numeric_value',
          'mappings': ['nmdc:maximum_numeric_value']} })
     minimum_numeric_value: Optional[float] = Field(default=None, description="""The minimum value part, expressed as number, of the quantity value when the value covers a range.""", json_schema_extra = { "linkml_meta": {'alias': 'minimum_numeric_value',
-         'domain_of': ['QuantityValue'],
+         'domain_of': ['QuantityValue', 'NamedQuantityValue'],
          'is_a': 'numeric_value',
          'mappings': ['nmdc:minimum_numeric_value']} })
     numeric_value: Optional[float] = Field(default=None, description="""The number part of the quantity""", json_schema_extra = { "linkml_meta": {'alias': 'numeric_value',
-         'domain_of': ['QuantityValue'],
+         'domain_of': ['QuantityValue', 'NamedQuantityValue'],
          'mappings': ['nmdc:numeric_value', 'qud:quantityValue', 'schema:value']} })
     unit: Optional[str] = Field(default=None, description="""The unit of the quantity""", json_schema_extra = { "linkml_meta": {'alias': 'unit',
          'aliases': ['scale'],
-         'domain_of': ['QuantityValue'],
+         'domain_of': ['QuantityValue', 'NamedQuantityValue'],
          'mappings': ['nmdc:unit', 'qud:unit', 'schema:unitCode']} })
-    attribute: Optional[Attribute] = Field(default=None, description="""The attribute being represented.""", json_schema_extra = { "linkml_meta": {'alias': 'attribute', 'domain_of': ['AttributeValue']} })
-    raw_value: Optional[str] = Field(default=None, description="""Unnormalized atomic string representation, suggested syntax {number} {unit}""", json_schema_extra = { "linkml_meta": {'alias': 'raw_value', 'domain_of': ['AttributeValue']} })
+    attribute: Attribute = Field(default=..., description="""The attribute being represented.""", json_schema_extra = { "linkml_meta": {'alias': 'attribute', 'domain_of': ['AttributeValue']} })
+    raw_value: Optional[str] = Field(default=None, description="""Unnormalized atomic string representation, suggested syntax {number} {unit}""", json_schema_extra = { "linkml_meta": {'alias': 'raw_value', 'domain_of': ['AttributeValue', 'NamedQuantityValue']} })
+
+
+class NamedQuantityValue(ConfiguredBaseModel):
+    """
+    A quantity value where the attribute is already specified.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/ber-data/bertron_types'})
+
+    maximum_numeric_value: Optional[float] = Field(default=None, description="""The maximum value part, expressed as number, of the quantity value when the value covers a range.""", json_schema_extra = { "linkml_meta": {'alias': 'maximum_numeric_value',
+         'domain_of': ['QuantityValue', 'NamedQuantityValue'],
+         'is_a': 'numeric_value',
+         'mappings': ['nmdc:maximum_numeric_value']} })
+    minimum_numeric_value: Optional[float] = Field(default=None, description="""The minimum value part, expressed as number, of the quantity value when the value covers a range.""", json_schema_extra = { "linkml_meta": {'alias': 'minimum_numeric_value',
+         'domain_of': ['QuantityValue', 'NamedQuantityValue'],
+         'is_a': 'numeric_value',
+         'mappings': ['nmdc:minimum_numeric_value']} })
+    numeric_value: Optional[float] = Field(default=None, description="""Links a quantity value to a number""", json_schema_extra = { "linkml_meta": {'alias': 'numeric_value',
+         'domain_of': ['QuantityValue', 'NamedQuantityValue'],
+         'mappings': ['nmdc:numeric_value', 'qud:quantityValue', 'schema:value']} })
+    unit: Optional[str] = Field(default=None, description="""Links a QuantityValue to a unit. Units should be taken from the UCUM unit collection or the Unit Ontology.""", json_schema_extra = { "linkml_meta": {'alias': 'unit',
+         'aliases': ['scale'],
+         'domain_of': ['QuantityValue', 'NamedQuantityValue'],
+         'mappings': ['nmdc:unit', 'qud:unit', 'schema:unitCode']} })
+    raw_value: Optional[str] = Field(default=None, description="""The value that was specified for an annotation in raw form, i.e. a string. E.g. \"2 cm\" or \"2-4 cm\"""", json_schema_extra = { "linkml_meta": {'alias': 'raw_value',
+         'domain_of': ['AttributeValue', 'NamedQuantityValue'],
+         'mappings': ['nmdc:raw_value']} })
 
 
 class TextValue(AttributeValue):
@@ -216,8 +242,8 @@ class TextValue(AttributeValue):
 
     value: Optional[str] = Field(default=None, description="""The value, as a text string.""", json_schema_extra = { "linkml_meta": {'alias': 'value', 'domain_of': ['TextValue']} })
     value_cv_id: Optional[str] = Field(default=None, description="""For values that are in a controlled vocabulary (CV), this attribute should capture the controlled vocabulary ID for the value.""", json_schema_extra = { "linkml_meta": {'alias': 'value_cv_id', 'domain_of': ['TextValue']} })
-    attribute: Optional[Attribute] = Field(default=None, description="""The attribute being represented.""", json_schema_extra = { "linkml_meta": {'alias': 'attribute', 'domain_of': ['AttributeValue']} })
-    raw_value: Optional[str] = Field(default=None, description="""The raw value.""", json_schema_extra = { "linkml_meta": {'alias': 'raw_value', 'domain_of': ['AttributeValue']} })
+    attribute: Attribute = Field(default=..., description="""The attribute being represented.""", json_schema_extra = { "linkml_meta": {'alias': 'attribute', 'domain_of': ['AttributeValue']} })
+    raw_value: Optional[str] = Field(default=None, description="""The raw value.""", json_schema_extra = { "linkml_meta": {'alias': 'raw_value', 'domain_of': ['AttributeValue', 'NamedQuantityValue']} })
 
 
 class Entity(ConfiguredBaseModel):
@@ -290,20 +316,20 @@ class Coordinates(ConfiguredBaseModel):
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/ber-data/bertron-schema'})
 
-    altitude: Optional[QuantityValue] = Field(default=None, title="altitude", description="""Altitude is a term used to identify heights of objects such as airplanes, space shuttles, rockets, atmospheric balloons and heights of places such as atmospheric layers and clouds. It is used to measure the height of an object which is above the earth's surface. In this context, the altitude measurement is the vertical distance between the earth's surface above sea level and the sampled position in the air""", json_schema_extra = { "linkml_meta": {'alias': 'altitude',
+    altitude: Optional[NamedQuantityValue] = Field(default=None, title="altitude", description="""Altitude is a term used to identify heights of objects such as airplanes, space shuttles, rockets, atmospheric balloons and heights of places such as atmospheric layers and clouds. It is used to measure the height of an object which is above the earth's surface. In this context, the altitude measurement is the vertical distance between the earth's surface above sea level and the sampled position in the air""", json_schema_extra = { "linkml_meta": {'alias': 'altitude',
          'annotations': {'expected_value': {'tag': 'expected_value',
                                             'value': 'measurement value'}},
          'domain_of': ['Coordinates'],
          'examples': [{'value': '100 meter'}],
          'slot_uri': 'MIXS:0000094'} })
-    depth: Optional[QuantityValue] = Field(default=None, title="depth", description="""The vertical distance below local surface, e.g. for sediment or soil samples depth is measured from sediment or soil surface, respectively. Depth can be reported as an interval for subsurface samples.""", json_schema_extra = { "linkml_meta": {'alias': 'depth',
+    depth: Optional[NamedQuantityValue] = Field(default=None, title="depth", description="""The vertical distance below local surface, e.g. for sediment or soil samples depth is measured from sediment or soil surface, respectively. Depth can be reported as an interval for subsurface samples.""", json_schema_extra = { "linkml_meta": {'alias': 'depth',
          'aliases': ['depth'],
          'annotations': {'expected_value': {'tag': 'expected_value',
                                             'value': 'measurement value'}},
          'domain_of': ['Coordinates'],
          'examples': [{'value': '10 meter'}],
          'slot_uri': 'MIXS:0000018'} })
-    elevation: Optional[QuantityValue] = Field(default=None, title="elevation", description="""Elevation of the sampling site is its height above a fixed reference point, most commonly the mean sea level. Elevation is mainly used when referring to points on the earth's surface, while altitude is used for points above the surface, such as an aircraft in flight or a spacecraft in orbit.""", json_schema_extra = { "linkml_meta": {'alias': 'elevation',
+    elevation: Optional[NamedQuantityValue] = Field(default=None, title="elevation", description="""Elevation of the sampling site is its height above a fixed reference point, most commonly the mean sea level. Elevation is mainly used when referring to points on the earth's surface, while altitude is used for points above the surface, such as an aircraft in flight or a spacecraft in orbit.""", json_schema_extra = { "linkml_meta": {'alias': 'elevation',
          'aliases': ['elevation'],
          'annotations': {'expected_value': {'tag': 'expected_value',
                                             'value': 'measurement value'}},
@@ -382,6 +408,7 @@ class DataCollection(ConfiguredBaseModel):
 AttributeValue.model_rebuild()
 Attribute.model_rebuild()
 QuantityValue.model_rebuild()
+NamedQuantityValue.model_rebuild()
 TextValue.model_rebuild()
 Entity.model_rebuild()
 Coordinates.model_rebuild()
