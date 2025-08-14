@@ -1,3 +1,5 @@
+# yaml-language-server: $schema=https://linkml.io/linkml-model/linkml_model/jsonschema/meta.schema.json
+
 id: https://w3id.org/ber-data/bertron_types
 name: bertron_types
 title: Types for the BERtron Schema
@@ -13,93 +15,99 @@ default_range: string
 
 slots:
 
-  has_numeric_value:
+  numeric_value:
     description: Links a quantity value to a number
     range: float
     mappings:
-      - nmdc:has_numeric_value
+      - nmdc:numeric_value
       - qud:quantityValue
       - schema:value
 
-  has_minimum_numeric_value:
-    is_a: has_numeric_value
+  minimum_numeric_value:
+    is_a: numeric_value
     description: The minimum value part, expressed as number, of the quantity value when the value covers a range.
     mappings:
-      - nmdc:has_minimum_numeric_value
+      - nmdc:minimum_numeric_value
 
-  has_maximum_numeric_value:
-    is_a: has_numeric_value
+  maximum_numeric_value:
+    is_a: numeric_value
     description: The maximum value part, expressed as number, of the quantity value when the value covers a range.
     mappings:
-      - nmdc:has_maximum_numeric_value
+      - nmdc:maximum_numeric_value
 
-  has_raw_value:
+  raw_value:
     description: The value that was specified for an annotation in raw form, i.e. a string. E.g. "2 cm" or "2-4 cm"
     range: string
     mappings:
-      - nmdc:has_raw_value
+      - nmdc:raw_value
 
-  has_unit:
+  unit:
     description: Links a QuantityValue to a unit
     aliases:
       - scale
     range: unit
     mappings:
-      - nmdc:has_unit
+      - nmdc:unit
       - qud:unit
       - schema:unitCode
 
-  # type:
-  #   required: true
-  #   range: uriorcurie
-  #   slot_uri: rdf:type
-  #   description: the class_uri of the class that has been instantiated
-  #   notes:
-  #     - replaces legacy nmdc:type slot
-  #     - makes it easier to read example data files
-  #     - required for polymorphic MongoDB collections
-  #   see_also:
-  #     - https://github.com/microbiomedata/nmdc-schema/issues/1048
-  #     - https://github.com/microbiomedata/nmdc-schema/issues/1233
-  #     - https://github.com/microbiomedata/nmdc-schema/issues/248
-  #   examples:
-  #     - value: nmdc:Biosample
-  #     - value: nmdc:Study
-  #   mappings:
-  #     - nmdc:type
-  #   designates_type: true
-
 classes:
+
+  Any:
+    class_uri: linkml:Any
 
   AttributeValue:
     abstract: true
     class_uri: nmdc:AttributeValue
     description: >-
-      The value for any value of a attribute for a sample. This object can hold both the un-normalized atomic
-      value and the structured value
-    slots:
-      - has_raw_value
-      # - type
+      The value for any value of attribute for an entity. This object can hold both the un-normalized atomic value and the structured value.
+    attributes:
+      attribute:
+        description: The attribute being represented.
+        range: Attribute
+      raw_value:
+        range: string
+        description: The raw value.
+
+  Attribute:
+    description: A domain, measurement, attribute, property, or any descriptor for additional properties to be added to an entity.
+    attributes:
+      id:
+        description: A CURIE for the attribute, should one exist.
+      label:
+        aliases:
+          - name
+          - title
+        description: Text string to describe the attribute.
 
   QuantityValue:
     class_uri: nmdc:QuantityValue
     is_a: AttributeValue
     description: A simple quantity, e.g. 2cm
     slots:
-      - has_maximum_numeric_value
-      - has_minimum_numeric_value
-      - has_numeric_value
-      - has_raw_value
-      - has_unit
+      - maximum_numeric_value
+      - minimum_numeric_value
+      - numeric_value
+      - unit
     slot_usage:
-      has_raw_value:
-        description: Unnormalized atomic string representation, should in syntax {number} {unit}
-      has_unit:
+      raw_value:
+        description: Unnormalized atomic string representation, suggested syntax {number} {unit}
+      unit:
         description: The unit of the quantity
-      has_numeric_value:
+      numeric_value:
         description: The number part of the quantity
     mappings:
       - schema:QuantityValue
+
+  TextValue:
+    class_uri: nmdc:TextValue
+    is_a: AttributeValue
+    description: A quality, described using a text string.
+    attributes:
+      value:
+        description: The value, as a text string.
+      value_cv_id:
+        description: For values that are in a controlled vocabulary (CV), this attribute should capture the controlled vocabulary ID for the value.
 
 types:
   decimal degree:

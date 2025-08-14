@@ -1,5 +1,39 @@
 {
     "$defs": {
+        "Any": {
+            "additionalProperties": true,
+            "description": "",
+            "title": "Any",
+            "type": [
+                "null",
+                "boolean",
+                "object",
+                "number",
+                "string"
+            ]
+        },
+        "Attribute": {
+            "additionalProperties": false,
+            "description": "A domain, measurement, attribute, property, or any descriptor for additional properties to be added to an entity.",
+            "properties": {
+                "id": {
+                    "description": "A CURIE for the attribute, should one exist.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "label": {
+                    "description": "Text string to describe the attribute.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "title": "Attribute",
+            "type": "object"
+        },
         "BERSourceType": {
             "description": "The BER data source from whence the entity originated.",
             "enum": [
@@ -70,7 +104,7 @@
             "description": "Administrative unit (e.g. project, proposal, etc.) in which one or more entities is collected.",
             "properties": {
                 "alt_ids": {
-                    "description": "Fully-qualified URI or CURIE used as an identifier for a project.",
+                    "description": "Fully-qualified URI or CURIE used as an identifier for a grouped set of data.",
                     "items": {
                         "type": "string"
                     },
@@ -80,7 +114,7 @@
                     ]
                 },
                 "alt_titles": {
-                    "description": "Alternative versions of the title/name of a project.",
+                    "description": "Alternative versions of the title/name of a grouped set of data.",
                     "items": {
                         "$ref": "#/$defs/Name"
                     },
@@ -90,21 +124,21 @@
                     ]
                 },
                 "description": {
-                    "description": "Textual description of the project.",
+                    "description": "Textual description of the grouped set of data.",
                     "type": [
                         "string",
                         "null"
                     ]
                 },
                 "id": {
-                    "description": "The unique ID used for the project within the BER resource. It may not necessarily be resolvable outside the resource.",
+                    "description": "The unique ID used for the grouped set of data within the BER resource. It may not necessarily be resolvable outside the resource.",
                     "type": [
                         "string",
                         "null"
                     ]
                 },
                 "title": {
-                    "description": "Human-readable string representing the project.",
+                    "description": "Human-readable string representing the grouped set of data.",
                     "type": [
                         "string",
                         "null"
@@ -191,6 +225,24 @@
                         "null"
                     ]
                 },
+                "properties": {
+                    "description": "Provide extended context that may be relevant and applicable to the entity you're describing.",
+                    "items": {
+                        "$ref": "#/$defs/Any",
+                        "anyOf": [
+                            {
+                                "$ref": "#/$defs/TextValue"
+                            },
+                            {
+                                "$ref": "#/$defs/QuantityValue"
+                            }
+                        ]
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "uri": {
                     "description": "Permanent resolvable URI for the entity at the data source.",
                     "type": "string"
@@ -206,14 +258,17 @@
             "type": "object"
         },
         "EntityType": {
-            "description": "Tags used to describe an entity.",
+            "description": "The type of entity captured in this record.",
             "enum": [
                 "biodata",
                 "jgi_biosample",
                 "sample",
                 "sequence",
                 "taxon",
-                "unspecified"
+                "unspecified",
+                "project",
+                "site",
+                "data set"
             ],
             "title": "EntityType",
             "type": "string"
@@ -253,35 +308,46 @@
             "additionalProperties": false,
             "description": "A simple quantity, e.g. 2cm",
             "properties": {
-                "has_maximum_numeric_value": {
+                "attribute": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/Attribute"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "The attribute being represented."
+                },
+                "maximum_numeric_value": {
                     "description": "The maximum value part, expressed as number, of the quantity value when the value covers a range.",
                     "type": [
                         "number",
                         "null"
                     ]
                 },
-                "has_minimum_numeric_value": {
+                "minimum_numeric_value": {
                     "description": "The minimum value part, expressed as number, of the quantity value when the value covers a range.",
                     "type": [
                         "number",
                         "null"
                     ]
                 },
-                "has_numeric_value": {
+                "numeric_value": {
                     "description": "The number part of the quantity",
                     "type": [
                         "number",
                         "null"
                     ]
                 },
-                "has_raw_value": {
-                    "description": "Unnormalized atomic string representation, should in syntax {number} {unit}",
+                "raw_value": {
+                    "description": "Unnormalized atomic string representation, suggested syntax {number} {unit}",
                     "type": [
                         "string",
                         "null"
                     ]
                 },
-                "has_unit": {
+                "unit": {
                     "description": "The unit of the quantity",
                     "type": [
                         "string",
@@ -291,13 +357,151 @@
             },
             "title": "QuantityValue",
             "type": "object"
+        },
+        "TextValue": {
+            "additionalProperties": false,
+            "description": "A quality, described using a text string.",
+            "properties": {
+                "attribute": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/Attribute"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "The attribute being represented."
+                },
+                "raw_value": {
+                    "description": "The raw value.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "value": {
+                    "description": "The value, as a text string.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "value_cv_id": {
+                    "description": "For values that are in a controlled vocabulary (CV), this attribute should capture the controlled vocabulary ID for the value.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "title": "TextValue",
+            "type": "object"
         }
     },
     "$id": "https://w3id.org/ber-data/bertron-schema",
     "$schema": "https://json-schema.org/draft/2019-09/schema",
     "additionalProperties": true,
+    "description": "An object retrieved by BERtron from a BER data API.",
     "metamodel_version": "1.7.0",
+    "properties": {
+        "alt_ids": {
+            "description": "Fully-qualified URI or CURIE used as an identifier for an entity.",
+            "items": {
+                "type": "string"
+            },
+            "type": [
+                "array",
+                "null"
+            ]
+        },
+        "alt_names": {
+            "description": "Textual identifiers for an entity.",
+            "items": {
+                "$ref": "#/$defs/Name"
+            },
+            "type": [
+                "array",
+                "null"
+            ]
+        },
+        "ber_data_source": {
+            "$ref": "#/$defs/BERSourceType",
+            "description": "The BER member from whence the entity originated."
+        },
+        "coordinates": {
+            "$ref": "#/$defs/Coordinates",
+            "description": "The geographic coordinates associated with an entity. For entities with a bounding box, the centroid is used as the geographic reference."
+        },
+        "description": {
+            "description": "Textual description of the entity.",
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "entity_type": {
+            "description": "What kind of entity is this -- e.g. sequence data; a soil core; a well; field site; sample; etc.",
+            "items": {
+                "$ref": "#/$defs/EntityType"
+            },
+            "type": "array"
+        },
+        "id": {
+            "description": "The unique ID used for the entity within the BER resource. It may not necessarily be resolvable outside the resource.",
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "name": {
+            "description": "Human-readable string representing an entity.",
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "part_of_collection": {
+            "description": "Administrative collection (e.g. project, campaign, whatever) that the entity was generated as part of. May also be called a project.",
+            "items": {
+                "$ref": "#/$defs/DataCollection"
+            },
+            "type": [
+                "array",
+                "null"
+            ]
+        },
+        "properties": {
+            "description": "Provide extended context that may be relevant and applicable to the entity you're describing.",
+            "items": {
+                "$ref": "#/$defs/Any",
+                "anyOf": [
+                    {
+                        "$ref": "#/$defs/TextValue"
+                    },
+                    {
+                        "$ref": "#/$defs/QuantityValue"
+                    }
+                ]
+            },
+            "type": [
+                "array",
+                "null"
+            ]
+        },
+        "uri": {
+            "description": "Permanent resolvable URI for the entity at the data source.",
+            "type": "string"
+        }
+    },
+    "required": [
+        "ber_data_source",
+        "coordinates",
+        "entity_type",
+        "uri"
+    ],
     "title": "bertron-schema",
     "type": "object",
     "version": "0.0.2"
 }
+

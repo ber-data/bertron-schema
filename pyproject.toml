@@ -6,8 +6,8 @@ license = "BSD-3-Clause"
 readme = "README.md"
 requires-python = ">=3.10.0"
 dependencies = [
-    "linkml>=1.9.2",
-    "linkml-runtime>=1.9.3",
+    "linkml>=1.9.3",
+    "linkml-runtime>=1.9.4",
     "mkdocs-material>=9.6.9",
     "mkdocs-mermaid2-plugin>=1.2.1",
 ]

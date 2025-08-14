@@ -1,3 +1,5 @@
+# yaml-language-server: $schema=https://linkml.io/linkml-model/linkml_model/jsonschema/meta.schema.json
+
 id: https://w3id.org/ber-data/bertron-schema
 name: bertron-schema
 title: BERtron schema
@@ -23,6 +25,7 @@ imports:
 
 classes:
   Entity:
+    tree_root: true
     class_uri: schema:Thing
     description: |
       An object retrieved by BERtron from a BER data API.
@@ -108,6 +111,37 @@ classes:
         description: Permanent resolvable URI for the entity at the data source.
         range: uriorcurie
         required: true
+      properties:
+        description: Provide extended context that may be relevant and applicable to the entity you're describing.
+        multivalued: true
+        required: false
+        range: Any
+        any_of:
+          - range:
+              TextValue
+          - range:
+              QuantityValue
+        mappings:
+          - MIXS:0000008
+        examples:
+          - object:
+              attribute:
+                id: MIXS:0000117
+                label: total phosphorus
+              has_raw_value: "2.2 ppm"
+              has_unit: ppm
+              has_numeric_value: 2.2
+          - object:
+              attribute:
+                id: MIXS:0000011
+                label: collection date
+              has_raw_value: "2025-06-12"
+          - object:
+              attribute:
+                id: MIXS:0000012
+                label: env_broad_scale
+              value: "terrestrial biome"
+              value_cv_id: "ENVO:00000446"
 
   Coordinates:
     description: The coordinates defining the position associated with the entity.
@@ -204,7 +238,7 @@ classes:
         aliases:
         - proposal ID
         - project ID
-        description: The unique ID used for the project within the BER resource. It may not necessarily be resolvable outside the resource.
+        description: The unique ID used for the grouped set of data within the BER resource. It may not necessarily be resolvable outside the resource.
         comments:
         - If the data source does not use CURIEs, we cannot guarantee that IDs will be unique between all the BER sources.
         # identifier: true
@@ -214,11 +248,11 @@ classes:
       title:
         aliases:
         - name
-        description: Human-readable string representing the project.
+        description: Human-readable string representing the grouped set of data.
         multivalued: false
         slot_uri: schema:name
       description:
-        description: Textual description of the project.
+        description: Textual description of the grouped set of data.
         required: false
         slot_uri: schema:description
       alt_ids:
@@ -231,7 +265,7 @@ classes:
         - alternative IDs
         - alternative PIDs
         - PIDs
-        description: Fully-qualified URI or CURIE used as an identifier for a project.
+        description: Fully-qualified URI or CURIE used as an identifier for a grouped set of data.
         range: uriorcurie
         multivalued: true
         comments:
@@ -239,7 +273,7 @@ classes:
       alt_titles:
         aliases:
         - alternative titles
-        description: Alternative versions of the title/name of a project.
+        description: Alternative versions of the title/name of a grouped set of data.
         range: Name
         multivalued: true
         comments:
@@ -263,7 +297,7 @@ enums:
       NMDC:
 
   EntityType:
-    description: Tags used to describe an entity.
+    description: The type of entity captured in this record.
     todos:
     - Complete this list!
     permissible_values:
