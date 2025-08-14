@@ -130,7 +130,7 @@ classes:
                 label: total phosphorus
               raw_value: "2.2 ppm"
               unit: ppm
-              has_numeric_value: 2.2
+              numeric_value: 2.2
           - object:
               attribute:
                 id: MIXS:0000011
