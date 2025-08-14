@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://ber-data.github.io/bertron-schema/has_minimum_numeric_value/">
+        <link rel="canonical" href="https://ber-data.github.io/bertron-schema/numeric_value/">
       
       
       
@@ -18,7 +18,7 @@
     
     
       
-        <title>Slot: has_minimum_numeric_value - bertron-schema</title>
+        <title>Slot: numeric_value - bertron-schema</title>
       
     
     
@@ -60,7 +60,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-has_minimum_numeric_value" class="md-skip">
+        <a href="#slot-numeric_value" class="md-skip">
           Skip to content
         </a>
       
@@ -96,7 +96,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: has_minimum_numeric_value
+              Slot: numeric_value
             
           </span>
         </div>
@@ -367,14 +367,15 @@
   
 
 
-<h1 id="slot-has_minimum_numeric_value">Slot: has_minimum_numeric_value</h1>
-<p><em>The minimum value part, expressed as number, of the quantity value when the value covers a range.</em></p>
-<p>URI: <a href="https://w3id.org/ber-data/bertron-schema/has_minimum_numeric_value">bertron:has_minimum_numeric_value</a>
-Alias: has_minimum_numeric_value</p>
+<h1 id="slot-numeric_value">Slot: numeric_value</h1>
+<p><em>Links a quantity value to a number</em></p>
+<p>URI: <a href="https://w3id.org/ber-data/bertron-schema/numeric_value">bertron:numeric_value</a>
+Alias: numeric_value</p>
 <h2 id="inheritance">Inheritance</h2>
 <ul>
-<li><a href="../has_numeric_value/">has_numeric_value</a><ul>
-<li><strong>has_minimum_numeric_value</strong></li>
+<li><strong>numeric_value</strong><ul>
+<li><a href="../minimum_numeric_value/">minimum_numeric_value</a></li>
+<li><a href="../maximum_numeric_value/">maximum_numeric_value</a></li>
 </ul>
 </li>
 </ul>
@@ -391,7 +392,7 @@ Alias: has_minimum_numeric_value</p>
 <tr>
 <td><a href="../QuantityValue/">QuantityValue</a></td>
 <td>A simple quantity, e.g. 2cm</td>
-<td>no</td>
+<td>yes</td>
 </tr>
 </tbody>
 </table>
@@ -415,30 +416,30 @@ Alias: has_minimum_numeric_value</p>
 <tbody>
 <tr>
 <td>self</td>
-<td>bertron:has_minimum_numeric_value</td>
+<td>bertron:numeric_value</td>
 </tr>
 <tr>
 <td>native</td>
-<td>bertron:has_minimum_numeric_value</td>
+<td>bertron:numeric_value</td>
 </tr>
 <tr>
 <td>undefined</td>
-<td>nmdc:has_minimum_numeric_value</td>
+<td>nmdc:numeric_value, qud:quantityValue, schema:value</td>
 </tr>
 </tbody>
 </table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 
-<pre><code class="language-yaml">name: has_minimum_numeric_value
-description: The minimum value part, expressed as number, of the quantity value when
-  the value covers a range.
+<pre><code class="language-yaml">name: numeric_value
+description: Links a quantity value to a number
 from_schema: https://w3id.org/ber-data/bertron-schema
 mappings:
-- nmdc:has_minimum_numeric_value
+- nmdc:numeric_value
+- qud:quantityValue
+- schema:value
 rank: 1000
-is_a: has_numeric_value
-alias: has_minimum_numeric_value
+alias: numeric_value
 domain_of:
 - QuantityValue
 range: float

@@ -2,230 +2,262 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://ber-data.github.io/bertron-schema/</loc>
-         <lastmod>2025-07-18</lastmod>
+         <lastmod>2025-08-14</lastmod>
+    </url>
+    <url>
+         <loc>https://ber-data.github.io/bertron-schema/Any/</loc>
+         <lastmod>2025-08-14</lastmod>
+    </url>
+    <url>
+         <loc>https://ber-data.github.io/bertron-schema/Attribute/</loc>
+         <lastmod>2025-08-14</lastmod>
     </url>
     <url>
          <loc>https://ber-data.github.io/bertron-schema/AttributeValue/</loc>
-         <lastmod>2025-07-18</lastmod>
+         <lastmod>2025-08-14</lastmod>
     </url>
     <url>
          <loc>https://ber-data.github.io/bertron-schema/BERSourceType/</loc>
-         <lastmod>2025-07-18</lastmod>
+         <lastmod>2025-08-14</lastmod>
     </url>
     <url>
          <loc>https://ber-data.github.io/bertron-schema/Boolean/</loc>
-         <lastmod>2025-07-18</lastmod>
+         <lastmod>2025-08-14</lastmod>
     </url>
     <url>
          <loc>https://ber-data.github.io/bertron-schema/Coordinates/</loc>
-         <lastmod>2025-07-18</lastmod>
+         <lastmod>2025-08-14</lastmod>
     </url>
     <url>
          <loc>https://ber-data.github.io/bertron-schema/Curie/</loc>
-         <lastmod>2025-07-18</lastmod>
+         <lastmod>2025-08-14</lastmod>
     </url>
     <url>
          <loc>https://ber-data.github.io/bertron-schema/DataCollection/</loc>
-         <lastmod>2025-07-18</lastmod>
+         <lastmod>2025-08-14</lastmod>
     </url>
     <url>
          <loc>https://ber-data.github.io/bertron-schema/Date/</loc>
-         <lastmod>2025-07-18</lastmod>
+         <lastmod>2025-08-14</lastmod>
     </url>
     <url>
          <loc>https://ber-data.github.io/bertron-schema/DateOrDatetime/</loc>
-         <lastmod>2025-07-18</lastmod>
+         <lastmod>2025-08-14</lastmod>
     </url>
     <url>
          <loc>https://ber-data.github.io/bertron-schema/Datetime/</loc>
-         <lastmod>2025-07-18</lastmod>
+         <lastmod>2025-08-14</lastmod>
     </url>
     <url>
          <loc>https://ber-data.github.io/bertron-schema/Decimal/</loc>
-         <lastmod>2025-07-18</lastmod>
+         <lastmod>2025-08-14</lastmod>
     </url>
     <url>
          <loc>https://ber-data.github.io/bertron-schema/DecimalDegree/</loc>
-         <lastmod>2025-07-18</lastmod>
+         <lastmod>2025-08-14</lastmod>
     </url>
     <url>
          <loc>https://ber-data.github.io/bertron-schema/Double/</loc>
-         <lastmod>2025-07-18</lastmod>
+         <lastmod>2025-08-14</lastmod>
     </url>
     <url>
          <loc>https://ber-data.github.io/bertron-schema/Entity/</loc>
-         <lastmod>2025-07-18</lastmod>
+         <lastmod>2025-08-14</lastmod>
     </url>
     <url>
          <loc>https://ber-data.github.io/bertron-schema/EntityType/</loc>
-         <lastmod>2025-07-18</lastmod>
+         <lastmod>2025-08-14</lastmod>
     </url>
     <url>
          <loc>https://ber-data.github.io/bertron-schema/Float/</loc>
-         <lastmod>2025-07-18</lastmod>
+         <lastmod>2025-08-14</lastmod>
     </url>
     <url>
          <loc>https://ber-data.github.io/bertron-schema/Integer/</loc>
-         <lastmod>2025-07-18</lastmod>
+         <lastmod>2025-08-14</lastmod>
     </url>
     <url>
          <loc>https://ber-data.github.io/bertron-schema/Jsonpath/</loc>
-         <lastmod>2025-07-18</lastmod>
+         <lastmod>2025-08-14</lastmod>
     </url>
     <url>
          <loc>https://ber-data.github.io/bertron-schema/Jsonpointer/</loc>
-         <lastmod>2025-07-18</lastmod>
+         <lastmod>2025-08-14</lastmod>
     </url>
     <url>
          <loc>https://ber-data.github.io/bertron-schema/Name/</loc>
-         <lastmod>2025-07-18</lastmod>
+         <lastmod>2025-08-14</lastmod>
     </url>
     <url>
          <loc>https://ber-data.github.io/bertron-schema/NameType/</loc>
-         <lastmod>2025-07-18</lastmod>
+         <lastmod>2025-08-14</lastmod>
     </url>
     <url>
          <loc>https://ber-data.github.io/bertron-schema/Ncname/</loc>
-         <lastmod>2025-07-18</lastmod>
+         <lastmod>2025-08-14</lastmod>
     </url>
     <url>
          <loc>https://ber-data.github.io/bertron-schema/Nodeidentifier/</loc>
-         <lastmod>2025-07-18</lastmod>
+         <lastmod>2025-08-14</lastmod>
     </url>
     <url>
          <loc>https://ber-data.github.io/bertron-schema/Objectidentifier/</loc>
-         <lastmod>2025-07-18</lastmod>
+         <lastmod>2025-08-14</lastmod>
     </url>
     <url>
          <loc>https://ber-data.github.io/bertron-schema/QuantityValue/</loc>
-         <lastmod>2025-07-18</lastmod>
+         <lastmod>2025-08-14</lastmod>
     </url>
     <url>
          <loc>https://ber-data.github.io/bertron-schema/Sparqlpath/</loc>
-         <lastmod>2025-07-18</lastmod>
+         <lastmod>2025-08-14</lastmod>
     </url>
     <url>
          <loc>https://ber-data.github.io/bertron-schema/String/</loc>
-         <lastmod>2025-07-18</lastmod>
+         <lastmod>2025-08-14</lastmod>
+    </url>
+    <url>
+         <loc>https://ber-data.github.io/bertron-schema/TextValue/</loc>
+         <lastmod>2025-08-14</lastmod>
     </url>
     <url>
          <loc>https://ber-data.github.io/bertron-schema/Time/</loc>
-         <lastmod>2025-07-18</lastmod>
+         <lastmod>2025-08-14</lastmod>
     </url>
     <url>
          <loc>https://ber-data.github.io/bertron-schema/Unit/</loc>
-         <lastmod>2025-07-18</lastmod>
+         <lastmod>2025-08-14</lastmod>
     </url>
     <url>
          <loc>https://ber-data.github.io/bertron-schema/Uri/</loc>
-         <lastmod>2025-07-18</lastmod>
+         <lastmod>2025-08-14</lastmod>
     </url>
     <url>
          <loc>https://ber-data.github.io/bertron-schema/Uriorcurie/</loc>
-         <lastmod>2025-07-18</lastmod>
+         <lastmod>2025-08-14</lastmod>
     </url>
     <url>
          <loc>https://ber-data.github.io/bertron-schema/about/</loc>
-         <lastmod>2025-07-18</lastmod>
+         <lastmod>2025-08-14</lastmod>
     </url>
     <url>
          <loc>https://ber-data.github.io/bertron-schema/alt_ids/</loc>
-         <lastmod>2025-07-18</lastmod>
+         <lastmod>2025-08-14</lastmod>
     </url>
     <url>
          <loc>https://ber-data.github.io/bertron-schema/alt_names/</loc>
-         <lastmod>2025-07-18</lastmod>
+         <lastmod>2025-08-14</lastmod>
     </url>
     <url>
          <loc>https://ber-data.github.io/bertron-schema/alt_titles/</loc>
-         <lastmod>2025-07-18</lastmod>
+         <lastmod>2025-08-14</lastmod>
     </url>
     <url>
          <loc>https://ber-data.github.io/bertron-schema/altitude/</loc>
-         <lastmod>2025-07-18</lastmod>
+         <lastmod>2025-08-14</lastmod>
+    </url>
+    <url>
+         <loc>https://ber-data.github.io/bertron-schema/attribute/</loc>
+         <lastmod>2025-08-14</lastmod>
     </url>
     <url>
          <loc>https://ber-data.github.io/bertron-schema/ber_data_source/</loc>
-         <lastmod>2025-07-18</lastmod>
+         <lastmod>2025-08-14</lastmod>
     </url>
     <url>
          <loc>https://ber-data.github.io/bertron-schema/bertron-schema/</loc>
-         <lastmod>2025-07-18</lastmod>
+         <lastmod>2025-08-14</lastmod>
     </url>
     <url>
          <loc>https://ber-data.github.io/bertron-schema/coordinates/</loc>
-         <lastmod>2025-07-18</lastmod>
+         <lastmod>2025-08-14</lastmod>
     </url>
     <url>
          <loc>https://ber-data.github.io/bertron-schema/depth/</loc>
-         <lastmod>2025-07-18</lastmod>
+         <lastmod>2025-08-14</lastmod>
     </url>
     <url>
          <loc>https://ber-data.github.io/bertron-schema/description/</loc>
-         <lastmod>2025-07-18</lastmod>
+         <lastmod>2025-08-14</lastmod>
     </url>
     <url>
          <loc>https://ber-data.github.io/bertron-schema/elevation/</loc>
-         <lastmod>2025-07-18</lastmod>
+         <lastmod>2025-08-14</lastmod>
     </url>
     <url>
          <loc>https://ber-data.github.io/bertron-schema/entity_type/</loc>
-         <lastmod>2025-07-18</lastmod>
-    </url>
-    <url>
-         <loc>https://ber-data.github.io/bertron-schema/has_maximum_numeric_value/</loc>
-         <lastmod>2025-07-18</lastmod>
-    </url>
-    <url>
-         <loc>https://ber-data.github.io/bertron-schema/has_minimum_numeric_value/</loc>
-         <lastmod>2025-07-18</lastmod>
-    </url>
-    <url>
-         <loc>https://ber-data.github.io/bertron-schema/has_numeric_value/</loc>
-         <lastmod>2025-07-18</lastmod>
-    </url>
-    <url>
-         <loc>https://ber-data.github.io/bertron-schema/has_raw_value/</loc>
-         <lastmod>2025-07-18</lastmod>
-    </url>
-    <url>
-         <loc>https://ber-data.github.io/bertron-schema/has_unit/</loc>
-         <lastmod>2025-07-18</lastmod>
+         <lastmod>2025-08-14</lastmod>
     </url>
     <url>
          <loc>https://ber-data.github.io/bertron-schema/id/</loc>
-         <lastmod>2025-07-18</lastmod>
+         <lastmod>2025-08-14</lastmod>
+    </url>
+    <url>
+         <loc>https://ber-data.github.io/bertron-schema/label/</loc>
+         <lastmod>2025-08-14</lastmod>
     </url>
     <url>
          <loc>https://ber-data.github.io/bertron-schema/latitude/</loc>
-         <lastmod>2025-07-18</lastmod>
+         <lastmod>2025-08-14</lastmod>
     </url>
     <url>
          <loc>https://ber-data.github.io/bertron-schema/longitude/</loc>
-         <lastmod>2025-07-18</lastmod>
+         <lastmod>2025-08-14</lastmod>
+    </url>
+    <url>
+         <loc>https://ber-data.github.io/bertron-schema/maximum_numeric_value/</loc>
+         <lastmod>2025-08-14</lastmod>
+    </url>
+    <url>
+         <loc>https://ber-data.github.io/bertron-schema/minimum_numeric_value/</loc>
+         <lastmod>2025-08-14</lastmod>
     </url>
     <url>
          <loc>https://ber-data.github.io/bertron-schema/name/</loc>
-         <lastmod>2025-07-18</lastmod>
+         <lastmod>2025-08-14</lastmod>
     </url>
     <url>
          <loc>https://ber-data.github.io/bertron-schema/name_type/</loc>
-         <lastmod>2025-07-18</lastmod>
+         <lastmod>2025-08-14</lastmod>
+    </url>
+    <url>
+         <loc>https://ber-data.github.io/bertron-schema/numeric_value/</loc>
+         <lastmod>2025-08-14</lastmod>
     </url>
     <url>
          <loc>https://ber-data.github.io/bertron-schema/part_of_collection/</loc>
-         <lastmod>2025-07-18</lastmod>
+         <lastmod>2025-08-14</lastmod>
+    </url>
+    <url>
+         <loc>https://ber-data.github.io/bertron-schema/properties/</loc>
+         <lastmod>2025-08-14</lastmod>
+    </url>
+    <url>
+         <loc>https://ber-data.github.io/bertron-schema/raw_value/</loc>
+         <lastmod>2025-08-14</lastmod>
     </url>
     <url>
          <loc>https://ber-data.github.io/bertron-schema/title/</loc>
-         <lastmod>2025-07-18</lastmod>
+         <lastmod>2025-08-14</lastmod>
+    </url>
+    <url>
+         <loc>https://ber-data.github.io/bertron-schema/unit/</loc>
+         <lastmod>2025-08-14</lastmod>
     </url>
     <url>
          <loc>https://ber-data.github.io/bertron-schema/uri/</loc>
-         <lastmod>2025-07-18</lastmod>
+         <lastmod>2025-08-14</lastmod>
     </url>
     <url>
          <loc>https://ber-data.github.io/bertron-schema/url/</loc>
-         <lastmod>2025-07-18</lastmod>
+         <lastmod>2025-08-14</lastmod>
+    </url>
+    <url>
+         <loc>https://ber-data.github.io/bertron-schema/value/</loc>
+         <lastmod>2025-08-14</lastmod>
+    </url>
+    <url>
+         <loc>https://ber-data.github.io/bertron-schema/value_cv_id/</loc>
+         <lastmod>2025-08-14</lastmod>
     </url>
 </urlset>

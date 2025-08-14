@@ -230,7 +230,7 @@
 <p>URI: <a href="https://w3id.org/ber-data/bertron-schema/DataCollection">bertron:DataCollection</a></p>
 <div class="mermaid"> classDiagram
     class DataCollection
-    click DataCollection href "../DataCollection"
+    click DataCollection href "../DataCollection/"
       DataCollection : alt_ids
 
       DataCollection : alt_titles
@@ -240,7 +240,7 @@
 
 
         DataCollection --&gt; "*" Name : alt_titles
-        click Name href "../Name"
+        click Name href "../Name/"
 
 
 
@@ -269,31 +269,31 @@
 <tr>
 <td><a href="../id/">id</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
-<td>The unique ID used for the project within the BER resource. It may not necessarily be resolvable outside the resource.</td>
+<td>The unique ID used for the grouped set of data within the BER resource. It may not necessarily be resolvable outside the resource.</td>
 <td>direct</td>
 </tr>
 <tr>
 <td><a href="../title/">title</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
-<td>Human-readable string representing the project.</td>
+<td>Human-readable string representing the grouped set of data.</td>
 <td>direct</td>
 </tr>
 <tr>
 <td><a href="../description/">description</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
-<td>Textual description of the project.</td>
+<td>Textual description of the grouped set of data.</td>
 <td>direct</td>
 </tr>
 <tr>
 <td><a href="../alt_ids/">alt_ids</a></td>
 <td>* <br/> <a href="../Uriorcurie/">Uriorcurie</a></td>
-<td>Fully-qualified URI or CURIE used as an identifier for a project.</td>
+<td>Fully-qualified URI or CURIE used as an identifier for a grouped set of data.</td>
 <td>direct</td>
 </tr>
 <tr>
 <td><a href="../alt_titles/">alt_titles</a></td>
 <td>* <br/> <a href="../Name/">Name</a></td>
-<td>Alternative versions of the title/name of a project.</td>
+<td>Alternative versions of the title/name of a grouped set of data.</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -364,8 +364,8 @@ from_schema: https://w3id.org/ber-data/bertron-schema
 attributes:
   id:
     name: id
-    description: The unique ID used for the project within the BER resource. It may
-      not necessarily be resolvable outside the resource.
+    description: The unique ID used for the grouped set of data within the BER resource.
+      It may not necessarily be resolvable outside the resource.
     comments:
     - If the data source does not use CURIEs, we cannot guarantee that IDs will be
       unique between all the BER sources.
@@ -377,10 +377,11 @@ attributes:
     domain_of:
     - Entity
     - DataCollection
+    - Attribute
     range: string
   title:
     name: title
-    description: Human-readable string representing the project.
+    description: Human-readable string representing the grouped set of data.
     from_schema: https://w3id.org/ber-data/bertron-schema
     aliases:
     - name
@@ -391,7 +392,7 @@ attributes:
     multivalued: false
   description:
     name: description
-    description: Textual description of the project.
+    description: Textual description of the grouped set of data.
     from_schema: https://w3id.org/ber-data/bertron-schema
     slot_uri: schema:description
     domain_of:
@@ -400,7 +401,8 @@ attributes:
     required: false
   alt_ids:
     name: alt_ids
-    description: Fully-qualified URI or CURIE used as an identifier for a project.
+    description: Fully-qualified URI or CURIE used as an identifier for a grouped
+      set of data.
     comments:
     - The project `id` should not appear in this list.
     from_schema: https://w3id.org/ber-data/bertron-schema
@@ -420,7 +422,7 @@ attributes:
     multivalued: true
   alt_titles:
     name: alt_titles
-    description: Alternative versions of the title/name of a project.
+    description: Alternative versions of the title/name of a grouped set of data.
     comments:
     - The project `title` should not appear in this list.
     from_schema: https://w3id.org/ber-data/bertron-schema
@@ -454,8 +456,8 @@ from_schema: https://w3id.org/ber-data/bertron-schema
 attributes:
   id:
     name: id
-    description: The unique ID used for the project within the BER resource. It may
-      not necessarily be resolvable outside the resource.
+    description: The unique ID used for the grouped set of data within the BER resource.
+      It may not necessarily be resolvable outside the resource.
     comments:
     - If the data source does not use CURIEs, we cannot guarantee that IDs will be
       unique between all the BER sources.
@@ -469,10 +471,11 @@ attributes:
     domain_of:
     - Entity
     - DataCollection
+    - Attribute
     range: string
   title:
     name: title
-    description: Human-readable string representing the project.
+    description: Human-readable string representing the grouped set of data.
     from_schema: https://w3id.org/ber-data/bertron-schema
     aliases:
     - name
@@ -486,7 +489,7 @@ attributes:
     multivalued: false
   description:
     name: description
-    description: Textual description of the project.
+    description: Textual description of the grouped set of data.
     from_schema: https://w3id.org/ber-data/bertron-schema
     slot_uri: schema:description
     alias: description
@@ -498,7 +501,8 @@ attributes:
     required: false
   alt_ids:
     name: alt_ids
-    description: Fully-qualified URI or CURIE used as an identifier for a project.
+    description: Fully-qualified URI or CURIE used as an identifier for a grouped
+      set of data.
     comments:
     - The project `id` should not appear in this list.
     from_schema: https://w3id.org/ber-data/bertron-schema
@@ -520,7 +524,7 @@ attributes:
     multivalued: true
   alt_titles:
     name: alt_titles
-    description: Alternative versions of the title/name of a project.
+    description: Alternative versions of the title/name of a grouped set of data.
     comments:
     - The project `title` should not appear in this list.
     from_schema: https://w3id.org/ber-data/bertron-schema

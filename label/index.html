@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://ber-data.github.io/bertron-schema/alt_ids/">
+        <link rel="canonical" href="https://ber-data.github.io/bertron-schema/label/">
       
       
       
@@ -18,7 +18,7 @@
     
     
       
-        <title>Slot: alt_ids - bertron-schema</title>
+        <title>Slot: label - bertron-schema</title>
       
     
     
@@ -60,7 +60,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-alt_ids" class="md-skip">
+        <a href="#slot-label" class="md-skip">
           Skip to content
         </a>
       
@@ -96,7 +96,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: alt_ids
+              Slot: label
             
           </span>
         </div>
@@ -298,11 +298,35 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#aliases" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aliases
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#identifier-and-mapping-information" class="md-nav__link">
     <span class="md-ellipsis">
       Identifier and Mapping Information
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Identifier and Mapping Information">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#schema-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      Schema Source
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -343,9 +367,10 @@
   
 
 
-<h1 id="slot-alt_ids">Slot: alt_ids</h1>
-<p>URI: <a href="https://w3id.org/ber-data/bertron-schema/alt_ids">bertron:alt_ids</a>
-Alias: alt_ids</p>
+<h1 id="slot-label">Slot: label</h1>
+<p><em>Text string to describe the attribute.</em></p>
+<p>URI: <a href="https://w3id.org/ber-data/bertron-schema/label">bertron:label</a>
+Alias: label</p>
 <!-- no inheritance hierarchy -->
 
 <h2 id="applicable-classes">Applicable Classes</h2>
@@ -359,13 +384,8 @@ Alias: alt_ids</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../DataCollection/">DataCollection</a></td>
-<td>Administrative unit (e.g. project, proposal, etc.) in which one or more entities is collected.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../Entity/">Entity</a></td>
-<td>An object retrieved by BERtron from a BER data API.</td>
+<td><a href="../Attribute/">Attribute</a></td>
+<td>A domain, measurement, attribute, property, or any descriptor for additional properties to be added to an entity.</td>
 <td>no</td>
 </tr>
 </tbody>
@@ -374,7 +394,16 @@ Alias: alt_ids</p>
 <ul>
 <li>Range: <a href="../String/">String</a></li>
 </ul>
+<h2 id="aliases">Aliases</h2>
+<ul>
+<li>name</li>
+<li>title</li>
+</ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
+<h3 id="schema-source">Schema Source</h3>
+<ul>
+<li>from schema: https://w3id.org/ber-data/bertron-schema</li>
+</ul>
 <h2 id="mappings">Mappings</h2>
 <table>
 <thead>
@@ -386,22 +415,28 @@ Alias: alt_ids</p>
 <tbody>
 <tr>
 <td>self</td>
-<td>bertron:alt_ids</td>
+<td>bertron:label</td>
 </tr>
 <tr>
 <td>native</td>
-<td>bertron:alt_ids</td>
+<td>bertron:label</td>
 </tr>
 </tbody>
 </table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 
-<pre><code class="language-yaml">name: alt_ids
-alias: alt_ids
+<pre><code class="language-yaml">name: label
+description: Text string to describe the attribute.
+from_schema: https://w3id.org/ber-data/bertron-schema
+aliases:
+- name
+- title
+rank: 1000
+alias: label
+owner: Attribute
 domain_of:
-- Entity
-- DataCollection
+- Attribute
 range: string
 
 </code></pre>

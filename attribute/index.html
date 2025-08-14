@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://ber-data.github.io/bertron-schema/has_maximum_numeric_value/">
+        <link rel="canonical" href="https://ber-data.github.io/bertron-schema/attribute/">
       
       
       
@@ -18,7 +18,7 @@
     
     
       
-        <title>Slot: has_maximum_numeric_value - bertron-schema</title>
+        <title>Slot: attribute - bertron-schema</title>
       
     
     
@@ -60,7 +60,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-has_maximum_numeric_value" class="md-skip">
+        <a href="#slot-attribute" class="md-skip">
           Skip to content
         </a>
       
@@ -96,7 +96,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: has_maximum_numeric_value
+              Slot: attribute
             
           </span>
         </div>
@@ -280,15 +280,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#inheritance" class="md-nav__link">
-    <span class="md-ellipsis">
-      Inheritance
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#applicable-classes" class="md-nav__link">
     <span class="md-ellipsis">
       Applicable Classes
@@ -367,17 +358,12 @@
   
 
 
-<h1 id="slot-has_maximum_numeric_value">Slot: has_maximum_numeric_value</h1>
-<p><em>The maximum value part, expressed as number, of the quantity value when the value covers a range.</em></p>
-<p>URI: <a href="https://w3id.org/ber-data/bertron-schema/has_maximum_numeric_value">bertron:has_maximum_numeric_value</a>
-Alias: has_maximum_numeric_value</p>
-<h2 id="inheritance">Inheritance</h2>
-<ul>
-<li><a href="../has_numeric_value/">has_numeric_value</a><ul>
-<li><strong>has_maximum_numeric_value</strong></li>
-</ul>
-</li>
-</ul>
+<h1 id="slot-attribute">Slot: attribute</h1>
+<p><em>The attribute being represented.</em></p>
+<p>URI: <a href="https://w3id.org/ber-data/bertron-schema/attribute">bertron:attribute</a>
+Alias: attribute</p>
+<!-- no inheritance hierarchy -->
+
 <h2 id="applicable-classes">Applicable Classes</h2>
 <table>
 <thead>
@@ -389,6 +375,16 @@ Alias: has_maximum_numeric_value</p>
 </thead>
 <tbody>
 <tr>
+<td><a href="../TextValue/">TextValue</a></td>
+<td>A quality, described using a text string.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../AttributeValue/">AttributeValue</a></td>
+<td>The value for any value of attribute for an entity. This object can hold both the un-normalized atomic value and the structured value.</td>
+<td>no</td>
+</tr>
+<tr>
 <td><a href="../QuantityValue/">QuantityValue</a></td>
 <td>A simple quantity, e.g. 2cm</td>
 <td>no</td>
@@ -397,7 +393,7 @@ Alias: has_maximum_numeric_value</p>
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>Range: <a href="../Float/">Float</a></li>
+<li>Range: <a href="../Attribute/">Attribute</a></li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
@@ -415,33 +411,26 @@ Alias: has_maximum_numeric_value</p>
 <tbody>
 <tr>
 <td>self</td>
-<td>bertron:has_maximum_numeric_value</td>
+<td>bertron:attribute</td>
 </tr>
 <tr>
 <td>native</td>
-<td>bertron:has_maximum_numeric_value</td>
-</tr>
-<tr>
-<td>undefined</td>
-<td>nmdc:has_maximum_numeric_value</td>
+<td>bertron:attribute</td>
 </tr>
 </tbody>
 </table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 
-<pre><code class="language-yaml">name: has_maximum_numeric_value
-description: The maximum value part, expressed as number, of the quantity value when
-  the value covers a range.
+<pre><code class="language-yaml">name: attribute
+description: The attribute being represented.
 from_schema: https://w3id.org/ber-data/bertron-schema
-mappings:
-- nmdc:has_maximum_numeric_value
 rank: 1000
-is_a: has_numeric_value
-alias: has_maximum_numeric_value
+alias: attribute
+owner: AttributeValue
 domain_of:
-- QuantityValue
-range: float
+- AttributeValue
+range: Attribute
 
 </code></pre>
 

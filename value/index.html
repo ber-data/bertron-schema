@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://ber-data.github.io/bertron-schema/alt_ids/">
+        <link rel="canonical" href="https://ber-data.github.io/bertron-schema/value/">
       
       
       
@@ -18,7 +18,7 @@
     
     
       
-        <title>Slot: alt_ids - bertron-schema</title>
+        <title>Slot: value - bertron-schema</title>
       
     
     
@@ -60,7 +60,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-alt_ids" class="md-skip">
+        <a href="#slot-value" class="md-skip">
           Skip to content
         </a>
       
@@ -96,7 +96,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: alt_ids
+              Slot: value
             
           </span>
         </div>
@@ -304,6 +304,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Identifier and Mapping Information">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#schema-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      Schema Source
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -343,9 +358,10 @@
   
 
 
-<h1 id="slot-alt_ids">Slot: alt_ids</h1>
-<p>URI: <a href="https://w3id.org/ber-data/bertron-schema/alt_ids">bertron:alt_ids</a>
-Alias: alt_ids</p>
+<h1 id="slot-value">Slot: value</h1>
+<p><em>The value, as a text string.</em></p>
+<p>URI: <a href="https://w3id.org/ber-data/bertron-schema/value">bertron:value</a>
+Alias: value</p>
 <!-- no inheritance hierarchy -->
 
 <h2 id="applicable-classes">Applicable Classes</h2>
@@ -359,13 +375,8 @@ Alias: alt_ids</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../DataCollection/">DataCollection</a></td>
-<td>Administrative unit (e.g. project, proposal, etc.) in which one or more entities is collected.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../Entity/">Entity</a></td>
-<td>An object retrieved by BERtron from a BER data API.</td>
+<td><a href="../TextValue/">TextValue</a></td>
+<td>A quality, described using a text string.</td>
 <td>no</td>
 </tr>
 </tbody>
@@ -375,6 +386,10 @@ Alias: alt_ids</p>
 <li>Range: <a href="../String/">String</a></li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
+<h3 id="schema-source">Schema Source</h3>
+<ul>
+<li>from schema: https://w3id.org/ber-data/bertron-schema</li>
+</ul>
 <h2 id="mappings">Mappings</h2>
 <table>
 <thead>
@@ -386,22 +401,25 @@ Alias: alt_ids</p>
 <tbody>
 <tr>
 <td>self</td>
-<td>bertron:alt_ids</td>
+<td>bertron:value</td>
 </tr>
 <tr>
 <td>native</td>
-<td>bertron:alt_ids</td>
+<td>bertron:value</td>
 </tr>
 </tbody>
 </table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 
-<pre><code class="language-yaml">name: alt_ids
-alias: alt_ids
+<pre><code class="language-yaml">name: value
+description: The value, as a text string.
+from_schema: https://w3id.org/ber-data/bertron-schema
+rank: 1000
+alias: value
+owner: TextValue
 domain_of:
-- Entity
-- DataCollection
+- TextValue
 range: string
 
 </code></pre>

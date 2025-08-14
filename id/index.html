@@ -359,13 +359,18 @@ Alias: id</p>
 </thead>
 <tbody>
 <tr>
+<td><a href="../DataCollection/">DataCollection</a></td>
+<td>Administrative unit (e.g. project, proposal, etc.) in which one or more entities is collected.</td>
+<td>no</td>
+</tr>
+<tr>
 <td><a href="../Entity/">Entity</a></td>
 <td>An object retrieved by BERtron from a BER data API.</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../DataCollection/">DataCollection</a></td>
-<td>Administrative unit (e.g. project, proposal, etc.) in which one or more entities is collected.</td>
+<td><a href="../Attribute/">Attribute</a></td>
+<td>A domain, measurement, attribute, property, or any descriptor for additional properties to be added to an entity.</td>
 <td>no</td>
 </tr>
 </tbody>
@@ -402,6 +407,7 @@ alias: id
 domain_of:
 - Entity
 - DataCollection
+- Attribute
 range: string
 
 </code></pre>

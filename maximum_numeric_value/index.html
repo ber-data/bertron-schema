@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://ber-data.github.io/bertron-schema/alt_ids/">
+        <link rel="canonical" href="https://ber-data.github.io/bertron-schema/maximum_numeric_value/">
       
       
       
@@ -18,7 +18,7 @@
     
     
       
-        <title>Slot: alt_ids - bertron-schema</title>
+        <title>Slot: maximum_numeric_value - bertron-schema</title>
       
     
     
@@ -60,7 +60,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-alt_ids" class="md-skip">
+        <a href="#slot-maximum_numeric_value" class="md-skip">
           Skip to content
         </a>
       
@@ -96,7 +96,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: alt_ids
+              Slot: maximum_numeric_value
             
           </span>
         </div>
@@ -280,6 +280,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#inheritance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inheritance
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#applicable-classes" class="md-nav__link">
     <span class="md-ellipsis">
       Applicable Classes
@@ -303,6 +312,21 @@
       Identifier and Mapping Information
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Identifier and Mapping Information">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#schema-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      Schema Source
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -343,11 +367,17 @@
   
 
 
-<h1 id="slot-alt_ids">Slot: alt_ids</h1>
-<p>URI: <a href="https://w3id.org/ber-data/bertron-schema/alt_ids">bertron:alt_ids</a>
-Alias: alt_ids</p>
-<!-- no inheritance hierarchy -->
-
+<h1 id="slot-maximum_numeric_value">Slot: maximum_numeric_value</h1>
+<p><em>The maximum value part, expressed as number, of the quantity value when the value covers a range.</em></p>
+<p>URI: <a href="https://w3id.org/ber-data/bertron-schema/maximum_numeric_value">bertron:maximum_numeric_value</a>
+Alias: maximum_numeric_value</p>
+<h2 id="inheritance">Inheritance</h2>
+<ul>
+<li><a href="../numeric_value/">numeric_value</a><ul>
+<li><strong>maximum_numeric_value</strong></li>
+</ul>
+</li>
+</ul>
 <h2 id="applicable-classes">Applicable Classes</h2>
 <table>
 <thead>
@@ -359,22 +389,21 @@ Alias: alt_ids</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../DataCollection/">DataCollection</a></td>
-<td>Administrative unit (e.g. project, proposal, etc.) in which one or more entities is collected.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../Entity/">Entity</a></td>
-<td>An object retrieved by BERtron from a BER data API.</td>
+<td><a href="../QuantityValue/">QuantityValue</a></td>
+<td>A simple quantity, e.g. 2cm</td>
 <td>no</td>
 </tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>Range: <a href="../String/">String</a></li>
+<li>Range: <a href="../Float/">Float</a></li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
+<h3 id="schema-source">Schema Source</h3>
+<ul>
+<li>from schema: https://w3id.org/ber-data/bertron-schema</li>
+</ul>
 <h2 id="mappings">Mappings</h2>
 <table>
 <thead>
@@ -386,23 +415,33 @@ Alias: alt_ids</p>
 <tbody>
 <tr>
 <td>self</td>
-<td>bertron:alt_ids</td>
+<td>bertron:maximum_numeric_value</td>
 </tr>
 <tr>
 <td>native</td>
-<td>bertron:alt_ids</td>
+<td>bertron:maximum_numeric_value</td>
+</tr>
+<tr>
+<td>undefined</td>
+<td>nmdc:maximum_numeric_value</td>
 </tr>
 </tbody>
 </table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 
-<pre><code class="language-yaml">name: alt_ids
-alias: alt_ids
+<pre><code class="language-yaml">name: maximum_numeric_value
+description: The maximum value part, expressed as number, of the quantity value when
+  the value covers a range.
+from_schema: https://w3id.org/ber-data/bertron-schema
+mappings:
+- nmdc:maximum_numeric_value
+rank: 1000
+is_a: numeric_value
+alias: maximum_numeric_value
 domain_of:
-- Entity
-- DataCollection
-range: string
+- QuantityValue
+range: float
 
 </code></pre>
 

@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://ber-data.github.io/bertron-schema/has_raw_value/">
+        <link rel="canonical" href="https://ber-data.github.io/bertron-schema/raw_value/">
       
       
       
@@ -18,7 +18,7 @@
     
     
       
-        <title>Slot: has_raw_value - bertron-schema</title>
+        <title>Slot: raw_value - bertron-schema</title>
       
     
     
@@ -60,7 +60,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-has_raw_value" class="md-skip">
+        <a href="#slot-raw_value" class="md-skip">
           Skip to content
         </a>
       
@@ -96,7 +96,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: has_raw_value
+              Slot: raw_value
             
           </span>
         </div>
@@ -358,10 +358,10 @@
   
 
 
-<h1 id="slot-has_raw_value">Slot: has_raw_value</h1>
+<h1 id="slot-raw_value">Slot: raw_value</h1>
 <p><em>The value that was specified for an annotation in raw form, i.e. a string. E.g. "2 cm" or "2-4 cm"</em></p>
-<p>URI: <a href="https://w3id.org/ber-data/bertron-schema/has_raw_value">bertron:has_raw_value</a>
-Alias: has_raw_value</p>
+<p>URI: <a href="https://w3id.org/ber-data/bertron-schema/raw_value">bertron:raw_value</a>
+Alias: raw_value</p>
 <!-- no inheritance hierarchy -->
 
 <h2 id="applicable-classes">Applicable Classes</h2>
@@ -375,14 +375,19 @@ Alias: has_raw_value</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../QuantityValue/">QuantityValue</a></td>
-<td>A simple quantity, e.g. 2cm</td>
-<td>yes</td>
+<td><a href="../TextValue/">TextValue</a></td>
+<td>A quality, described using a text string.</td>
+<td>no</td>
 </tr>
 <tr>
 <td><a href="../AttributeValue/">AttributeValue</a></td>
-<td>The value for any value of a attribute for a sample. This object can hold both the un-normalized atomic value and the structured value</td>
+<td>The value for any value of attribute for an entity. This object can hold both the un-normalized atomic value and the structured value.</td>
 <td>no</td>
+</tr>
+<tr>
+<td><a href="../QuantityValue/">QuantityValue</a></td>
+<td>A simple quantity, e.g. 2cm</td>
+<td>yes</td>
 </tr>
 </tbody>
 </table>
@@ -406,32 +411,31 @@ Alias: has_raw_value</p>
 <tbody>
 <tr>
 <td>self</td>
-<td>bertron:has_raw_value</td>
+<td>bertron:raw_value</td>
 </tr>
 <tr>
 <td>native</td>
-<td>bertron:has_raw_value</td>
+<td>bertron:raw_value</td>
 </tr>
 <tr>
 <td>undefined</td>
-<td>nmdc:has_raw_value</td>
+<td>nmdc:raw_value</td>
 </tr>
 </tbody>
 </table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 
-<pre><code class="language-yaml">name: has_raw_value
+<pre><code class="language-yaml">name: raw_value
 description: The value that was specified for an annotation in raw form, i.e. a string.
   E.g. &quot;2 cm&quot; or &quot;2-4 cm&quot;
 from_schema: https://w3id.org/ber-data/bertron-schema
 mappings:
-- nmdc:has_raw_value
+- nmdc:raw_value
 rank: 1000
-alias: has_raw_value
+alias: raw_value
 domain_of:
 - AttributeValue
-- QuantityValue
 range: string
 
 </code></pre>

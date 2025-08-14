@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://ber-data.github.io/bertron-schema/has_numeric_value/">
+        <link rel="canonical" href="https://ber-data.github.io/bertron-schema/value_cv_id/">
       
       
       
@@ -18,7 +18,7 @@
     
     
       
-        <title>Slot: has_numeric_value - bertron-schema</title>
+        <title>Slot: value_cv_id - bertron-schema</title>
       
     
     
@@ -60,7 +60,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-has_numeric_value" class="md-skip">
+        <a href="#slot-value_cv_id" class="md-skip">
           Skip to content
         </a>
       
@@ -96,7 +96,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: has_numeric_value
+              Slot: value_cv_id
             
           </span>
         </div>
@@ -280,15 +280,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#inheritance" class="md-nav__link">
-    <span class="md-ellipsis">
-      Inheritance
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#applicable-classes" class="md-nav__link">
     <span class="md-ellipsis">
       Applicable Classes
@@ -367,18 +358,12 @@
   
 
 
-<h1 id="slot-has_numeric_value">Slot: has_numeric_value</h1>
-<p><em>Links a quantity value to a number</em></p>
-<p>URI: <a href="https://w3id.org/ber-data/bertron-schema/has_numeric_value">bertron:has_numeric_value</a>
-Alias: has_numeric_value</p>
-<h2 id="inheritance">Inheritance</h2>
-<ul>
-<li><strong>has_numeric_value</strong><ul>
-<li><a href="../has_minimum_numeric_value/">has_minimum_numeric_value</a></li>
-<li><a href="../has_maximum_numeric_value/">has_maximum_numeric_value</a></li>
-</ul>
-</li>
-</ul>
+<h1 id="slot-value_cv_id">Slot: value_cv_id</h1>
+<p><em>For values that are in a controlled vocabulary (CV), this attribute should capture the controlled vocabulary ID for the value.</em></p>
+<p>URI: <a href="https://w3id.org/ber-data/bertron-schema/value_cv_id">bertron:value_cv_id</a>
+Alias: value_cv_id</p>
+<!-- no inheritance hierarchy -->
+
 <h2 id="applicable-classes">Applicable Classes</h2>
 <table>
 <thead>
@@ -390,15 +375,15 @@ Alias: has_numeric_value</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../QuantityValue/">QuantityValue</a></td>
-<td>A simple quantity, e.g. 2cm</td>
-<td>yes</td>
+<td><a href="../TextValue/">TextValue</a></td>
+<td>A quality, described using a text string.</td>
+<td>no</td>
 </tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>Range: <a href="../Float/">Float</a></li>
+<li>Range: <a href="../String/">String</a></li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
@@ -416,33 +401,27 @@ Alias: has_numeric_value</p>
 <tbody>
 <tr>
 <td>self</td>
-<td>bertron:has_numeric_value</td>
+<td>bertron:value_cv_id</td>
 </tr>
 <tr>
 <td>native</td>
-<td>bertron:has_numeric_value</td>
-</tr>
-<tr>
-<td>undefined</td>
-<td>nmdc:has_numeric_value, qud:quantityValue, schema:value</td>
+<td>bertron:value_cv_id</td>
 </tr>
 </tbody>
 </table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 
-<pre><code class="language-yaml">name: has_numeric_value
-description: Links a quantity value to a number
+<pre><code class="language-yaml">name: value_cv_id
+description: For values that are in a controlled vocabulary (CV), this attribute should
+  capture the controlled vocabulary ID for the value.
 from_schema: https://w3id.org/ber-data/bertron-schema
-mappings:
-- nmdc:has_numeric_value
-- qud:quantityValue
-- schema:value
 rank: 1000
-alias: has_numeric_value
+alias: value_cv_id
+owner: TextValue
 domain_of:
-- QuantityValue
-range: float
+- TextValue
+range: string
 
 </code></pre>
 

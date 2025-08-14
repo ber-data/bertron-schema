@@ -217,7 +217,7 @@
 <p>URI: <a href="http://schema.org/Thing">schema:Thing</a></p>
 <div class="mermaid"> classDiagram
     class Entity
-    click Entity href "../Entity"
+    click Entity href "../Entity/"
       Entity : alt_ids
 
       Entity : alt_names
@@ -227,7 +227,7 @@
 
 
         Entity --&gt; "*" Name : alt_names
-        click Name href "../Name"
+        click Name href "../Name/"
 
 
 
@@ -238,7 +238,7 @@
 
 
         Entity --&gt; "1" BERSourceType : ber_data_source
-        click BERSourceType href "../BERSourceType"
+        click BERSourceType href "../BERSourceType/"
 
 
 
@@ -249,7 +249,7 @@
 
 
         Entity --&gt; "1" Coordinates : coordinates
-        click Coordinates href "../Coordinates"
+        click Coordinates href "../Coordinates/"
 
 
 
@@ -262,7 +262,7 @@
 
 
         Entity --&gt; "1..*" EntityType : entity_type
-        click EntityType href "../EntityType"
+        click EntityType href "../EntityType/"
 
 
 
@@ -277,7 +277,18 @@
 
 
         Entity --&gt; "*" DataCollection : part_of_collection
-        click DataCollection href "../DataCollection"
+        click DataCollection href "../DataCollection/"
+
+
+
+      Entity : properties
+
+
+
+
+
+        Entity --&gt; "*" Any : properties
+        click Any href "../Any/"
 
 
 
@@ -355,6 +366,12 @@
 <td><a href="../uri/">uri</a></td>
 <td>1 <br/> <a href="../Uriorcurie/">Uriorcurie</a></td>
 <td>Permanent resolvable URI for the entity at the data source.</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../properties/">properties</a></td>
+<td>* <br/> <a href="../Any/">Any</a> or <br/><a href="../TextValue/">TextValue</a> or <br/><a href="../QuantityValue/">QuantityValue</a></td>
+<td>Provide extended context that may be relevant and applicable to the entity you're describing.</td>
 <td>direct</td>
 </tr>
 </tbody>
@@ -452,6 +469,7 @@ attributes:
     domain_of:
     - Entity
     - DataCollection
+    - Attribute
     range: string
   name:
     name: name
@@ -526,7 +544,43 @@ attributes:
     - Entity
     range: uriorcurie
     required: true
+  properties:
+    name: properties
+    description: Provide extended context that may be relevant and applicable to the
+      entity you're describing.
+    examples:
+    - object:
+        attribute:
+          id: MIXS:0000117
+          label: total phosphorus
+        has_raw_value: 2.2 ppm
+        has_unit: ppm
+        has_numeric_value: 2.2
+    - object:
+        attribute:
+          id: MIXS:0000011
+          label: collection date
+        has_raw_value: '2025-06-12'
+    - object:
+        attribute:
+          id: MIXS:0000012
+          label: env_broad_scale
+        value: terrestrial biome
+        value_cv_id: ENVO:00000446
+    from_schema: https://w3id.org/ber-data/bertron-schema
+    mappings:
+    - MIXS:0000008
+    rank: 1000
+    domain_of:
+    - Entity
+    range: Any
+    required: false
+    multivalued: true
+    any_of:
+    - range: TextValue
+    - range: QuantityValue
 class_uri: schema:Thing
+tree_root: true
 
 </code></pre>
 </details>
@@ -608,6 +662,7 @@ attributes:
     domain_of:
     - Entity
     - DataCollection
+    - Attribute
     range: string
   name:
     name: name
@@ -693,7 +748,45 @@ attributes:
     - Entity
     range: uriorcurie
     required: true
+  properties:
+    name: properties
+    description: Provide extended context that may be relevant and applicable to the
+      entity you're describing.
+    examples:
+    - object:
+        attribute:
+          id: MIXS:0000117
+          label: total phosphorus
+        has_raw_value: 2.2 ppm
+        has_unit: ppm
+        has_numeric_value: 2.2
+    - object:
+        attribute:
+          id: MIXS:0000011
+          label: collection date
+        has_raw_value: '2025-06-12'
+    - object:
+        attribute:
+          id: MIXS:0000012
+          label: env_broad_scale
+        value: terrestrial biome
+        value_cv_id: ENVO:00000446
+    from_schema: https://w3id.org/ber-data/bertron-schema
+    mappings:
+    - MIXS:0000008
+    rank: 1000
+    alias: properties
+    owner: Entity
+    domain_of:
+    - Entity
+    range: Any
+    required: false
+    multivalued: true
+    any_of:
+    - range: TextValue
+    - range: QuantityValue
 class_uri: schema:Thing
+tree_root: true
 
 </code></pre>
 </details>

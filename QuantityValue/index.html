@@ -230,19 +230,30 @@
 <p>URI: <a href="https://w3id.org/nmdc/QuantityValue">nmdc:QuantityValue</a></p>
 <div class="mermaid"> classDiagram
     class QuantityValue
-    click QuantityValue href "../QuantityValue"
+    click QuantityValue href "../QuantityValue/"
       AttributeValue &lt;|-- QuantityValue
-        click AttributeValue href "../AttributeValue"
+        click AttributeValue href "../AttributeValue/"
 
-      QuantityValue : has_maximum_numeric_value
+      QuantityValue : attribute
 
-      QuantityValue : has_minimum_numeric_value
 
-      QuantityValue : has_numeric_value
 
-      QuantityValue : has_raw_value
 
-      QuantityValue : has_unit
+
+        QuantityValue --&gt; "0..1" Attribute : attribute
+        click Attribute href "../Attribute/"
+
+
+
+      QuantityValue : maximum_numeric_value
+
+      QuantityValue : minimum_numeric_value
+
+      QuantityValue : numeric_value
+
+      QuantityValue : raw_value
+
+      QuantityValue : unit
 
 
 </div>
@@ -265,34 +276,40 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../has_maximum_numeric_value/">has_maximum_numeric_value</a></td>
+<td><a href="../maximum_numeric_value/">maximum_numeric_value</a></td>
 <td>0..1 <br/> <a href="../Float/">Float</a></td>
 <td>The maximum value part, expressed as number, of the quantity value when the value covers a range.</td>
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../has_minimum_numeric_value/">has_minimum_numeric_value</a></td>
+<td><a href="../minimum_numeric_value/">minimum_numeric_value</a></td>
 <td>0..1 <br/> <a href="../Float/">Float</a></td>
 <td>The minimum value part, expressed as number, of the quantity value when the value covers a range.</td>
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../has_numeric_value/">has_numeric_value</a></td>
+<td><a href="../numeric_value/">numeric_value</a></td>
 <td>0..1 <br/> <a href="../Float/">Float</a></td>
 <td>The number part of the quantity</td>
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../has_raw_value/">has_raw_value</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>Unnormalized atomic string representation, should in syntax {number} {unit}</td>
+<td><a href="../unit/">unit</a></td>
+<td>0..1 <br/> <a href="../unit/">unit</a></td>
+<td>The unit of the quantity</td>
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../has_unit/">has_unit</a></td>
-<td>0..1 <br/> <a href="../Unit/">Unit</a></td>
-<td>The unit of the quantity</td>
-<td>direct</td>
+<td><a href="../attribute/">attribute</a></td>
+<td>0..1 <br/> <a href="../Attribute/">Attribute</a></td>
+<td>The attribute being represented.</td>
+<td><a href="../AttributeValue/">AttributeValue</a></td>
+</tr>
+<tr>
+<td><a href="../raw_value/">raw_value</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Unnormalized atomic string representation, suggested syntax {number} {unit}</td>
+<td><a href="../AttributeValue/">AttributeValue</a></td>
 </tr>
 </tbody>
 </table>
@@ -307,6 +324,12 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><a href="../Entity/">Entity</a></td>
+<td><a href="../properties/">properties</a></td>
+<td>any_of[range]</td>
+<td><a href="./">QuantityValue</a></td>
+</tr>
 <tr>
 <td><a href="../Coordinates/">Coordinates</a></td>
 <td><a href="../altitude/">altitude</a></td>
@@ -366,21 +389,20 @@ mappings:
 - schema:QuantityValue
 is_a: AttributeValue
 slots:
-- has_maximum_numeric_value
-- has_minimum_numeric_value
-- has_numeric_value
-- has_raw_value
-- has_unit
+- maximum_numeric_value
+- minimum_numeric_value
+- numeric_value
+- unit
 slot_usage:
-  has_raw_value:
-    name: has_raw_value
-    description: Unnormalized atomic string representation, should in syntax {number}
+  raw_value:
+    name: raw_value
+    description: Unnormalized atomic string representation, suggested syntax {number}
       {unit}
-  has_unit:
-    name: has_unit
+  unit:
+    name: unit
     description: The unit of the quantity
-  has_numeric_value:
-    name: has_numeric_value
+  numeric_value:
+    name: numeric_value
     description: The number part of the quantity
 class_uri: nmdc:QuantityValue
 
@@ -395,89 +417,95 @@ mappings:
 - schema:QuantityValue
 is_a: AttributeValue
 slot_usage:
-  has_raw_value:
-    name: has_raw_value
-    description: Unnormalized atomic string representation, should in syntax {number}
+  raw_value:
+    name: raw_value
+    description: Unnormalized atomic string representation, suggested syntax {number}
       {unit}
-  has_unit:
-    name: has_unit
+  unit:
+    name: unit
     description: The unit of the quantity
-  has_numeric_value:
-    name: has_numeric_value
+  numeric_value:
+    name: numeric_value
     description: The number part of the quantity
 attributes:
-  has_maximum_numeric_value:
-    name: has_maximum_numeric_value
+  maximum_numeric_value:
+    name: maximum_numeric_value
     description: The maximum value part, expressed as number, of the quantity value
       when the value covers a range.
     from_schema: https://w3id.org/ber-data/bertron-schema
     mappings:
-    - nmdc:has_maximum_numeric_value
+    - nmdc:maximum_numeric_value
     rank: 1000
-    is_a: has_numeric_value
-    alias: has_maximum_numeric_value
+    is_a: numeric_value
+    alias: maximum_numeric_value
     owner: QuantityValue
     domain_of:
     - QuantityValue
     range: float
-  has_minimum_numeric_value:
-    name: has_minimum_numeric_value
+  minimum_numeric_value:
+    name: minimum_numeric_value
     description: The minimum value part, expressed as number, of the quantity value
       when the value covers a range.
     from_schema: https://w3id.org/ber-data/bertron-schema
     mappings:
-    - nmdc:has_minimum_numeric_value
+    - nmdc:minimum_numeric_value
     rank: 1000
-    is_a: has_numeric_value
-    alias: has_minimum_numeric_value
+    is_a: numeric_value
+    alias: minimum_numeric_value
     owner: QuantityValue
     domain_of:
     - QuantityValue
     range: float
-  has_numeric_value:
-    name: has_numeric_value
+  numeric_value:
+    name: numeric_value
     description: The number part of the quantity
     from_schema: https://w3id.org/ber-data/bertron-schema
     mappings:
-    - nmdc:has_numeric_value
+    - nmdc:numeric_value
     - qud:quantityValue
     - schema:value
     rank: 1000
-    alias: has_numeric_value
+    alias: numeric_value
     owner: QuantityValue
     domain_of:
     - QuantityValue
     range: float
-  has_raw_value:
-    name: has_raw_value
-    description: Unnormalized atomic string representation, should in syntax {number}
-      {unit}
-    from_schema: https://w3id.org/ber-data/bertron-schema
-    mappings:
-    - nmdc:has_raw_value
-    rank: 1000
-    alias: has_raw_value
-    owner: QuantityValue
-    domain_of:
-    - AttributeValue
-    - QuantityValue
-    range: string
-  has_unit:
-    name: has_unit
+  unit:
+    name: unit
     description: The unit of the quantity
     from_schema: https://w3id.org/ber-data/bertron-schema
     aliases:
     - scale
     mappings:
-    - nmdc:has_unit
+    - nmdc:unit
     - qud:unit
     - schema:unitCode
     rank: 1000
-    alias: has_unit
+    alias: unit
     owner: QuantityValue
     domain_of:
     - QuantityValue
     range: unit
+  attribute:
+    name: attribute
+    description: The attribute being represented.
+    from_schema: https://w3id.org/ber-data/bertron_types
+    rank: 1000
+    alias: attribute
+    owner: QuantityValue
+    domain_of:
+    - AttributeValue
+    range: Attribute
+  raw_value:
+    name: raw_value
+    description: Unnormalized atomic string representation, suggested syntax {number}
+      {unit}
+    from_schema: https://w3id.org/ber-data/bertron_types
+    alias: raw_value
+    owner: QuantityValue
+    domain_of:
+    - AttributeValue
+    range: string
 class_uri: nmdc:QuantityValue
 
 </code></pre>
