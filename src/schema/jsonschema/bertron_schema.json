@@ -14,23 +14,23 @@
         },
         "Attribute": {
             "additionalProperties": false,
-            "description": "A domain, measurement, attribute, property, or any descriptor for additional properties to be added to an entity.",
+            "description": "A domain, measurement, attribute, property, or any descriptor for additional properties to be added to an entity. Where available, please use OBO Foundry ontologies or other controlled vocabularies for attributes; the label should be the term name from the ontology and the id should be the fully-qualified CURIE.",
             "properties": {
                 "id": {
-                    "description": "A CURIE for the attribute, should one exist.",
+                    "description": "A CURIE for the attribute, should one exist. Where available, please use OBO Foundry ontologies or other controlled vocabularies for labelling attributes; the id should be the term ID from the ontology.",
                     "type": [
                         "string",
                         "null"
                     ]
                 },
                 "label": {
-                    "description": "Text string to describe the attribute.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "description": "Text string to describe the attribute. Where available, please use OBO Foundry ontologies or other controlled vocabularies for labelling attributes; the label should be the term name from the ontology.",
+                    "type": "string"
                 }
             },
+            "required": [
+                "label"
+            ],
             "title": "Attribute",
             "type": "object"
         },
@@ -53,7 +53,7 @@
                 "altitude": {
                     "anyOf": [
                         {
-                            "$ref": "#/$defs/QuantityValue"
+                            "$ref": "#/$defs/NamedQuantityValue"
                         },
                         {
                             "type": "null"
@@ -64,7 +64,7 @@
                 "depth": {
                     "anyOf": [
                         {
-                            "$ref": "#/$defs/QuantityValue"
+                            "$ref": "#/$defs/NamedQuantityValue"
                         },
                         {
                             "type": "null"
@@ -75,7 +75,7 @@
                 "elevation": {
                     "anyOf": [
                         {
-                            "$ref": "#/$defs/QuantityValue"
+                            "$ref": "#/$defs/NamedQuantityValue"
                         },
                         {
                             "type": "null"
@@ -304,19 +304,55 @@
             "title": "NameType",
             "type": "string"
         },
+        "NamedQuantityValue": {
+            "additionalProperties": false,
+            "description": "A quantity value where the attribute is already specified.",
+            "properties": {
+                "maximum_numeric_value": {
+                    "description": "The maximum value part, expressed as number, of the quantity value when the value covers a range.",
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "minimum_numeric_value": {
+                    "description": "The minimum value part, expressed as number, of the quantity value when the value covers a range.",
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "numeric_value": {
+                    "description": "Links a quantity value to a number",
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "raw_value": {
+                    "description": "The value that was specified for an annotation in raw form, i.e. a string. E.g. \"2 cm\" or \"2-4 cm\"",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "unit": {
+                    "description": "Links a QuantityValue to a unit. Units should be taken from the UCUM unit collection or the Unit Ontology.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "title": "NamedQuantityValue",
+            "type": "object"
+        },
         "QuantityValue": {
             "additionalProperties": false,
             "description": "A simple quantity, e.g. 2cm",
             "properties": {
                 "attribute": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/Attribute"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
+                    "$ref": "#/$defs/Attribute",
                     "description": "The attribute being represented."
                 },
                 "maximum_numeric_value": {
@@ -355,6 +391,9 @@
                     ]
                 }
             },
+            "required": [
+                "attribute"
+            ],
             "title": "QuantityValue",
             "type": "object"
         },
@@ -363,14 +402,7 @@
             "description": "A quality, described using a text string.",
             "properties": {
                 "attribute": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/Attribute"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
+                    "$ref": "#/$defs/Attribute",
                     "description": "The attribute being represented."
                 },
                 "raw_value": {
@@ -395,6 +427,9 @@
                     ]
                 }
             },
+            "required": [
+                "attribute"
+            ],
             "title": "TextValue",
             "type": "object"
         }

@@ -156,7 +156,7 @@ classes:
           - value: "100 meter"
         from_schema: http://w3id.org/mixs/terms
         multivalued: false
-        range: QuantityValue
+        range: NamedQuantityValue
         slot_uri: MIXS:0000094
         title: altitude
       depth:
@@ -171,7 +171,7 @@ classes:
           - value: 10 meter
         from_schema: http://w3id.org/mixs/terms
         multivalued: false
-        range: QuantityValue
+        range: NamedQuantityValue
         slot_uri: MIXS:0000018
         title: depth
       elevation:
@@ -187,7 +187,7 @@ classes:
         from_schema: http://w3id.org/mixs/terms
         multivalued: false
         slot_uri: MIXS:0000093
-        range: QuantityValue
+        range: NamedQuantityValue
         title: elevation
       latitude:
         description: latitude

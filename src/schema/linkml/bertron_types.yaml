@@ -102,6 +102,15 @@ classes:
     mappings:
       - schema:QuantityValue
 
+  NamedQuantityValue:
+    description: A quantity value where the attribute is already specified.
+    slots:
+      - maximum_numeric_value
+      - minimum_numeric_value
+      - numeric_value
+      - unit
+      - raw_value
+
   TextValue:
     class_uri: nmdc:TextValue
     is_a: AttributeValue
