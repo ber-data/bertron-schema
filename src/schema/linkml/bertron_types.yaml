@@ -42,7 +42,7 @@ slots:
       - nmdc:raw_value
 
   unit:
-    description: Links a QuantityValue to a unit
+    description: Links a QuantityValue to a unit. Units should be taken from the UCUM unit collection or the Unit Ontology.
     aliases:
       - scale
     range: unit
@@ -65,20 +65,23 @@ classes:
       attribute:
         description: The attribute being represented.
         range: Attribute
+        required: true
       raw_value:
         range: string
         description: The raw value.
 
   Attribute:
-    description: A domain, measurement, attribute, property, or any descriptor for additional properties to be added to an entity.
+    description: A domain, measurement, attribute, property, or any descriptor for additional properties to be added to an entity. Where available, please use OBO Foundry ontologies or other controlled vocabularies for attributes; the label should be the term name from the ontology and the id should be the fully-qualified CURIE.
     attributes:
       id:
-        description: A CURIE for the attribute, should one exist.
+        description: A CURIE for the attribute, should one exist. Where available, please use OBO Foundry ontologies or other controlled vocabularies for labelling attributes; the id should be the term ID from the ontology.
+        recommended: true
       label:
         aliases:
           - name
           - title
-        description: Text string to describe the attribute.
+        description: Text string to describe the attribute. Where available, please use OBO Foundry ontologies or other controlled vocabularies for labelling attributes; the label should be the term name from the ontology.
+        required: true
 
   QuantityValue:
     class_uri: nmdc:QuantityValue
