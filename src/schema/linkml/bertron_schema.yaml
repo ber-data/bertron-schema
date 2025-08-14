@@ -25,6 +25,7 @@ imports:
 
 classes:
   Entity:
+    tree_root: true
     class_uri: schema:Thing
     description: |
       An object retrieved by BERtron from a BER data API.
@@ -113,7 +114,7 @@ classes:
       properties:
         description: Provide extended context that may be relevant and applicable to the entity you're describing.
         multivalued: true
-        required: false 
+        required: false
         range: Any
         any_of:
           - range:
@@ -264,7 +265,7 @@ classes:
         - alternative IDs
         - alternative PIDs
         - PIDs
-        description: Fully-qualified URI or CURIE used as an identifier for a groupded set of data.
+        description: Fully-qualified URI or CURIE used as an identifier for a grouped set of data.
         range: uriorcurie
         multivalued: true
         comments:

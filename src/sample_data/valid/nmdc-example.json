@@ -4,14 +4,14 @@
         "latitude": 28.125842,
         "longitude": -81.434174,
         "depth": {
-            "has_minimum_numeric_value": 0,
-            "has_maximum_numeric_value": 0.1,
-            "has_unit": "m",
-            "has_raw_value": "0 - 0.1m"
+            "minimum_numeric_value": 0,
+            "maximum_numeric_value": 0.1,
+            "unit": "m",
+            "raw_value": "0 - 0.1m"
         },
         "elevation": {
-            "has_numeric_value": 24,
-            "has_unit": "m"
+            "numeric_value": 24,
+            "unit": "m"
         }
     },
     "entity_type": [
@@ -23,16 +23,16 @@
                 "id": "MIXS:0000117",
                 "label": "total phoshorous"
             },
-            "has_raw_value": "2.2 ppm",
-            "has_unit": "ppm",
-            "has_numeric_value": 2.2
+            "raw_value": "2.2 ppm",
+            "unit": "ppm",
+            "numeric_value": 2.2
         },
         {
             "attribute": {
                 "id": "MIXS:0000011",
                 "label": "collection date"
             },
-            "has_raw_value": "2025-06-12"
+            "raw_value": "2025-06-12"
         },
         {
             "attribute": {

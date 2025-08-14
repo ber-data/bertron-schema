@@ -79,6 +79,8 @@ linkml_meta = LinkMLMeta({'default_curi_maps': ['semweb_context'],
                               'prefix_reference': 'https://w3id.org/ber-data/bertron-schema/'},
                   'linkml': {'prefix_prefix': 'linkml',
                              'prefix_reference': 'https://w3id.org/linkml/'},
+                  'nmdc': {'prefix_prefix': 'nmdc',
+                           'prefix_reference': 'https://w3id.org/nmdc/'},
                   'schema': {'prefix_prefix': 'schema',
                              'prefix_reference': 'http://schema.org/'}},
      'see_also': ['https://ber-data.github.io/bertron-schema'],
@@ -98,7 +100,7 @@ class BERSourceType(str, Enum):
 
 class EntityType(str, Enum):
     """
-    Tags used to describe an entity.
+    The type of entity captured in this record.
     """
     biodata = "biodata"
     jgi_biosample = "jgi_biosample"
@@ -106,6 +108,18 @@ class EntityType(str, Enum):
     sequence = "sequence"
     taxon = "taxon"
     unspecified = "unspecified"
+    project = "project"
+    """
+    An enterprise (potentially individual but typically collaborative), planned to achieve a particular aim.
+    """
+    site = "site"
+    """
+    An entity that describes a location of experimentation or sample collection
+    """
+    data_set = "data set"
+    """
+    A single or collection or data generated from an experimental entity
+    """
 
 
 class NameType(str, Enum):
@@ -137,15 +151,24 @@ class NameType(str, Enum):
 
 class AttributeValue(ConfiguredBaseModel):
     """
-    The value for any value of a attribute for a sample. This object can hold both the un-normalized atomic value and the structured value
+    The value for any value of attribute for an entity. This object can hold both the un-normalized atomic value and the structured value.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'abstract': True,
          'class_uri': 'nmdc:AttributeValue',
          'from_schema': 'https://w3id.org/ber-data/bertron_types'})
 
-    has_raw_value: Optional[str] = Field(default=None, description="""The value that was specified for an annotation in raw form, i.e. a string. E.g. \"2 cm\" or \"2-4 cm\"""", json_schema_extra = { "linkml_meta": {'alias': 'has_raw_value',
-         'domain_of': ['AttributeValue', 'QuantityValue'],
-         'mappings': ['nmdc:has_raw_value']} })
+    attribute: Optional[Attribute] = Field(default=None, description="""The attribute being represented.""", json_schema_extra = { "linkml_meta": {'alias': 'attribute', 'domain_of': ['AttributeValue']} })
+    raw_value: Optional[str] = Field(default=None, description="""The raw value.""", json_schema_extra = { "linkml_meta": {'alias': 'raw_value', 'domain_of': ['AttributeValue']} })
+
+
+class Attribute(ConfiguredBaseModel):
+    """
+    A domain, measurement, attribute, property, or any descriptor for additional properties to be added to an entity.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/ber-data/bertron_types'})
+
+    id: Optional[str] = Field(default=None, description="""A CURIE for the attribute, should one exist.""", json_schema_extra = { "linkml_meta": {'alias': 'id', 'domain_of': ['Attribute', 'Entity', 'DataCollection']} })
+    label: Optional[str] = Field(default=None, description="""Text string to describe the attribute.""", json_schema_extra = { "linkml_meta": {'alias': 'label', 'aliases': ['name', 'title'], 'domain_of': ['Attribute']} })
 
 
 class QuantityValue(AttributeValue):
@@ -155,34 +178,46 @@ class QuantityValue(AttributeValue):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'nmdc:QuantityValue',
          'from_schema': 'https://w3id.org/ber-data/bertron_types',
          'mappings': ['schema:QuantityValue'],
-         'slot_usage': {'has_numeric_value': {'description': 'The number part of the '
-                                                             'quantity',
-                                              'name': 'has_numeric_value'},
-                        'has_raw_value': {'description': 'Unnormalized atomic string '
-                                                         'representation, should in '
-                                                         'syntax {number} {unit}',
-                                          'name': 'has_raw_value'},
-                        'has_unit': {'description': 'The unit of the quantity',
-                                     'name': 'has_unit'}}})
+         'slot_usage': {'numeric_value': {'description': 'The number part of the '
+                                                         'quantity',
+                                          'name': 'numeric_value'},
+                        'raw_value': {'description': 'Unnormalized atomic string '
+                                                     'representation, suggested syntax '
+                                                     '{number} {unit}',
+                                      'name': 'raw_value'},
+                        'unit': {'description': 'The unit of the quantity',
+                                 'name': 'unit'}}})
 
-    has_maximum_numeric_value: Optional[float] = Field(default=None, description="""The maximum value part, expressed as number, of the quantity value when the value covers a range.""", json_schema_extra = { "linkml_meta": {'alias': 'has_maximum_numeric_value',
+    maximum_numeric_value: Optional[float] = Field(default=None, description="""The maximum value part, expressed as number, of the quantity value when the value covers a range.""", json_schema_extra = { "linkml_meta": {'alias': 'maximum_numeric_value',
          'domain_of': ['QuantityValue'],
-         'is_a': 'has_numeric_value',
-         'mappings': ['nmdc:has_maximum_numeric_value']} })
-    has_minimum_numeric_value: Optional[float] = Field(default=None, description="""The minimum value part, expressed as number, of the quantity value when the value covers a range.""", json_schema_extra = { "linkml_meta": {'alias': 'has_minimum_numeric_value',
+         'is_a': 'numeric_value',
+         'mappings': ['nmdc:maximum_numeric_value']} })
+    minimum_numeric_value: Optional[float] = Field(default=None, description="""The minimum value part, expressed as number, of the quantity value when the value covers a range.""", json_schema_extra = { "linkml_meta": {'alias': 'minimum_numeric_value',
          'domain_of': ['QuantityValue'],
-         'is_a': 'has_numeric_value',
-         'mappings': ['nmdc:has_minimum_numeric_value']} })
-    has_numeric_value: Optional[float] = Field(default=None, description="""The number part of the quantity""", json_schema_extra = { "linkml_meta": {'alias': 'has_numeric_value',
+         'is_a': 'numeric_value',
+         'mappings': ['nmdc:minimum_numeric_value']} })
+    numeric_value: Optional[float] = Field(default=None, description="""The number part of the quantity""", json_schema_extra = { "linkml_meta": {'alias': 'numeric_value',
          'domain_of': ['QuantityValue'],
-         'mappings': ['nmdc:has_numeric_value', 'qud:quantityValue', 'schema:value']} })
-    has_raw_value: Optional[str] = Field(default=None, description="""Unnormalized atomic string representation, should in syntax {number} {unit}""", json_schema_extra = { "linkml_meta": {'alias': 'has_raw_value',
-         'domain_of': ['AttributeValue', 'QuantityValue'],
-         'mappings': ['nmdc:has_raw_value']} })
-    has_unit: Optional[str] = Field(default=None, description="""The unit of the quantity""", json_schema_extra = { "linkml_meta": {'alias': 'has_unit',
+         'mappings': ['nmdc:numeric_value', 'qud:quantityValue', 'schema:value']} })
+    unit: Optional[str] = Field(default=None, description="""The unit of the quantity""", json_schema_extra = { "linkml_meta": {'alias': 'unit',
          'aliases': ['scale'],
          'domain_of': ['QuantityValue'],
-         'mappings': ['nmdc:has_unit', 'qud:unit', 'schema:unitCode']} })
+         'mappings': ['nmdc:unit', 'qud:unit', 'schema:unitCode']} })
+    attribute: Optional[Attribute] = Field(default=None, description="""The attribute being represented.""", json_schema_extra = { "linkml_meta": {'alias': 'attribute', 'domain_of': ['AttributeValue']} })
+    raw_value: Optional[str] = Field(default=None, description="""Unnormalized atomic string representation, suggested syntax {number} {unit}""", json_schema_extra = { "linkml_meta": {'alias': 'raw_value', 'domain_of': ['AttributeValue']} })
+
+
+class TextValue(AttributeValue):
+    """
+    A quality, described using a text string.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'nmdc:TextValue',
+         'from_schema': 'https://w3id.org/ber-data/bertron_types'})
+
+    value: Optional[str] = Field(default=None, description="""The value, as a text string.""", json_schema_extra = { "linkml_meta": {'alias': 'value', 'domain_of': ['TextValue']} })
+    value_cv_id: Optional[str] = Field(default=None, description="""For values that are in a controlled vocabulary (CV), this attribute should capture the controlled vocabulary ID for the value.""", json_schema_extra = { "linkml_meta": {'alias': 'value_cv_id', 'domain_of': ['TextValue']} })
+    attribute: Optional[Attribute] = Field(default=None, description="""The attribute being represented.""", json_schema_extra = { "linkml_meta": {'alias': 'attribute', 'domain_of': ['AttributeValue']} })
+    raw_value: Optional[str] = Field(default=None, description="""The raw value.""", json_schema_extra = { "linkml_meta": {'alias': 'raw_value', 'domain_of': ['AttributeValue']} })
 
 
 class Entity(ConfiguredBaseModel):
@@ -191,7 +226,8 @@ class Entity(ConfiguredBaseModel):
 
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'schema:Thing',
-         'from_schema': 'https://w3id.org/ber-data/bertron-schema'})
+         'from_schema': 'https://w3id.org/ber-data/bertron-schema',
+         'tree_root': True})
 
     ber_data_source: BERSourceType = Field(default=..., description="""The BER member from whence the entity originated.""", json_schema_extra = { "linkml_meta": {'alias': 'ber_data_source', 'domain_of': ['Entity']} })
     coordinates: Coordinates = Field(default=..., description="""The geographic coordinates associated with an entity. For entities with a bounding box, the centroid is used as the geographic reference.""", json_schema_extra = { "linkml_meta": {'alias': 'coordinates', 'domain_of': ['Entity']} })
@@ -205,7 +241,7 @@ class Entity(ConfiguredBaseModel):
          'aliases': ['BER data source internal identifier', 'CURIE'],
          'comments': ['If the data source does not use CURIEs, we cannot guarantee '
                       'that IDs will be unique between all the BER sources.'],
-         'domain_of': ['Entity', 'DataCollection'],
+         'domain_of': ['Attribute', 'Entity', 'DataCollection'],
          'slot_uri': 'schema:identifier'} })
     name: Optional[str] = Field(default=None, description="""Human-readable string representing an entity.""", json_schema_extra = { "linkml_meta": {'alias': 'name',
          'domain_of': ['Entity', 'Name'],
@@ -230,6 +266,22 @@ class Entity(ConfiguredBaseModel):
          'domain_of': ['Entity']} })
     part_of_collection: Optional[list[DataCollection]] = Field(default=None, description="""Administrative collection (e.g. project, campaign, whatever) that the entity was generated as part of. May also be called a project.""", json_schema_extra = { "linkml_meta": {'alias': 'part_of_collection', 'domain_of': ['Entity']} })
     uri: str = Field(default=..., description="""Permanent resolvable URI for the entity at the data source.""", json_schema_extra = { "linkml_meta": {'alias': 'uri', 'aliases': ['url'], 'domain_of': ['Entity']} })
+    properties: Optional[list[Union[QuantityValue, TextValue]]] = Field(default=None, description="""Provide extended context that may be relevant and applicable to the entity you're describing.""", json_schema_extra = { "linkml_meta": {'alias': 'properties',
+         'any_of': [{'range': 'TextValue'}, {'range': 'QuantityValue'}],
+         'domain_of': ['Entity'],
+         'examples': [{'object': {'attribute': {'id': 'MIXS:0000117',
+                                                'label': 'total phosphorus'},
+                                  'has_numeric_value': 2.2,
+                                  'has_raw_value': '2.2 ppm',
+                                  'has_unit': 'ppm'}},
+                      {'object': {'attribute': {'id': 'MIXS:0000011',
+                                                'label': 'collection date'},
+                                  'has_raw_value': '2025-06-12'}},
+                      {'object': {'attribute': {'id': 'MIXS:0000012',
+                                                'label': 'env_broad_scale'},
+                                  'value': 'terrestrial biome',
+                                  'value_cv_id': 'ENVO:00000446'}}],
+         'mappings': ['MIXS:0000008']} })
 
 
 class Coordinates(ConfiguredBaseModel):
@@ -294,20 +346,20 @@ class DataCollection(ConfiguredBaseModel):
                       'schema.'],
          'from_schema': 'https://w3id.org/ber-data/bertron-schema'})
 
-    id: Optional[str] = Field(default=None, description="""The unique ID used for the project within the BER resource. It may not necessarily be resolvable outside the resource.""", json_schema_extra = { "linkml_meta": {'alias': 'id',
+    id: Optional[str] = Field(default=None, description="""The unique ID used for the grouped set of data within the BER resource. It may not necessarily be resolvable outside the resource.""", json_schema_extra = { "linkml_meta": {'alias': 'id',
          'aliases': ['proposal ID', 'project ID'],
          'comments': ['If the data source does not use CURIEs, we cannot guarantee '
                       'that IDs will be unique between all the BER sources.'],
-         'domain_of': ['Entity', 'DataCollection'],
+         'domain_of': ['Attribute', 'Entity', 'DataCollection'],
          'slot_uri': 'schema:identifier'} })
-    title: Optional[str] = Field(default=None, description="""Human-readable string representing the project.""", json_schema_extra = { "linkml_meta": {'alias': 'title',
+    title: Optional[str] = Field(default=None, description="""Human-readable string representing the grouped set of data.""", json_schema_extra = { "linkml_meta": {'alias': 'title',
          'aliases': ['name'],
          'domain_of': ['DataCollection'],
          'slot_uri': 'schema:name'} })
-    description: Optional[str] = Field(default=None, description="""Textual description of the project.""", json_schema_extra = { "linkml_meta": {'alias': 'description',
+    description: Optional[str] = Field(default=None, description="""Textual description of the grouped set of data.""", json_schema_extra = { "linkml_meta": {'alias': 'description',
          'domain_of': ['Entity', 'DataCollection'],
          'slot_uri': 'schema:description'} })
-    alt_ids: Optional[list[str]] = Field(default=None, description="""Fully-qualified URI or CURIE used as an identifier for a project.""", json_schema_extra = { "linkml_meta": {'alias': 'alt_ids',
+    alt_ids: Optional[list[str]] = Field(default=None, description="""Fully-qualified URI or CURIE used as an identifier for a grouped set of data.""", json_schema_extra = { "linkml_meta": {'alias': 'alt_ids',
          'aliases': ['CURIEs',
                      'database cross-references',
                      'dbxrefs',
@@ -318,7 +370,7 @@ class DataCollection(ConfiguredBaseModel):
                      'PIDs'],
          'comments': ['The project `id` should not appear in this list.'],
          'domain_of': ['Entity', 'DataCollection']} })
-    alt_titles: Optional[list[Name]] = Field(default=None, description="""Alternative versions of the title/name of a project.""", json_schema_extra = { "linkml_meta": {'alias': 'alt_titles',
+    alt_titles: Optional[list[Name]] = Field(default=None, description="""Alternative versions of the title/name of a grouped set of data.""", json_schema_extra = { "linkml_meta": {'alias': 'alt_titles',
          'aliases': ['alternative titles'],
          'comments': ['The project `title` should not appear in this list.'],
          'domain_of': ['DataCollection']} })
@@ -328,7 +380,9 @@ class DataCollection(ConfiguredBaseModel):
 # Model rebuild
 # see https://pydantic-docs.helpmanual.io/usage/models/#rebuilding-a-model
 AttributeValue.model_rebuild()
+Attribute.model_rebuild()
 QuantityValue.model_rebuild()
+TextValue.model_rebuild()
 Entity.model_rebuild()
 Coordinates.model_rebuild()
 Name.model_rebuild()

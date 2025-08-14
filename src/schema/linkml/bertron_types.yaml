@@ -15,61 +15,41 @@ default_range: string
 
 slots:
 
-  has_numeric_value:
+  numeric_value:
     description: Links a quantity value to a number
     range: float
     mappings:
-      - nmdc:has_numeric_value
+      - nmdc:numeric_value
       - qud:quantityValue
       - schema:value
 
-  has_minimum_numeric_value:
-    is_a: has_numeric_value
+  minimum_numeric_value:
+    is_a: numeric_value
     description: The minimum value part, expressed as number, of the quantity value when the value covers a range.
     mappings:
-      - nmdc:has_minimum_numeric_value
+      - nmdc:minimum_numeric_value
 
-  has_maximum_numeric_value:
-    is_a: has_numeric_value
+  maximum_numeric_value:
+    is_a: numeric_value
     description: The maximum value part, expressed as number, of the quantity value when the value covers a range.
     mappings:
-      - nmdc:has_maximum_numeric_value
+      - nmdc:maximum_numeric_value
 
-  has_raw_value:
+  raw_value:
     description: The value that was specified for an annotation in raw form, i.e. a string. E.g. "2 cm" or "2-4 cm"
     range: string
     mappings:
-      - nmdc:has_raw_value
+      - nmdc:raw_value
 
-  has_unit:
+  unit:
     description: Links a QuantityValue to a unit
     aliases:
       - scale
     range: unit
     mappings:
-      - nmdc:has_unit
+      - nmdc:unit
       - qud:unit
       - schema:unitCode
-
-  # type:
-  #   required: true
-  #   range: uriorcurie
-  #   slot_uri: rdf:type
-  #   description: the class_uri of the class that has been instantiated
-  #   notes:
-  #     - replaces legacy nmdc:type slot
-  #     - makes it easier to read example data files
-  #     - required for polymorphic MongoDB collections
-  #   see_also:
-  #     - https://github.com/microbiomedata/nmdc-schema/issues/1048
-  #     - https://github.com/microbiomedata/nmdc-schema/issues/1233
-  #     - https://github.com/microbiomedata/nmdc-schema/issues/248
-  #   examples:
-  #     - value: nmdc:Biosample
-  #     - value: nmdc:Study
-  #   mappings:
-  #     - nmdc:type
-  #   designates_type: true
 
 classes:
 
@@ -85,7 +65,7 @@ classes:
       attribute:
         description: The attribute being represented.
         range: Attribute
-      has_raw_value:
+      raw_value:
         range: string
         description: The raw value.
 
@@ -105,16 +85,16 @@ classes:
     is_a: AttributeValue
     description: A simple quantity, e.g. 2cm
     slots:
-      - has_maximum_numeric_value
-      - has_minimum_numeric_value
-      - has_numeric_value
-      - has_unit
+      - maximum_numeric_value
+      - minimum_numeric_value
+      - numeric_value
+      - unit
     slot_usage:
-      has_raw_value:
+      raw_value:
         description: Unnormalized atomic string representation, suggested syntax {number} {unit}
-      has_unit:
+      unit:
         description: The unit of the quantity
-      has_numeric_value:
+      numeric_value:
         description: The number part of the quantity
     mappings:
       - schema:QuantityValue
