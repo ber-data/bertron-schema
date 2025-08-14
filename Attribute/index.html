@@ -219,7 +219,7 @@
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
 <h1 id="class-attribute">Class: Attribute</h1>
-<p><em>A domain, measurement, attribute, property, or any descriptor for additional properties to be added to an entity.</em></p>
+<p><em>A domain, measurement, attribute, property, or any descriptor for additional properties to be added to an entity. Where available, please use OBO Foundry ontologies or other controlled vocabularies for attributes; the label should be the term name from the ontology and the id should be the fully-qualified CURIE.</em></p>
 <p>URI: <a href="https://w3id.org/ber-data/bertron-schema/Attribute">bertron:Attribute</a></p>
 <div class="mermaid"> classDiagram
     class Attribute
@@ -244,14 +244,14 @@
 <tbody>
 <tr>
 <td><a href="../id/">id</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>A CURIE for the attribute, should one exist.</td>
+<td>0..1 <em>recommended</em> <br/> <a href="../String/">String</a></td>
+<td>A CURIE for the attribute, should one exist. Where available, please use OBO Foundry ontologies or other controlled vocabularies for labelling attributes; the id should be the term ID from the ontology.</td>
 <td>direct</td>
 </tr>
 <tr>
 <td><a href="../label/">label</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>Text string to describe the attribute.</td>
+<td>1 <br/> <a href="../String/">String</a></td>
+<td>Text string to describe the attribute. Where available, please use OBO Foundry ontologies or other controlled vocabularies for labelling attributes; the label should be the term name from the ontology.</td>
 <td>direct</td>
 </tr>
 </tbody>
@@ -317,20 +317,27 @@
 <details>
 <pre><code class="language-yaml">name: Attribute
 description: A domain, measurement, attribute, property, or any descriptor for additional
-  properties to be added to an entity.
+  properties to be added to an entity. Where available, please use OBO Foundry ontologies
+  or other controlled vocabularies for attributes; the label should be the term name
+  from the ontology and the id should be the fully-qualified CURIE.
 from_schema: https://w3id.org/ber-data/bertron-schema
 attributes:
   id:
     name: id
-    description: A CURIE for the attribute, should one exist.
+    description: A CURIE for the attribute, should one exist. Where available, please
+      use OBO Foundry ontologies or other controlled vocabularies for labelling attributes;
+      the id should be the term ID from the ontology.
     from_schema: https://w3id.org/ber-data/bertron_types
     domain_of:
     - Entity
     - DataCollection
     - Attribute
+    recommended: true
   label:
     name: label
-    description: Text string to describe the attribute.
+    description: Text string to describe the attribute. Where available, please use
+      OBO Foundry ontologies or other controlled vocabularies for labelling attributes;
+      the label should be the term name from the ontology.
     from_schema: https://w3id.org/ber-data/bertron_types
     aliases:
     - name
@@ -338,6 +345,7 @@ attributes:
     rank: 1000
     domain_of:
     - Attribute
+    required: true
 
 </code></pre>
 </details>
@@ -345,12 +353,16 @@ attributes:
 <details>
 <pre><code class="language-yaml">name: Attribute
 description: A domain, measurement, attribute, property, or any descriptor for additional
-  properties to be added to an entity.
+  properties to be added to an entity. Where available, please use OBO Foundry ontologies
+  or other controlled vocabularies for attributes; the label should be the term name
+  from the ontology and the id should be the fully-qualified CURIE.
 from_schema: https://w3id.org/ber-data/bertron-schema
 attributes:
   id:
     name: id
-    description: A CURIE for the attribute, should one exist.
+    description: A CURIE for the attribute, should one exist. Where available, please
+      use OBO Foundry ontologies or other controlled vocabularies for labelling attributes;
+      the id should be the term ID from the ontology.
     from_schema: https://w3id.org/ber-data/bertron_types
     alias: id
     owner: Attribute
@@ -359,9 +371,12 @@ attributes:
     - DataCollection
     - Attribute
     range: string
+    recommended: true
   label:
     name: label
-    description: Text string to describe the attribute.
+    description: Text string to describe the attribute. Where available, please use
+      OBO Foundry ontologies or other controlled vocabularies for labelling attributes;
+      the label should be the term name from the ontology.
     from_schema: https://w3id.org/ber-data/bertron_types
     aliases:
     - name
@@ -372,6 +387,7 @@ attributes:
     domain_of:
     - Attribute
     range: string
+    required: true
 
 </code></pre>
 </details>

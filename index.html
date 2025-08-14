@@ -451,7 +451,7 @@
 </tr>
 <tr>
 <td><a href="Attribute/">Attribute</a></td>
-<td>A domain, measurement, attribute, property, or any descriptor for additional properties to be added to an entity.</td>
+<td>A domain, measurement, attribute, property, or any descriptor for additional properties to be added to an entity. Where available, please use OBO Foundry ontologies or other controlled vocabularies for attributes; the label should be the term name from the ontology and the id should be the fully-qualified CURIE.</td>
 </tr>
 <tr>
 <td><a href="AttributeValue/">AttributeValue</a></td>
@@ -480,6 +480,10 @@
 <tr>
 <td><a href="Name/">Name</a></td>
 <td>The name or label for an entity. This may be a primary name, alternative name, synonym, acronym, or any other label used to refer to an entity.</td>
+</tr>
+<tr>
+<td><a href="NamedQuantityValue/">NamedQuantityValue</a></td>
+<td>A quantity value where the attribute is already specified.</td>
 </tr>
 </tbody>
 </table>
@@ -542,7 +546,7 @@
 </tr>
 <tr>
 <td><a href="label/">label</a></td>
-<td>Text string to describe the attribute.</td>
+<td>Text string to describe the attribute. Where available, please use OBO Foundry ontologies or other controlled vocabularies for labelling attributes; the label should be the term name from the ontology.</td>
 </tr>
 <tr>
 <td><a href="latitude/">latitude</a></td>
@@ -590,7 +594,7 @@
 </tr>
 <tr>
 <td><a href="unit/">unit</a></td>
-<td>Links a QuantityValue to a unit</td>
+<td>Links a QuantityValue to a unit. Units should be taken from the UCUM unit collection or the Unit Ontology.</td>
 </tr>
 <tr>
 <td><a href="uri/">uri</a></td>

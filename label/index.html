@@ -368,7 +368,7 @@
 
 
 <h1 id="slot-label">Slot: label</h1>
-<p><em>Text string to describe the attribute.</em></p>
+<p><em>Text string to describe the attribute. Where available, please use OBO Foundry ontologies or other controlled vocabularies for labelling attributes; the label should be the term name from the ontology.</em></p>
 <p>URI: <a href="https://w3id.org/ber-data/bertron-schema/label">bertron:label</a>
 Alias: label</p>
 <!-- no inheritance hierarchy -->
@@ -385,14 +385,19 @@ Alias: label</p>
 <tbody>
 <tr>
 <td><a href="../Attribute/">Attribute</a></td>
-<td>A domain, measurement, attribute, property, or any descriptor for additional properties to be added to an entity.</td>
+<td>A domain, measurement, attribute, property, or any descriptor for additional properties to be added to an entity. Where available, please use OBO Foundry ontologies or other controlled vocabularies for attributes; the label should be the term name from the ontology and the id should be the fully-qualified CURIE.</td>
 <td>no</td>
 </tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>Range: <a href="../String/">String</a></li>
+<li>
+<p>Range: <a href="../String/">String</a></p>
+</li>
+<li>
+<p>Required: True</p>
+</li>
 </ul>
 <h2 id="aliases">Aliases</h2>
 <ul>
@@ -427,7 +432,9 @@ Alias: label</p>
 <details>
 
 <pre><code class="language-yaml">name: label
-description: Text string to describe the attribute.
+description: Text string to describe the attribute. Where available, please use OBO
+  Foundry ontologies or other controlled vocabularies for labelling attributes; the
+  label should be the term name from the ontology.
 from_schema: https://w3id.org/ber-data/bertron-schema
 aliases:
 - name
@@ -438,6 +445,7 @@ owner: Attribute
 domain_of:
 - Attribute
 range: string
+required: true
 
 </code></pre>
 

@@ -240,7 +240,7 @@
 
 
 
-        TextValue --&gt; "0..1" Attribute : attribute
+        TextValue --&gt; "1" Attribute : attribute
         click Attribute href "../Attribute/"
 
 
@@ -285,7 +285,7 @@
 </tr>
 <tr>
 <td><a href="../attribute/">attribute</a></td>
-<td>0..1 <br/> <a href="../Attribute/">Attribute</a></td>
+<td>1 <br/> <a href="../Attribute/">Attribute</a></td>
 <td>The attribute being represented.</td>
 <td><a href="../AttributeValue/">AttributeValue</a></td>
 </tr>
@@ -406,6 +406,7 @@ attributes:
     domain_of:
     - AttributeValue
     range: Attribute
+    required: true
   raw_value:
     name: raw_value
     description: The raw value.
@@ -414,6 +415,7 @@ attributes:
     owner: TextValue
     domain_of:
     - AttributeValue
+    - NamedQuantityValue
     range: string
 class_uri: nmdc:TextValue
 

@@ -377,7 +377,7 @@
 
 
 <h1 id="slot-unit">Slot: unit</h1>
-<p><em>Links a QuantityValue to a unit</em></p>
+<p><em>Links a QuantityValue to a unit. Units should be taken from the UCUM unit collection or the Unit Ontology.</em></p>
 <p>URI: <a href="https://w3id.org/ber-data/bertron-schema/unit">bertron:unit</a>
 Alias: unit</p>
 <!-- no inheritance hierarchy -->
@@ -392,6 +392,11 @@ Alias: unit</p>
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><a href="../NamedQuantityValue/">NamedQuantityValue</a></td>
+<td>A quantity value where the attribute is already specified.</td>
+<td>no</td>
+</tr>
 <tr>
 <td><a href="../QuantityValue/">QuantityValue</a></td>
 <td>A simple quantity, e.g. 2cm</td>
@@ -416,6 +421,12 @@ Alias: unit</p>
 <tbody>
 <tr>
 <td><a href="../QuantityValue/">QuantityValue</a></td>
+<td><a href="./">unit</a></td>
+<td>range</td>
+<td><a href="./">unit</a></td>
+</tr>
+<tr>
+<td><a href="../NamedQuantityValue/">NamedQuantityValue</a></td>
 <td><a href="./">unit</a></td>
 <td>range</td>
 <td><a href="./">unit</a></td>
@@ -458,7 +469,8 @@ Alias: unit</p>
 <details>
 
 <pre><code class="language-yaml">name: unit
-description: Links a QuantityValue to a unit
+description: Links a QuantityValue to a unit. Units should be taken from the UCUM
+  unit collection or the Unit Ontology.
 from_schema: https://w3id.org/ber-data/bertron-schema
 aliases:
 - scale
@@ -470,6 +482,7 @@ rank: 1000
 alias: unit
 domain_of:
 - QuantityValue
+- NamedQuantityValue
 range: unit
 
 </code></pre>
