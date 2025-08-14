@@ -21,7 +21,7 @@
         {
             "attribute": {
                 "id": "MIXS:0000117",
-                "label": "total phoshorous"
+                "label": "total phosphorous"
             },
             "raw_value": "2.2 ppm",
             "unit": "ppm",
