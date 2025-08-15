@@ -1,0 +1,14 @@
+ber_data_source: ESS-DIVE
+entity_type:
+  - dataset
+name: A Computer-Based Atlas of Global Instrumental Climate Data (DB1003)
+id: doi:10.3334/CDIAC/CLI.DB1003
+description: >-
+  Color-shaded and contoured images of global, gridded instrumental data have been produced as a computer-based atlas. Each image simultaneously depicts anomaly maps of surface temperature, sea-level pressure, 500-mbar geopotential heights, and percentages of reference-period precipitation. Monthly, seasonal, and annual composites are available in either cylindrical equidistant or northern and southern hemisphere polar projections. Temperature maps are available from 1854 to 1991, precipitation from 1851 to 1989, sea-level pressure from 1899 to 1991, and 500-mbar heights from 1946 to 1991. The source of data for the temperature images is Jones et al.'s global gridded temperature anomalies. The precipitation images were derived from Eischeid et al.'s global gridded precipitation percentages. Grids from the Data Support Section, National Center for Atmospheric Research (NCAR) were the sources for the sea-level-pressure and 500-mbar geopotential-height images. All images are in GIF files (1024 × 822 pixels, 256 colors) and can be displayed on many different computer platforms. Each annual subdirectory contains 141 images, each seasonal subdirectory contains 563 images, and each monthly subdirectory contains 1656 images. The entire atlas requires approximately 340 MB of disk space, but users may retrieve any number of images at one time.
+
+
+  For access to the data files, click this link to the CDIAC data transition website: http://cdiac.ess-dive.lbl.gov/ndps/db1003.html
+
+
+  This dataset was transferred from the CDIAC Archive and published on ESS-DIVE in 2018 under the project title "Carbon Dioxide Information Analysis Center (CDIAC), Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (USA); University of Massachusetts, Amherst, MA (USA)". In 2023, the project title was updated to "Carbon Dioxide Information Analysis Center (CDIAC); Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (United States)" to enable consistent management of all datasets previously hosted by the CDIAC Archive that are now published on ESS-DIVE.
+uri: https://data.ess-dive.lbl.gov/view/doi:10.3334/CDIAC/CLI.DB1003
