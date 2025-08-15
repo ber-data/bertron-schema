@@ -1,0 +1,4 @@
+# Ignore egg-info directory
+src/bertron_schema.egg-info/
+# Ignore Python cache directories
+__pycache__/
