@@ -2,22 +2,31 @@
     "ber_data_source": "NMDC",
     "coordinates": {
         "latitude": 28.125842,
-        "longitude": -81.434174,
-        "depth": {
-            "minimum_numeric_value": 0,
-            "maximum_numeric_value": 0.1,
-            "unit": "m",
-            "raw_value": "0 - 0.1m"
-        },
-        "elevation": {
-            "numeric_value": 24,
-            "unit": "m"
-        }
+        "longitude": -81.434174
     },
     "entity_type": [
         "sample"
     ],
     "properties": [
+        {
+            "attribute": {
+                "id": "MIXS:0000018",
+                "label": "depth"
+            },
+            "raw_value": "0 - 0.1m",
+            "unit": "UO:0000008",
+            "minimum_numeric_value": 0,
+            "maximum_numeric_value": 0.1
+        },
+        {
+            "attribute": {
+                "id": "MIXS:0000093",
+                "label": "elevation"
+            },
+            "raw_value": "24m",
+            "numeric_value": 24,
+            "unit": "UO:0000008"
+        },
         {
             "attribute": {
                 "id": "MIXS:0000117",
