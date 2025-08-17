@@ -32,6 +32,26 @@ def _get_traversable() -> Traversable:
     return resources.files(package_import_path)
 
 
+def get_sample_data_file_paths() -> list[str]:
+    """List the paths to all available sample data files.
+
+    These are the paths that can be passed to the `get_sample_data` and
+    `get_sample_data_text` functions.
+
+    Returns:
+        A list of file paths (relative to the `sample_data/` directory) to all
+        ".yaml", ".yml", and ".json" files residing within `sample_data/`.
+
+    """
+    traversable = _get_traversable()
+    with resources.as_file(traversable) as path:
+        return [
+            str(p.relative_to(path))
+            for pattern in ["**/*.yaml", "**/*.yml", "**/*.json"]
+            for p in path.glob(pattern)
+        ]
+
+
 def get_sample_data_text(file_path: str, encoding: str = "utf-8") -> str:
     """Get the text content of a sample data file.
 
@@ -48,7 +68,6 @@ def get_sample_data_text(file_path: str, encoding: str = "utf-8") -> str:
     """
     traversable = _get_traversable().joinpath(file_path)
     with resources.as_file(traversable) as path:
-        # Return the text content of the specified sample data file.
         return path.read_text(encoding=encoding)
 
 
