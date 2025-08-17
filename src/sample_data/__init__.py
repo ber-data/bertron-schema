@@ -2,9 +2,34 @@
 
 import json
 from importlib import resources
+from importlib.abc import Traversable
 from typing import Any
 
 import yaml
+
+
+def _get_traversable() -> Traversable:
+    """Get a `Traversable` object for the `sample_data/` package.
+
+    The `Traversable` object can be used to access resources contained
+    within the `sample_data/` package, whether this function is called
+    from this package's source tree, or in an installed distribution.
+
+    Returns:
+        A `Traversable` object for the `sample_data/` package.
+
+    References:
+    - https://docs.python.org/3/library/importlib.resources.html#importlib.resources.files
+    - https://docs.python.org/3/library/importlib.resources.abc.html#importlib.resources.abc.Traversable
+
+    """
+    # Define the path someone could use to `import` the Python package _containing_ the
+    # `invalid/` and `valid/` directories (e.g. `import {something}`); which, currently,
+    # happens to be the directory containing this `__init__.py` file.
+    package_import_path = "sample_data"
+
+    # Create a `Traversable` object that can be passed to the `resources.as_file()` function.
+    return resources.files(package_import_path)
 
 
 def get_sample_data_text(file_path: str, encoding: str = "utf-8") -> str:
@@ -18,23 +43,12 @@ def get_sample_data_text(file_path: str, encoding: str = "utf-8") -> str:
         The text content of the specified sample data file.
 
     References:
-    - https://docs.python.org/3/library/importlib.resources.html#importlib.resources.files
     - https://docs.python.org/3/library/importlib.resources.html#importlib.resources.as_file
-    - https://docs.python.org/3/library/importlib.resources.abc.html#importlib.resources.abc.Traversable
 
     """
-    # Define the path someone could use to `import` the Python package _containing_ the
-    # `invalid/` and `valid/` directories (e.g. `import {something}`); which, currently,
-    # happens to be the directory containing this `__init__.py` file.
-    package_import_path = "sample_data"
-
-    # Create a `Traversable` object that can be passed to the `resources.as_file()` function.
-    traversable_resource_container = resources.files(package_import_path).joinpath(file_path)
-
-    # Get a handle for the asset file (as a `Path` object).
-    with resources.as_file(traversable_resource_container) as path:
-
-        # Return the text content of the file.
+    traversable = _get_traversable().joinpath(file_path)
+    with resources.as_file(traversable) as path:
+        # Return the text content of the specified sample data file.
         return path.read_text(encoding=encoding)
 
 
