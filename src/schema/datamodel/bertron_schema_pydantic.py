@@ -114,7 +114,7 @@ class EntityType(str, Enum):
     """
     An entity that describes a location of experimentation or sample collection
     """
-    data_set = "data set"
+    dataset = "dataset"
     """
     A single or collection or data generated from an experimental entity
     """
@@ -297,16 +297,21 @@ class Entity(ConfiguredBaseModel):
          'domain_of': ['Entity'],
          'examples': [{'object': {'attribute': {'id': 'MIXS:0000117',
                                                 'label': 'total phosphorus'},
-                                  'has_numeric_value': 2.2,
-                                  'has_raw_value': '2.2 ppm',
-                                  'has_unit': 'ppm'}},
+                                  'numeric_value': 2.2,
+                                  'raw_value': '2.2 ppm',
+                                  'unit': 'ppm'}},
                       {'object': {'attribute': {'id': 'MIXS:0000011',
                                                 'label': 'collection date'},
-                                  'has_raw_value': '2025-06-12'}},
+                                  'raw_value': '2025-06-12'}},
                       {'object': {'attribute': {'id': 'MIXS:0000012',
                                                 'label': 'env_broad_scale'},
                                   'value': 'terrestrial biome',
-                                  'value_cv_id': 'ENVO:00000446'}}],
+                                  'value_cv_id': 'ENVO:00000446'}},
+                      {'object': {'attribute': {'id': 'PATO:0001687',
+                                                'label': 'elevation'},
+                                  'numeric_value': 2.2,
+                                  'raw_value': '2.2 m',
+                                  'unit': 'UO:0000008'}}],
          'mappings': ['MIXS:0000008']} })
 
 
@@ -316,26 +321,6 @@ class Coordinates(ConfiguredBaseModel):
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/ber-data/bertron-schema'})
 
-    altitude: Optional[NamedQuantityValue] = Field(default=None, title="altitude", description="""Altitude is a term used to identify heights of objects such as airplanes, space shuttles, rockets, atmospheric balloons and heights of places such as atmospheric layers and clouds. It is used to measure the height of an object which is above the earth's surface. In this context, the altitude measurement is the vertical distance between the earth's surface above sea level and the sampled position in the air""", json_schema_extra = { "linkml_meta": {'alias': 'altitude',
-         'annotations': {'expected_value': {'tag': 'expected_value',
-                                            'value': 'measurement value'}},
-         'domain_of': ['Coordinates'],
-         'examples': [{'value': '100 meter'}],
-         'slot_uri': 'MIXS:0000094'} })
-    depth: Optional[NamedQuantityValue] = Field(default=None, title="depth", description="""The vertical distance below local surface, e.g. for sediment or soil samples depth is measured from sediment or soil surface, respectively. Depth can be reported as an interval for subsurface samples.""", json_schema_extra = { "linkml_meta": {'alias': 'depth',
-         'aliases': ['depth'],
-         'annotations': {'expected_value': {'tag': 'expected_value',
-                                            'value': 'measurement value'}},
-         'domain_of': ['Coordinates'],
-         'examples': [{'value': '10 meter'}],
-         'slot_uri': 'MIXS:0000018'} })
-    elevation: Optional[NamedQuantityValue] = Field(default=None, title="elevation", description="""Elevation of the sampling site is its height above a fixed reference point, most commonly the mean sea level. Elevation is mainly used when referring to points on the earth's surface, while altitude is used for points above the surface, such as an aircraft in flight or a spacecraft in orbit.""", json_schema_extra = { "linkml_meta": {'alias': 'elevation',
-         'aliases': ['elevation'],
-         'annotations': {'expected_value': {'tag': 'expected_value',
-                                            'value': 'measurement value'}},
-         'domain_of': ['Coordinates'],
-         'examples': [{'value': '100 meter'}],
-         'slot_uri': 'MIXS:0000093'} })
     latitude: float = Field(default=..., description="""latitude""", json_schema_extra = { "linkml_meta": {'alias': 'latitude',
          'broad_mappings': ['MIXS:0000009'],
          'domain_of': ['Coordinates'],
