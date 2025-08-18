@@ -4,8 +4,5 @@
 /src/*.egg-info/
 /build/
 
-# Python cache files
+# Ignore files that are generated when running `pytest` via `$ make test-python`.
 __pycache__/
-*.py[cod]
-*$py.class
-.pytest_cache/
