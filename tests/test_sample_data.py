@@ -1,14 +1,9 @@
 """Tests for sample data functions."""
 
 import json
-import sys
-from pathlib import Path
 
 import pytest
 import yaml
-
-# Add src to path so we can import sample_data
-sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
 from sample_data import get_sample_data, get_sample_data_file_paths, get_sample_data_text
 
