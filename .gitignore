@@ -1,0 +1,5 @@
+# Ignore files that are generated whenever a developer `pip install`s this package
+# from a local clone of this repository (e.g. `pip install /path/to/bertron-schema`),
+# rather than via its Git URL or—once it gets published to PyPI—via PyPI.
+/src/*.egg-info/
+/build/
