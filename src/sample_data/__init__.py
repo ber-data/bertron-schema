@@ -93,7 +93,7 @@ def get_sample_data(file_path: str, encoding: str = "utf-8") -> Any:  # noqa: AN
         # Raise an error indicating that we don't support files having that extension.
         # Note: The `!r` after the in-string variable below calls `repr()` on the value.
         #       Since the value is a string, the string will appear wrapped in quotes.
-        msg = f"File extension suggest an unsupported file type: {file_path!r}"
+        msg = f"Filename extension suggests an unsupported file type: {file_path!r}"
         raise ValueError(msg)
 
     text = get_sample_data_text(file_path, encoding=encoding)
