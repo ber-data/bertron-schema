@@ -45,11 +45,12 @@ def get_sample_data_file_paths() -> list[str]:
     """
     traversable = _get_traversable()
     with resources.as_file(traversable) as path:
-        return [
+        paths = [
             str(p.relative_to(path))
             for pattern in ["**/*.yaml", "**/*.yml", "**/*.json"]
             for p in path.glob(pattern)
         ]
+        return sorted(paths)
 
 
 def get_sample_data_text(file_path: str, encoding: str = "utf-8") -> str:
