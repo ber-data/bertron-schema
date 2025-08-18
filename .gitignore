@@ -3,3 +3,9 @@
 # rather than via its Git URL or—once it gets published to PyPI—via PyPI.
 /src/*.egg-info/
 /build/
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
