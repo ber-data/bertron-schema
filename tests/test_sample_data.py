@@ -8,123 +8,108 @@ import yaml
 from sample_data import get_sample_data, get_sample_data_file_paths, get_sample_data_text
 
 
-def test_get_sample_data_file_paths() -> None:
-    """Test that get_sample_data_file_paths returns a list of file paths."""
-    file_paths = get_sample_data_file_paths()
+class TestGetSampleDataFilePaths:
+    """Tests targeting the `get_sample_data_file_paths` function."""
 
-    # Should return a list
-    assert isinstance(file_paths, list)
+    def test_it_returns_a_list_of_file_paths(self) -> None:
+        """Test that it returns a list of file paths."""
+        paths = get_sample_data_file_paths()
 
-    # Should contain at least some files
-    assert len(file_paths) > 0
+        # Assert that the returned value is a non-empty list, and that each item in the list
+        # is a string that ends with one of the supported filename extensions.
+        assert isinstance(paths, list)
+        assert len(paths) > 0
+        assert all(isinstance(path, str) for path in paths)
+        assert all(path.endswith((".yaml", ".yml", ".json")) for path in paths)
 
-    # All entries should be strings
-    assert all(isinstance(path, str) for path in file_paths)
+    def test_its_return_value_includes_known_paths(self) -> None:
+        """Test that it returns paths to sample data files that we know exist.
 
-    # Should contain expected file extensions
-    extensions = [path.split(".")[-1] for path in file_paths]
-    assert any(ext in ["yaml", "yml", "json"] for ext in extensions)
+        Note: This test may become stale over time, as the `sample_data/` directory evolves.
+        """
+        paths = get_sample_data_file_paths()
+        assert "invalid/Dataset-001.yaml" in paths
+        assert "valid/Dataset-001.yaml" in paths
+        assert "valid/emsl-example.json" in paths
 
+class TestGetSampleDataText:
+    """Tests targeting the `get_sample_data_text` function."""
 
-def test_get_sample_data_text() -> None:
-    """Test that get_sample_data_text can read sample files and returns strings."""
-    file_paths = get_sample_data_file_paths()
+    def test_it_returns_sample_data_as_a_string(self) -> None:
+        """Test that it returns sample data as a string."""
+        paths = get_sample_data_file_paths()
+        assert len(paths) > 0, "No sample data files were found"
 
-    # Test with the first available file
-    test_file = file_paths[0]
-    text_content = get_sample_data_text(test_file)
+        # Get the text content of the first sample data file, and assert that it is
+        # a string consisting of something other than whitespace.
+        text = get_sample_data_text(paths[0])
+        assert isinstance(text, str)
+        assert len(text.strip()) > 0
 
-    # Should return a string
-    assert isinstance(text_content, str)
+    def test_its_return_value_includes_known_text(self) -> None:
+        """Test that it returns text content from a known sample data file.
 
-    # Should have some content
-    assert len(text_content) > 0
+        Note: This test may become stale over time, as the names and content of
+              the files in the `sample_data/` directory evolve.
+        """
+        text = get_sample_data_text("valid/Dataset-001.yaml")
+        assert "id" in text
 
+        text = get_sample_data_text("valid/emsl-example.json")
+        assert "id" in text
 
-def test_get_sample_data_text_with_encoding() -> None:
-    """Test that get_sample_data_text respects the encoding parameter."""
-    file_paths = get_sample_data_file_paths()
-    test_file = file_paths[0]
+class TestGetSampleData:
+    """Tests targeting the `get_sample_data` function."""
 
-    # Should work with explicit UTF-8 encoding
-    text_content = get_sample_data_text(test_file, encoding="utf-8")
-    assert isinstance(text_content, str)
-    assert len(text_content) > 0
+    def test_it_returns_yaml_sample_data_as_python_object(self) -> None:
+        """Test that it returns YAML-formatted sample data as a Python object."""
+        # Identify a YAML file we can use for testing.
+        paths = get_sample_data_file_paths()
+        yaml_file_paths = [path for path in paths if path.endswith((".yaml", ".yml"))]
+        assert len(yaml_file_paths) > 0, "No YAML files were found among the sample data"
 
+        # Get the sample data from the first identified YAML-formatted sample data file,
+        # and assert that it has been parsed into the same Python object that we get
+        # when we read the file's text content and parse it with `yaml.safe_load`.
+        yaml_file_path = yaml_file_paths[0]
+        data = get_sample_data(yaml_file_path)
+        text = get_sample_data_text(yaml_file_path)
+        assert data == yaml.safe_load(text)
 
-def test_get_sample_data_yaml() -> None:
-    """Test that get_sample_data can parse YAML files correctly."""
-    file_paths = get_sample_data_file_paths()
+    def test_it_returns_json_sample_data_as_python_object(self) -> None:
+        """Test that it returns JSON-formatted sample data as a Python object."""
+        # Identify a JSON file we can use for testing.
+        paths = get_sample_data_file_paths()
+        json_file_paths = [path for path in paths if path.endswith(".json")]
+        assert len(json_file_paths) > 0, "No JSON files were found among the sample data"
 
-    # Find a YAML file to test
-    yaml_files = [path for path in file_paths if path.endswith((".yaml", ".yml"))]
-    assert len(yaml_files) > 0, "No YAML files found in sample data"
+        # Get the sample data from the first identified JSON-formatted sample data file,
+        # and assert that it has been parsed into the same Python object that we get
+        # when we read the file's text content and parse it with `json.loads`.
+        json_file_path = json_file_paths[0]
+        data = get_sample_data(json_file_path)
+        text = get_sample_data_text(json_file_path)
+        assert data == json.loads(text)
 
-    test_file = yaml_files[0]
-    data = get_sample_data(test_file)
+    def test_it_rejects_unsupported_filename_extensions(self) -> None:
+        """Test that it raises an exception for an unsupported filename extension."""
+        with pytest.raises(ValueError, match=r"^Filename extension"):
+            get_sample_data("my_file.txt")
 
-    # Should parse into a Python object (typically dict or list)
-    assert data is not None
+    def test_its_return_value_is_object_having_known_attributes(self) -> None:
+        """Test that it returns an object having attributes that are among those we expect.
 
-    # Verify it's valid YAML by comparing with yaml.safe_load
-    text_content = get_sample_data_text(test_file)
-    expected_data = yaml.safe_load(text_content)
-    assert data == expected_data
-
-
-def test_get_sample_data_json() -> None:
-    """Test that get_sample_data can parse JSON files correctly."""
-    file_paths = get_sample_data_file_paths()
-
-    # Find a JSON file to test
-    json_files = [path for path in file_paths if path.endswith(".json")]
-
-    if json_files:  # Only test if JSON files exist
-        test_file = json_files[0]
-        data = get_sample_data(test_file)
-
-        # Should parse into a Python object
-        assert data is not None
-
-        # Verify it's valid JSON by comparing with json.loads
-        text_content = get_sample_data_text(test_file)
-        expected_data = json.loads(text_content)
-        assert data == expected_data
-
-
-def test_get_sample_data_unsupported_extension() -> None:
-    """Test that get_sample_data raises ValueError for unsupported file types."""
-    # Test with a fake file path with unsupported extension
-    with pytest.raises(ValueError, match="File extension suggest an unsupported file type"):
-        get_sample_data("fake_file.txt")
-
-
-def test_get_sample_data_with_encoding() -> None:
-    """Test that get_sample_data respects the encoding parameter."""
-    file_paths = get_sample_data_file_paths()
-    test_file = file_paths[0]
-
-    # Should work with explicit UTF-8 encoding
-    data = get_sample_data(test_file, encoding="utf-8")
-    assert data is not None
-
-
-def test_get_sample_data_specific_files() -> None:
-    """Test that get_sample_data works with specific known files."""
-    file_paths = get_sample_data_file_paths()
-
-    # Should include both valid and invalid directories
-    assert any("valid/" in path for path in file_paths)
-    assert any("invalid/" in path for path in file_paths)
-
-    # Test with a specific YAML file if it exists
-    if "valid/Dataset-001.yaml" in file_paths:
+        Note: This test may become stale over time, as the names and content of
+              the files in the `sample_data/` directory evolve.
+        """
+        # Get the sample data from a known YAML file, and assert that it matches
+        # the expected Python object.
         data = get_sample_data("valid/Dataset-001.yaml")
         assert isinstance(data, dict)
-        assert "id" in data
+        assert all(key in data for key in ["id", "name"])
 
-    # Test with a JSON file if it exists
-    json_files = [path for path in file_paths if path.endswith(".json")]
-    if json_files:
-        data = get_sample_data(json_files[0])
-        assert data is not None
+        # Get the sample data from a known JSON file, and assert that it matches
+        # the expected Python object.
+        data = get_sample_data("valid/emsl-example.json")
+        assert isinstance(data, dict)
+        assert all(key in data for key in ["id", "name"])
