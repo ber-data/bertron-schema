@@ -72,9 +72,9 @@ def test_get_sample_data_text_returns_expected_sample_data_as_string(
     """Test that `get_sample_data_text` returns the sample data we expect, as a string."""
     for path in get_sample_data_file_paths():
         if path == "data.json":
-            assert sample_json_content in get_sample_data_text(path)
+            assert sample_json_content == get_sample_data_text(path)
         if path in ("data.yaml", "data.yml"):
-            assert sample_yaml_content in get_sample_data_text(path)
+            assert sample_yaml_content == get_sample_data_text(path)
 
 
 def test_get_sample_data_returns_sample_data_as_python_object(
