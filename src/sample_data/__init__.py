@@ -3,9 +3,23 @@
 import json
 from importlib import resources
 from importlib.abc import Traversable
+from pathlib import Path
 from typing import Any
 
 import yaml
+
+# Define the path someone could use to `import` the Python package _containing_ the
+# `invalid/` and `valid/` directories (e.g. `import {something}`); which, currently,
+# happens to be the directory containing this `__init__.py` file.
+PACKAGE_IMPORT_PATH = "sample_data"
+
+# Define a mapping from file extension to a function that can be used to parse the
+# content of a file having that extension.
+PARSERS_BY_FILE_EXTENSION = {
+    "yaml": yaml.safe_load,
+    "yml": yaml.safe_load,
+    "json": json.loads,
+}
 
 
 def _get_traversable() -> Traversable:
@@ -23,13 +37,8 @@ def _get_traversable() -> Traversable:
     - https://docs.python.org/3/library/importlib.resources.abc.html#importlib.resources.abc.Traversable
 
     """
-    # Define the path someone could use to `import` the Python package _containing_ the
-    # `invalid/` and `valid/` directories (e.g. `import {something}`); which, currently,
-    # happens to be the directory containing this `__init__.py` file.
-    package_import_path = "sample_data"
-
     # Create a `Traversable` object that can be passed to the `resources.as_file()` function.
-    return resources.files(package_import_path)
+    return resources.files(PACKAGE_IMPORT_PATH)
 
 
 def get_sample_data_file_paths() -> list[str]:
@@ -44,10 +53,11 @@ def get_sample_data_file_paths() -> list[str]:
 
     """
     traversable = _get_traversable()
+    file_extension_patterns = [f"**/*.{ext}" for ext in PARSERS_BY_FILE_EXTENSION]
     with resources.as_file(traversable) as path:
         paths = [
             str(p.relative_to(path))
-            for pattern in ["**/*.yaml", "**/*.yml", "**/*.json"]
+            for pattern in file_extension_patterns
             for p in path.glob(pattern)
         ]
         return sorted(paths)
@@ -85,10 +95,10 @@ def get_sample_data(file_path: str, encoding: str = "utf-8") -> Any:  # noqa: AN
 
     """
     # Determine which parsing function we will use, based upon the file's extension.
-    if file_path.endswith((".yaml", ".yml")):
-        parse = yaml.safe_load
-    elif file_path.endswith(".json"):
-        parse = json.loads
+    path = Path(file_path)
+    file_extension = path.suffix.lstrip(".")  # ".yaml" -> "yaml"
+    if file_extension in PARSERS_BY_FILE_EXTENSION:
+        parse = PARSERS_BY_FILE_EXTENSION[file_extension]
     else:
         # Raise an error indicating that we don't support files having that extension.
         # Note: The `!r` after the in-string variable below calls `repr()` on the value.
