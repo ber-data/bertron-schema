@@ -1,6 +1,9 @@
 """Tests targeting functions that expose sample data."""
 
 import json
+from collections.abc import Generator
+from pathlib import Path
+from tempfile import TemporaryDirectory
 
 import pytest
 import yaml
@@ -8,106 +11,85 @@ import yaml
 from sample_data import get_sample_data, get_sample_data_file_paths, get_sample_data_text
 
 
-def test_get_sample_data_file_paths_returns_a_list_of_file_paths() -> None:
-    """Test that get_sample_data_file_paths returns a list of file paths."""
-    paths = get_sample_data_file_paths()
+@pytest.fixture
+def sample_json_content() -> str:
+    """Fixture that returns the text content of a sample JSON file."""
+    return r"""
+{
+  "id": "001",
+  "name": "foo bar",
+  "primary email": "foo.bar@example.com",
+  "age_in_years": 33
+}
+"""
 
-    # Assert that the returned value is a non-empty list, and that each item in the list
-    # is a string that ends with one of the supported filename extensions.
-    assert isinstance(paths, list)
-    assert len(paths) > 0
-    assert all(isinstance(path, str) for path in paths)
-    assert all(path.endswith((".yaml", ".yml", ".json")) for path in paths)
+@pytest.fixture
+def sample_yaml_content() -> str:
+    """Fixture that returns the text content of a sample YAML file."""
+    return r"""
+# Some YAML documents begin with "front matter".
+---
+id: "001"
+name: foo bar
+primary email: foo.bar@example.com
+age_in_years: 33
+"""
 
+@pytest.fixture(autouse=True)
+def mock__get_traversable(
+    monkeypatch: Generator[pytest.MonkeyPatch, None, None],
+    sample_yaml_content: str,
+    sample_json_content: str,
+) -> Generator[None, None, None]:
+    """Fixture that mocks the `sample_data._get_traversable` helper function.
 
-def test_get_sample_data_file_paths_return_value_includes_known_paths() -> None:
-    """Test that get_sample_data_file_paths returns paths to sample data files that we know exist.
+    This fixture (a) creates a temporary directory, (b) populates it with sample data files,
+    and (c) patches the `_get_traversable` function so it returns a `Path` object pointing
+    to that temporary directory. This decouples the tests from the contents of the real
+    `sample_data/` directory that the module-under-test accesses in production.
 
-    Note: This test may become stale over time, as the `sample_data/` directory evolves.
+    Note: All `Path` objects are also `Traversable` object.
     """
-    paths = get_sample_data_file_paths()
-    assert "invalid/Dataset-001.yaml" in paths
-    assert "valid/Dataset-001.yaml" in paths
-    assert "valid/emsl-example.json" in paths
+    with TemporaryDirectory() as temp_dir:
+        temp_dir_path = Path(temp_dir)
+        (temp_dir_path / "data.json").write_text(sample_json_content)
+        (temp_dir_path / "data.yaml").write_text(sample_yaml_content)
+        (temp_dir_path / "data.yml").write_text(sample_yaml_content)
+        (temp_dir_path / "data.txt").write_text("some text")  # unsupported file suffix
+        monkeypatch.setattr("sample_data._get_traversable", lambda: temp_dir_path)
+        yield None
 
 
-def test_get_sample_data_text_returns_sample_data_as_a_string() -> None:
-    """Test that get_sample_data_text returns sample data as a string."""
-    paths = get_sample_data_file_paths()
-    assert len(paths) > 0, "No sample data files were found"
-
-    # Get the text content of the first sample data file, and assert that it is
-    # a string consisting of something other than whitespace.
-    text = get_sample_data_text(paths[0])
-    assert isinstance(text, str)
-    assert len(text.strip()) > 0
+def test_get_sample_data_file_paths_returns_list_of_file_paths_supported() -> None:
+    """Test that `get_sample_data_file_paths` returns a list of the file paths we support."""
+    assert get_sample_data_file_paths() == ["data.json", "data.yaml", "data.yml"]
 
 
-def test_get_sample_data_text_return_value_includes_known_text() -> None:
-    """Test that get_sample_data_text returns text content from a known sample data file.
-
-    Note: This test may become stale over time, as the names and content of
-          the files in the `sample_data/` directory evolve.
-    """
-    text = get_sample_data_text("valid/Dataset-001.yaml")
-    assert "id" in text
-
-    text = get_sample_data_text("valid/emsl-example.json")
-    assert "id" in text
-
-
-def test_get_sample_data_returns_yaml_sample_data_as_python_object() -> None:
-    """Test that get_sample_data returns YAML-formatted sample data as a Python object."""
-    # Identify a YAML file we can use for testing.
-    paths = get_sample_data_file_paths()
-    yaml_file_paths = [path for path in paths if path.endswith((".yaml", ".yml"))]
-    assert len(yaml_file_paths) > 0, "No YAML files were found among the sample data"
-
-    # Get the sample data from the first identified YAML-formatted sample data file,
-    # and assert that it has been parsed into the same Python object that we get
-    # when we read the file's text content and parse it with `yaml.safe_load`.
-    yaml_file_path = yaml_file_paths[0]
-    data = get_sample_data(yaml_file_path)
-    text = get_sample_data_text(yaml_file_path)
-    assert data == yaml.safe_load(text)
+def test_get_sample_data_text_returns_expected_sample_data_as_string(
+    sample_json_content: str,
+    sample_yaml_content: str,
+) -> None:
+    """Test that `get_sample_data_text` returns the sample data we expect, as a string."""
+    for path in get_sample_data_file_paths():
+        if path == "data.json":
+            assert sample_json_content in get_sample_data_text(path)
+        if path in ("data.yaml", "data.yml"):
+            assert sample_yaml_content in get_sample_data_text(path)
 
 
-def test_get_sample_data_returns_json_sample_data_as_python_object() -> None:
-    """Test that get_sample_data returns JSON-formatted sample data as a Python object."""
-    # Identify a JSON file we can use for testing.
-    paths = get_sample_data_file_paths()
-    json_file_paths = [path for path in paths if path.endswith(".json")]
-    assert len(json_file_paths) > 0, "No JSON files were found among the sample data"
-
-    # Get the sample data from the first identified JSON-formatted sample data file,
-    # and assert that it has been parsed into the same Python object that we get
-    # when we read the file's text content and parse it with `json.loads`.
-    json_file_path = json_file_paths[0]
-    data = get_sample_data(json_file_path)
-    text = get_sample_data_text(json_file_path)
-    assert data == json.loads(text)
+def test_get_sample_data_returns_sample_data_as_python_object(
+    sample_json_content: str,
+    sample_yaml_content: str,
+) -> None:
+    """Test that `get_sample_data` returns sample data as a Python object."""
+    for path in get_sample_data_file_paths():
+        if path == "data.json":
+            assert json.loads(sample_json_content) == get_sample_data(path)
+        if path in ("data.yaml", "data.yml"):
+            assert yaml.safe_load(sample_yaml_content) == get_sample_data(path)
 
 
 def test_get_sample_data_rejects_unsupported_filename_extensions() -> None:
-    """Test that get_sample_data raises an exception for an unsupported filename extension."""
+    """Test that `get_sample_data` raises an exception for an unsupported filename extension."""
     with pytest.raises(ValueError, match=r"^Filename extension"):
         get_sample_data("my_file.txt")
-
-
-def test_get_sample_data_return_value_is_object_having_known_attributes() -> None:
-    """Test that get_sample_data returns an object having attributes that are among those we expect.
-
-    Note: This test may become stale over time, as the names and content of
-          the files in the `sample_data/` directory evolve.
-    """
-    # Get the sample data from a known YAML file, and assert that it matches
-    # the expected Python object.
-    data = get_sample_data("valid/Dataset-001.yaml")
-    assert isinstance(data, dict)
-    assert all(key in data for key in ["id", "name"])
-
-    # Get the sample data from a known JSON file, and assert that it matches
-    # the expected Python object.
-    data = get_sample_data("valid/emsl-example.json")
-    assert isinstance(data, dict)
-    assert all(key in data for key in ["id", "name"])
