@@ -37,6 +37,12 @@ jobs:
                   make validate-examples
               continue-on-error: true
 
+            - name: Test Python code
+              id: test_python_code
+              run: |
+                  make test-python
+              continue-on-error: true
+
             - name: Test documentation generation
               id: test_docgen
               run: |
@@ -44,7 +50,7 @@ jobs:
               continue-on-error: true
 
             - name: outcome failure
-              if: steps.lint_linkml.outcome != 'success' || steps.validate_sample_data.outcome != 'success' || steps.test_docgen.outcome != 'success'
+              if: steps.lint_linkml.outcome != 'success' || steps.validate_sample_data.outcome != 'success' || steps.test_python_code.outcome != 'success' || steps.test_docgen.outcome != 'success'
               run: |
                   echo "linkml linting: ${{ steps.lint_linkml.outcome }}"
                   echo "sample data validation: ${{ steps.validate_sample_data.outcome }}"
@@ -52,7 +58,7 @@ jobs:
                   exit 1
 
             - name: outcome success
-              if: steps.lint_linkml.outcome == 'success' && steps.validate_sample_data.outcome == 'success' && steps.test_docgen.outcome == 'success'
+              if: steps.lint_linkml.outcome == 'success' && steps.validate_sample_data.outcome == 'success' && steps.test_python_code.outcome == 'success' && steps.test_docgen.outcome == 'success'
               run: |
                   echo All tests passed successfully!
                   exit 0

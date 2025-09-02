@@ -3,3 +3,6 @@
 # rather than via its Git URL or—once it gets published to PyPI—via PyPI.
 /src/*.egg-info/
 /build/
+
+# Ignore files that are generated when running `pytest` via `$ make test-python`.
+__pycache__/
