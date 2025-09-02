@@ -125,7 +125,7 @@ gen-examples:
 	cp -r $(SOURCE_SAMPLE_DATA_DIR)/* $(EXAMPLE_DIR)
 
 validate-examples:
-	$(RUN) linkml-validate -s $(SOURCE_SCHEMA_PATH) $(SOURCE_SAMPLE_DATA_DIR)/valid/*.json
+	$(RUN) linkml-validate -s $(SOURCE_SCHEMA_PATH) $(SOURCE_SAMPLE_DATA_DIR)/valid/Entity-*
 
 # generates all project files
 gen-project: $(PYMODEL_DIR)
