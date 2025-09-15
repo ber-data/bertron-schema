@@ -1,0 +1,64 @@
+{
+    "ber_data_source": "MONET",
+    "coordinates": {
+        "latitude": 39.0855,
+        "longitude": -96.5845
+    },
+    "entity_type": [
+        "sample"
+    ],
+    "description": null,
+    "id": "fca44f53-14cb-42cf-bc9a-73af11a80c8b",
+    "name": "MONet Core 60933_19_BOTTOM",
+    "alt_ids": null,
+    "alt_names": null,
+    "part_of_collection": null,
+    "uri": "https://sc-data.emsl.pnnl.gov/monet",
+    "properties": [
+        {
+            "attribute": {
+                "id": "MIXS:0000332",
+                "label": "soil_type"
+            },
+            "raw_value": "Mollisol"
+        },
+        {
+            "attribute": {
+                "id": "MIXS:0000011",
+                "label": "collection_date"
+            },
+            "raw_value": "2023-10-23 15:23:00"
+        },
+        {
+            "attribute": {
+                "label": "ecoregion"
+            },
+            "raw_value": "prairie_peninsula"
+        },
+        {
+            "attribute": {
+                "label": "elevation",
+                "id": "PATO:0001687"
+            },
+            "numeric_value": 387.08,
+            "unit": "m",
+            "raw_value": "387.08 m"
+        },
+        {
+            "attribute": {
+                "label": "toc_avg"
+            },
+            "raw_value": "1324.18 mg per kg",
+            "unit": "mg per kg",
+            "numeric_value": 1324.18
+        },
+        {
+            "attribute": {
+                "label": "tn_avg"
+            },
+            "raw_value": "39.34 mg per kg",
+            "unit": "mg per kg",
+            "numeric_value": 39.34
+        }
+    ]
+}
