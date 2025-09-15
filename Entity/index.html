@@ -248,7 +248,7 @@
 
 
 
-        Entity --&gt; "1" Coordinates : coordinates
+        Entity --&gt; "0..1" Coordinates : coordinates
         click Coordinates href "../Coordinates/"
 
 
@@ -316,7 +316,7 @@
 </tr>
 <tr>
 <td><a href="../coordinates/">coordinates</a></td>
-<td>1 <br/> <a href="../Coordinates/">Coordinates</a></td>
+<td>0..1 <br/> <a href="../Coordinates/">Coordinates</a></td>
 <td>The geographic coordinates associated with an entity. For entities with a bounding box, the centroid is used as the geographic reference.</td>
 <td>direct</td>
 </tr>
@@ -428,7 +428,6 @@ attributes:
     domain_of:
     - Entity
     range: Coordinates
-    required: true
   entity_type:
     name: entity_type
     description: What kind of entity is this -- e.g. sequence data; a soil core; a
@@ -621,7 +620,6 @@ attributes:
     domain_of:
     - Entity
     range: Coordinates
-    required: true
   entity_type:
     name: entity_type
     description: What kind of entity is this -- e.g. sequence data; a soil core; a
