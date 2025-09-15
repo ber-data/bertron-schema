@@ -1,15 +1,11 @@
-alt_ids: null
-alt_names: null
 ber_data_source: MONET
 coordinates:
   latitude: 39.0855
   longitude: -96.5845
-description: null
 entity_type:
 - sample
 id: fca44f53-14cb-42cf-bc9a-73af11a80c8b
 name: MONet Core 60933_19_BOTTOM
-part_of_collection: null
 properties:
 - attribute:
     id: MIXS:0000332
