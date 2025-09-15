@@ -1,0 +1,1037 @@
+[
+  {
+    "id": "UUID:13eee540-e113-11eb-ba80-0242ac130004",
+    "name": "WT_0.5%G_light",
+    "ber_data_source": "EMSL",
+    "entity_type": ["sample"],
+    "uri": "https://sc.emsl.pnnl.gov/?subSrc=data%2F%3FprojectId%3D49960",
+    "properties": [
+      {
+        "attribute": {
+          "label": "data avilable"
+        },
+        "raw_value": "imaging- electron"
+      },
+      {
+        "attribute": {
+          "label": "sample type"
+        },
+        "raw_value": "pure_culture"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0001043",
+          "label": "growth faility"
+        },
+        "raw_value": "incubation_in_lab"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000011",
+          "label": "collection date"
+        },
+        "raw_value": "2021-07-12"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000016",
+          "label": "sample material processing"
+        },
+        "raw_value": "high pressure flash freeze"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000327",
+          "label": "storage conditions"
+        },
+        "raw_value": "frozen"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000110",
+          "label": "sample storage temperature"
+        },
+        "raw_value": "-80 degree Celsius"
+      },
+      {
+        "attribute": {
+          "label": "shipped sample size"
+        },
+        "raw_value": "50 mL x OD750=6.5"
+      },
+      {
+        "attribute": {
+          "label": "growth_medium"
+        },
+        "raw_value": "0.5% glucose broth"
+      },
+      {
+        "attribute": {
+          "label": "treatment"
+        },
+        "raw_value": "70-80 umol/m2s white light"
+      },
+      {
+        "attribute": {
+          "label": "treatment"
+        },
+        "raw_value": "mixotrophic growth"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000753",
+          "label": "oxygenation status of sample"
+        },
+        "raw_value": "aerobic"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000028",
+          "label": "observed biotic relationship"
+        },
+        "raw_value": "free living"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000032",
+          "label": "trophic level"
+        },
+        "raw_value": "mixotroph"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000029",
+          "label": "host scientific name"
+        },
+        "raw_value": "3075"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000034",
+          "label": "encoded traits"
+        },
+        "raw_value": "thiamine auxotroph"
+      }
+    ]
+  },
+  {
+    "id": "UUID:13eee6f8-e113-11eb-ba80-0242ac130004",
+    "name": "fdx6_0.5%G_light",
+    "ber_data_source": "EMSL",
+    "entity_type": ["sample"],
+    "uri": "https://sc.emsl.pnnl.gov/?subSrc=data%2F%3FprojectId%3D49960",
+    "properties": [
+      {
+        "attribute": {
+          "label": "data avilable"
+        },
+        "raw_value": "imaging- electron"
+      },
+      {
+        "attribute": {
+          "label": "sample type"
+        },
+        "raw_value": "pure_culture"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0001043",
+          "label": "growth faility"
+        },
+        "raw_value": "incubation_in_lab"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000011",
+          "label": "collection date"
+        },
+        "raw_value": "2021-07-12"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000016",
+          "label": "sample material processing"
+        },
+        "raw_value": "high pressure flash freeze"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000327",
+          "label": "storage conditions"
+        },
+        "raw_value": "frozen"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000110",
+          "label": "sample storage temperature"
+        },
+        "raw_value": "-80 degree Celsius"
+      },
+      {
+        "attribute": {
+          "label": "shipped sample size"
+        },
+        "raw_value": "50 mL x OD750=5.1"
+      },
+      {
+        "attribute": {
+          "label": "growth_medium"
+        },
+        "raw_value": "0.5% glucose broth"
+      },
+      {
+        "attribute": {
+          "label": "treatment"
+        },
+        "raw_value": "70-80 umol/m2s white light"
+      },
+      {
+        "attribute": {
+          "label": "treatment"
+        },
+        "raw_value": "mixotrophic growth"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000753",
+          "label": "oxygenation status of sample"
+        },
+        "raw_value": "aerobic"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000028",
+          "label": "observed biotic relationship"
+        },
+        "raw_value": "free living"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000032",
+          "label": "trophic level"
+        },
+        "raw_value": "mixotroph"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000029",
+          "label": "host scientific name"
+        },
+        "raw_value": "3075"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000034",
+          "label": "encoded traits"
+        },
+        "raw_value": "G418 resistance, thiamine prototroph, chlorophyll biosynthesis mutant"
+      }
+    ]
+  },
+  {
+    "id": "UUID:13eee3a6-e113-11eb-ba80-0242ac130004",
+    "name": "WT_0.5%G_dark",
+    "ber_data_source": "EMSL",
+    "entity_type": ["sample"],
+    "uri": "https://sc.emsl.pnnl.gov/?subSrc=data%2F%3FprojectId%3D49960",
+    "properties": [
+      {
+        "attribute": {
+          "label": "data avilable"
+        },
+        "raw_value": "imaging- electron"
+      },
+      {
+        "attribute": {
+          "label": "sample type"
+        },
+        "raw_value": "pure_culture"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0001043",
+          "label": "growth faility"
+        },
+        "raw_value": "incubation_in_lab"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000011",
+          "label": "collection date"
+        },
+        "raw_value": "2021-07-12"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000016",
+          "label": "sample material processing"
+        },
+        "raw_value": "high pressure flash freeze"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000327",
+          "label": "storage conditions"
+        },
+        "raw_value": "frozen"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000110",
+          "label": "sample storage temperature"
+        },
+        "raw_value": "-80 degree Celsius"
+      },
+      {
+        "attribute": {
+          "label": "shipped sample size"
+        },
+        "raw_value": "50 mL x OD750=4.7"
+      },
+      {
+        "attribute": {
+          "label": "growth_medium"
+        },
+        "raw_value": "0.5% glucosebroth"
+      },
+      {
+        "attribute": {
+          "label": "treatment"
+        },
+        "raw_value": "dark"
+      },
+      {
+        "attribute": {
+          "label": "treatment"
+        },
+        "raw_value": "heterotrophic growth"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000753",
+          "label": "oxygenation status of sample"
+        },
+        "raw_value": "aerobic"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000028",
+          "label": "observed biotic relationship"
+        },
+        "raw_value": "free living"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000032",
+          "label": "trophic level"
+        },
+        "raw_value": "mixotroph"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000029",
+          "label": "host scientific name"
+        },
+        "raw_value": "3075"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000034",
+          "label": "encoded traits"
+        },
+        "raw_value": "thiamine auxotroph"
+      }
+    ]
+  },
+  {
+    "id": "UUID:13eee630-e113-11eb-ba80-0242ac130004",
+    "name": "fdx6_0.5%G_dark",
+    "ber_data_source": "EMSL",
+    "entity_type": ["sample"],
+    "uri": "https://sc.emsl.pnnl.gov/?subSrc=data%2F%3FprojectId%3D49960",
+    "properties": [
+      {
+        "attribute": {
+          "label": "data avilable"
+        },
+        "raw_value": "imaging- electron"
+      },
+      {
+        "attribute": {
+          "label": "sample type"
+        },
+        "raw_value": "pure_culture"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0001043",
+          "label": "growth faility"
+        },
+        "raw_value": "incubation_in_lab"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000011",
+          "label": "collection date"
+        },
+        "raw_value": "2021-07-12"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000016",
+          "label": "sample material processing"
+        },
+        "raw_value": "high pressure flash freeze"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000327",
+          "label": "storage conditions"
+        },
+        "raw_value": "frozen"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000110",
+          "label": "sample storage temperature"
+        },
+        "raw_value": "-80 degree Celsius"
+      },
+      {
+        "attribute": {
+          "label": "shipped sample size"
+        },
+        "raw_value": "50 mL x OD750=4.5"
+      },
+      {
+        "attribute": {
+          "label": "growth_medium"
+        },
+        "raw_value": "0.5% glucose broth"
+      },
+      {
+        "attribute": {
+          "label": "treatment"
+        },
+        "raw_value": "dark"
+      },
+      {
+        "attribute": {
+          "label": "treatment"
+        },
+        "raw_value": "heterotrophic growth"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000753",
+          "label": "oxygenation status of sample"
+        },
+        "raw_value": "aerobic"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000028",
+          "label": "observed biotic relationship"
+        },
+        "raw_value": "free living"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000032",
+          "label": "trophic level"
+        },
+        "raw_value": "mixotroph"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000029",
+          "label": "host scientific name"
+        },
+        "raw_value": "3075"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000034",
+          "label": "encoded traits"
+        },
+        "raw_value": "G418 resistance, thiamine prototroph, chlorophyll biosynthesis mutant"
+      }
+    ]
+  },
+  {
+    "id": "UUID:13ee64e4-e113-11eb-ba80-0242ac130004",
+    "name": "WT_2%G_dark",
+    "ber_data_source": "EMSL",
+    "entity_type": ["sample"],
+    "uri": "https://sc.emsl.pnnl.gov/?subSrc=data%2F%3FprojectId%3D49960",
+    "properties": [
+      {
+        "attribute": {
+          "label": "data avilable"
+        },
+        "raw_value": "imaging- electron"
+      },
+      {
+        "attribute": {
+          "label": "sample type"
+        },
+        "raw_value": "pure_culture"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0001043",
+          "label": "growth faility"
+        },
+        "raw_value": "incubation_in_lab"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000011",
+          "label": "collection date"
+        },
+        "raw_value": "2021-07-12"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000016",
+          "label": "sample material processing"
+        },
+        "raw_value": "chemical fixation"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000327",
+          "label": "storage conditions"
+        },
+        "raw_value": "other"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000110",
+          "label": "sample storage temperature"
+        },
+        "raw_value": "4 degree Celsius"
+      },
+      {
+        "attribute": {
+          "label": "shipped sample size"
+        },
+        "raw_value": "50 mL x OD750=23.5"
+      },
+      {
+        "attribute": {
+          "label": "growth_medium"
+        },
+        "raw_value": "2% glucose broth"
+      },
+      {
+        "attribute": {
+          "label": "treatment"
+        },
+        "raw_value": "dark"
+      },
+      {
+        "attribute": {
+          "label": "treatment"
+        },
+        "raw_value": "heterotrophic growth"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000753",
+          "label": "oxygenation status of sample"
+        },
+        "raw_value": "aerobic"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000028",
+          "label": "observed biotic relationship"
+        },
+        "raw_value": "free living"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000032",
+          "label": "trophic level"
+        },
+        "raw_value": "mixotroph"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000029",
+          "label": "host scientific name"
+        },
+        "raw_value": "3075"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000034",
+          "label": "encoded traits"
+        },
+        "raw_value": "thiamine auxotroph"
+      }
+    ]
+  },
+  {
+    "id": "UUID:13eee7b6-e113-11eb-ba80-0242ac130004",
+    "name": "fdx6_2%G_dark",
+    "ber_data_source": "EMSL",
+    "entity_type": ["sample"],
+    "uri": "https://sc.emsl.pnnl.gov/?subSrc=data%2F%3FprojectId%3D49960",
+    "properties": [
+      {
+        "attribute": {
+          "label": "data avilable"
+        },
+        "raw_value": "imaging- electron"
+      },
+      {
+        "attribute": {
+          "label": "sample type"
+        },
+        "raw_value": "pure_culture"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0001043",
+          "label": "growth faility"
+        },
+        "raw_value": "incubation_in_lab"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000011",
+          "label": "collection date"
+        },
+        "raw_value": "2021-07-12"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000016",
+          "label": "sample material processing"
+        },
+        "raw_value": "chemical fixation"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000327",
+          "label": "storage conditions"
+        },
+        "raw_value": "other"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000110",
+          "label": "sample storage temperature"
+        },
+        "raw_value": "4 degree Celsius"
+      },
+      {
+        "attribute": {
+          "label": "shipped sample size"
+        },
+        "raw_value": "50 mL x OD750=21.7"
+      },
+      {
+        "attribute": {
+          "label": "growth_medium"
+        },
+        "raw_value": "2% glucose broth"
+      },
+      {
+        "attribute": {
+          "label": "treatment"
+        },
+        "raw_value": "dark"
+      },
+      {
+        "attribute": {
+          "label": "treatment"
+        },
+        "raw_value": "heterotrophic growth"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000753",
+          "label": "oxygenation status of sample"
+        },
+        "raw_value": "aerobic"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000028",
+          "label": "observed biotic relationship"
+        },
+        "raw_value": "free living"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000032",
+          "label": "trophic level"
+        },
+        "raw_value": "mixotroph"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000029",
+          "label": "host scientific name"
+        },
+        "raw_value": "3075"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000034",
+          "label": "encoded traits"
+        },
+        "raw_value": "G418 resistance, thiamine prototroph, chlorophyll biosynthesis mutant"
+      }
+    ]
+  },
+  {
+    "id": "UUID:13eeec48-e113-11eb-ba80-0242ac130004",
+    "name": "chl27_2%G_dark",
+    "ber_data_source": "EMSL",
+    "entity_type": ["sample"],
+    "uri": "https://sc.emsl.pnnl.gov/?subSrc=data%2F%3FprojectId%3D49960",
+    "properties": [
+      {
+        "attribute": {
+          "label": "data avilable"
+        },
+        "raw_value": "imaging- electron"
+      },
+      {
+        "attribute": {
+          "label": "sample type"
+        },
+        "raw_value": "pure_culture"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0001043",
+          "label": "growth faility"
+        },
+        "raw_value": "incubation_in_lab"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000011",
+          "label": "collection date"
+        },
+        "raw_value": "2021-07-12"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000016",
+          "label": "sample material processing"
+        },
+        "raw_value": "chemical fixation"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000327",
+          "label": "storage conditions"
+        },
+        "raw_value": "other"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000110",
+          "label": "sample storage temperature"
+        },
+        "raw_value": "4 degree Celsius"
+      },
+      {
+        "attribute": {
+          "label": "shipped sample size"
+        },
+        "raw_value": "50 mL x OD750=20.7"
+      },
+      {
+        "attribute": {
+          "label": "growth_medium"
+        },
+        "raw_value": "2% glucose broth"
+      },
+      {
+        "attribute": {
+          "label": "treatment"
+        },
+        "raw_value": "dark"
+      },
+      {
+        "attribute": {
+          "label": "treatment"
+        },
+        "raw_value": "heterotrophic growth"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000753",
+          "label": "oxygenation status of sample"
+        },
+        "raw_value": "aerobic"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000028",
+          "label": "observed biotic relationship"
+        },
+        "raw_value": "free living"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000032",
+          "label": "trophic level"
+        },
+        "raw_value": "mixotroph"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000029",
+          "label": "host scientific name"
+        },
+        "raw_value": "3075"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000034",
+          "label": "encoded traits"
+        },
+        "raw_value": "G418 resistance, thiamine prototroph, chlorophyll biosynthesis mutant, non-photosynthetic"
+      }
+    ]
+  },
+  {
+    "id": "UUID:13eeeb80-e113-11eb-ba80-0242ac130004",
+    "name": "chl27_0.5%G_light",
+    "ber_data_source": "EMSL",
+    "entity_type": ["sample"],
+    "uri": "https://sc.emsl.pnnl.gov/?subSrc=data%2F%3FprojectId%3D49960",
+    "properties": [
+      {
+        "attribute": {
+          "label": "data avilable"
+        },
+        "raw_value": "imaging- electron"
+      },
+      {
+        "attribute": {
+          "label": "sample type"
+        },
+        "raw_value": "pure_culture"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0001043",
+          "label": "growth faility"
+        },
+        "raw_value": "incubation_in_lab"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000011",
+          "label": "collection date"
+        },
+        "raw_value": "2021-07-12"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000016",
+          "label": "sample material processing"
+        },
+        "raw_value": "chemical fixation"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000327",
+          "label": "storage conditions"
+        },
+        "raw_value": "other"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000110",
+          "label": "sample storage temperature"
+        },
+        "raw_value": "4 degree Celsius"
+      },
+      {
+        "attribute": {
+          "label": "shipped sample size"
+        },
+        "raw_value": "50 mL x OD750=3.9"
+      },
+      {
+        "attribute": {
+          "label": "growth_medium"
+        },
+        "raw_value": "0.5% glucose broth"
+      },
+      {
+        "attribute": {
+          "label": "treatment"
+        },
+        "raw_value": "5-8 umol/m2s white light"
+      },
+      {
+        "attribute": {
+          "label": "treatment"
+        },
+        "raw_value": "heterotrophic growth"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000753",
+          "label": "oxygenation status of sample"
+        },
+        "raw_value": "aerobic"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000028",
+          "label": "observed biotic relationship"
+        },
+        "raw_value": "free living"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000032",
+          "label": "trophic level"
+        },
+        "raw_value": "mixotroph"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000029",
+          "label": "host scientific name"
+        },
+        "raw_value": "3075"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000034",
+          "label": "encoded traits"
+        },
+        "raw_value": "G418 resistance, thiamine prototroph, chlorophyll biosynthesis mutant, non-photosynthetic"
+      }
+    ]
+  },
+  {
+    "id": "UUID:13eeeab8-e113-11eb-ba80-0242ac130004",
+    "name": "chl27_0.5%G_dark",
+    "ber_data_source": "EMSL",
+    "entity_type": ["sample"],
+    "uri": "https://sc.emsl.pnnl.gov/?subSrc=data%2F%3FprojectId%3D49960",
+    "properties": [
+      {
+        "attribute": {
+          "label": "data avilable"
+        },
+        "raw_value": "imaging- electron"
+      },
+      {
+        "attribute": {
+          "label": "sample type"
+        },
+        "raw_value": "pure_culture"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0001043",
+          "label": "growth faility"
+        },
+        "raw_value": "incubation_in_lab"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000011",
+          "label": "collection date"
+        },
+        "raw_value": "2021-07-12"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000016",
+          "label": "sample material processing"
+        },
+        "raw_value": "chemical fixation"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000327",
+          "label": "storage conditions"
+        },
+        "raw_value": "other"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000110",
+          "label": "sample storage temperature"
+        },
+        "raw_value": "4 degree Celsius"
+      },
+      {
+        "attribute": {
+          "label": "shipped sample size"
+        },
+        "raw_value": "50 mL x OD750=4.8"
+      },
+      {
+        "attribute": {
+          "label": "growth_medium"
+        },
+        "raw_value": "0.5% glucose broth"
+      },
+      {
+        "attribute": {
+          "label": "treatment"
+        },
+        "raw_value": "dark"
+      },
+      {
+        "attribute": {
+          "label": "treatment"
+        },
+        "raw_value": "heterotrophic growth"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000753",
+          "label": "oxygenation status of sample"
+        },
+        "raw_value": "aerobic"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000028",
+          "label": "observed biotic relationship"
+        },
+        "raw_value": "free living"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000032",
+          "label": "trophic level"
+        },
+        "raw_value": "mixotroph"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000029",
+          "label": "host scientific name"
+        },
+        "raw_value": "3075"
+      },
+      {
+        "attribute": {
+          "id": "MIXS:0000034",
+          "label": "encoded traits"
+        },
+        "raw_value": "G418 resistance, thiamine prototroph, chlorophyll biosynthesis mutant, non-photosynthetic"
+      }
+    ]
+  }
+]
