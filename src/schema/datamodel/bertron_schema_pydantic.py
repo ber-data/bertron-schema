@@ -256,7 +256,7 @@ class Entity(ConfiguredBaseModel):
          'tree_root': True})
 
     ber_data_source: BERSourceType = Field(default=..., description="""The BER member from whence the entity originated.""", json_schema_extra = { "linkml_meta": {'alias': 'ber_data_source', 'domain_of': ['Entity']} })
-    coordinates: Coordinates = Field(default=..., description="""The geographic coordinates associated with an entity. For entities with a bounding box, the centroid is used as the geographic reference.""", json_schema_extra = { "linkml_meta": {'alias': 'coordinates', 'domain_of': ['Entity']} })
+    coordinates: Optional[Coordinates] = Field(default=None, description="""The geographic coordinates associated with an entity. For entities with a bounding box, the centroid is used as the geographic reference.""", json_schema_extra = { "linkml_meta": {'alias': 'coordinates', 'domain_of': ['Entity']} })
     entity_type: list[EntityType] = Field(default=..., description="""What kind of entity is this -- e.g. sequence data; a soil core; a well; field site; sample; etc.""", json_schema_extra = { "linkml_meta": {'alias': 'entity_type', 'domain_of': ['Entity']} })
     description: Optional[str] = Field(default=None, description="""Textual description of the entity.""", json_schema_extra = { "linkml_meta": {'alias': 'description',
          'domain_of': ['Entity', 'DataCollection'],
