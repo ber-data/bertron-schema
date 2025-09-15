@@ -42,7 +42,6 @@ classes:
       coordinates:
         description: The geographic coordinates associated with an entity. For entities with a bounding box, the centroid is used as the geographic reference.
         range: Coordinates
-        required: true
       entity_type:
         description: What kind of entity is this -- e.g. sequence data; a soil core; a well; field site; sample; etc.
         range: EntityType
