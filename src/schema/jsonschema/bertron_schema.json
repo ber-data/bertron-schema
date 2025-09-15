@@ -151,7 +151,14 @@
                     "description": "The BER member from whence the entity originated."
                 },
                 "coordinates": {
-                    "$ref": "#/$defs/Coordinates",
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/Coordinates"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
                     "description": "The geographic coordinates associated with an entity. For entities with a bounding box, the centroid is used as the geographic reference."
                 },
                 "description": {
@@ -217,7 +224,6 @@
             },
             "required": [
                 "ber_data_source",
-                "coordinates",
                 "entity_type",
                 "uri"
             ],
@@ -432,7 +438,14 @@
             "description": "The BER member from whence the entity originated."
         },
         "coordinates": {
-            "$ref": "#/$defs/Coordinates",
+            "anyOf": [
+                {
+                    "$ref": "#/$defs/Coordinates"
+                },
+                {
+                    "type": "null"
+                }
+            ],
             "description": "The geographic coordinates associated with an entity. For entities with a bounding box, the centroid is used as the geographic reference."
         },
         "description": {
@@ -498,7 +511,6 @@
     },
     "required": [
         "ber_data_source",
-        "coordinates",
         "entity_type",
         "uri"
     ],
