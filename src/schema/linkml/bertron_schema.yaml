@@ -42,7 +42,6 @@ classes:
       coordinates:
         description: The geographic coordinates associated with an entity. For entities with a bounding box, the centroid is used as the geographic reference.
         range: Coordinates
-        required: false
       entity_type:
         description: What kind of entity is this -- e.g. sequence data; a soil core; a well; field site; sample; etc.
         range: EntityType
@@ -162,7 +161,7 @@ classes:
         broad_mappings:
           - MIXS:0000009
         range: decimal degree
-        required: false
+        required: true
         slot_uri: WGS84:lat
       longitude:
         description: longitude
@@ -173,7 +172,7 @@ classes:
         broad_mappings:
           - MIXS:0000009
         range: decimal degree
-        required: false
+        required: true
         slot_uri: WGS84:long
 
   Name:
