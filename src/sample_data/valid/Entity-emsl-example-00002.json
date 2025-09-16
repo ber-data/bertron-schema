@@ -103,7 +103,7 @@
           "id": "MIXS:0000029",
           "label": "host scientific name"
         },
-        "raw_value": "3075"
+        "raw_value": "NCBITaxon:3075"
       },
       {
         "attribute": {
