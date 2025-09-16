@@ -15,8 +15,13 @@ default_range: string
 
 slots:
 
+  attribute:
+    description: The attribute being represented.
+    range: Attribute
+    required: true
+
   numeric_value:
-    description: Links a quantity value to a number
+    description: The numerical part of a quantity value.
     range: float
     mappings:
       - nmdc:numeric_value
@@ -42,14 +47,27 @@ slots:
       - nmdc:raw_value
 
   unit:
-    description: Links a QuantityValue to a unit. Units should be taken from the UCUM unit collection or the Unit Ontology.
+    description: Links a QuantityValue to a unit. Units should be taken from the UCUM unit collection or a term from the Unit Ontology.
     aliases:
       - scale
-    range: unit
+    range: string
     mappings:
       - nmdc:unit
       - qud:unit
       - schema:unitCode
+      - UO:0000000
+
+  unit_cv_id:
+    description: The unit of the quantity, expressed as a CURIE from the Unit Ontology.
+    range: curie
+
+  value:
+    description: The value, as a text string.
+    range: string
+
+  value_cv_id:
+    description: For values that are in a controlled vocabulary (CV), this attribute should capture the controlled vocabulary ID for the value.
+    range: curie
 
 classes:
 
@@ -61,14 +79,9 @@ classes:
     class_uri: nmdc:AttributeValue
     description: >-
       The value for any value of attribute for an entity. This object can hold both the un-normalized atomic value and the structured value.
-    attributes:
-      attribute:
-        description: The attribute being represented.
-        range: Attribute
-        required: true
-      raw_value:
-        range: string
-        description: The raw value.
+    slots:
+    - attribute
+    - raw_value
 
   Attribute:
     description: A domain, measurement, attribute, property, or any descriptor for additional properties to be added to an entity. Where available, please use OBO Foundry ontologies or other controlled vocabularies for attributes; the label should be the term name from the ontology and the id should be the fully-qualified CURIE.
@@ -86,40 +99,48 @@ classes:
   QuantityValue:
     class_uri: nmdc:QuantityValue
     is_a: AttributeValue
-    description: A simple quantity, e.g. 2cm
+    description: A simple quantity, e.g. 2cm.
     slots:
       - maximum_numeric_value
       - minimum_numeric_value
       - numeric_value
       - unit
+      - unit_cv_id
     slot_usage:
       raw_value:
         description: Unnormalized atomic string representation, suggested syntax {number} {unit}
-      unit:
-        description: The unit of the quantity
-      numeric_value:
-        description: The number part of the quantity
     mappings:
       - schema:QuantityValue
 
   NamedQuantityValue:
+    is_a: AttributeValue
     description: A quantity value where the attribute is already specified.
     slots:
-      - maximum_numeric_value
-      - minimum_numeric_value
       - numeric_value
       - unit
-      - raw_value
 
   TextValue:
     class_uri: nmdc:TextValue
     is_a: AttributeValue
     description: A quality, described using a text string.
-    attributes:
+    slots:
+    - value
+    - value_cv_id
+
+  DateTimeValue:
+    class_uri: nmdc:DateTimeValue
+    is_a: AttributeValue
+    description: A date or date and time value.
+    slots:
+    - value
+    slot_usage:
       value:
-        description: The value, as a text string.
-      value_cv_id:
-        description: For values that are in a controlled vocabulary (CV), this attribute should capture the controlled vocabulary ID for the value.
+        description: The date or date/time value, expressed in ISO 8601-compatible form. Dates should be expressed as YYYY-MM-DD; times should be expressed as HH:MM:SS with optional milliseconds and an indication of the timezone.
+        # TODO: add pattern for ISO 8601 timestamps
+        examples:
+        - value: "2025-11-09"
+        - value: "2025-09-16T22:48:54Z"
+
 
 types:
   decimal degree:
@@ -128,10 +149,3 @@ types:
     base: float
     see_also:
       - https://en.wikipedia.org/wiki/Decimal_degrees
-
-  unit:
-    base: str
-    uri: xsd:string
-    mappings:
-      - qud:Unit
-      - UO:0000000
