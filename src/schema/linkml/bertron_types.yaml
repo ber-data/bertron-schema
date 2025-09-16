@@ -47,7 +47,7 @@ slots:
       - nmdc:raw_value
 
   unit:
-    description: Links a QuantityValue to a unit. Units should be taken from the UCUM unit collection or a term from the Unit Ontology.
+    description: Links a QuantityValue to a unit. Units should be taken from the UCUM unit collection or the Unit Ontology.
     aliases:
       - scale
     range: string
@@ -111,13 +111,6 @@ classes:
         description: Unnormalized atomic string representation, suggested syntax {number} {unit}
     mappings:
       - schema:QuantityValue
-
-  NamedQuantityValue:
-    is_a: AttributeValue
-    description: A quantity value where the attribute is already specified.
-    slots:
-      - numeric_value
-      - unit
 
   TextValue:
     class_uri: nmdc:TextValue
