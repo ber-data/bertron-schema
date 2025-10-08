@@ -226,7 +226,7 @@
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
 <h1 id="class-quantityvalue">Class: QuantityValue</h1>
-<p><em>A simple quantity, e.g. 2cm</em></p>
+<p><em>A simple quantity, e.g. 2cm.</em></p>
 <p>URI: <a href="https://w3id.org/nmdc/QuantityValue">nmdc:QuantityValue</a></p>
 <div class="mermaid"> classDiagram
     class QuantityValue
@@ -254,6 +254,8 @@
       QuantityValue : raw_value
 
       QuantityValue : unit
+
+      QuantityValue : unit_cv_id
 
 
 </div>
@@ -290,13 +292,19 @@
 <tr>
 <td><a href="../numeric_value/">numeric_value</a></td>
 <td>0..1 <br/> <a href="../Float/">Float</a></td>
-<td>The number part of the quantity</td>
+<td>The numerical part of a quantity value.</td>
 <td>direct</td>
 </tr>
 <tr>
 <td><a href="../unit/">unit</a></td>
-<td>0..1 <br/> <a href="../unit/">unit</a></td>
-<td>The unit of the quantity</td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Links a QuantityValue to a unit. Units should be taken from the UCUM unit collection or the Unit Ontology.</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../unit_cv_id/">unit_cv_id</a></td>
+<td>0..1 <br/> <a href="../Curie/">Curie</a></td>
+<td>The unit of the quantity, expressed as a CURIE from the Unit Ontology.</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -365,7 +373,7 @@
 <h3 id="direct">Direct</h3>
 <details>
 <pre><code class="language-yaml">name: QuantityValue
-description: A simple quantity, e.g. 2cm
+description: A simple quantity, e.g. 2cm.
 from_schema: https://w3id.org/ber-data/bertron-schema
 mappings:
 - schema:QuantityValue
@@ -375,17 +383,12 @@ slots:
 - minimum_numeric_value
 - numeric_value
 - unit
+- unit_cv_id
 slot_usage:
   raw_value:
     name: raw_value
     description: Unnormalized atomic string representation, suggested syntax {number}
       {unit}
-  unit:
-    name: unit
-    description: The unit of the quantity
-  numeric_value:
-    name: numeric_value
-    description: The number part of the quantity
 class_uri: nmdc:QuantityValue
 
 </code></pre>
@@ -393,7 +396,7 @@ class_uri: nmdc:QuantityValue
 <h3 id="induced">Induced</h3>
 <details>
 <pre><code class="language-yaml">name: QuantityValue
-description: A simple quantity, e.g. 2cm
+description: A simple quantity, e.g. 2cm.
 from_schema: https://w3id.org/ber-data/bertron-schema
 mappings:
 - schema:QuantityValue
@@ -403,12 +406,6 @@ slot_usage:
     name: raw_value
     description: Unnormalized atomic string representation, suggested syntax {number}
       {unit}
-  unit:
-    name: unit
-    description: The unit of the quantity
-  numeric_value:
-    name: numeric_value
-    description: The number part of the quantity
 attributes:
   maximum_numeric_value:
     name: maximum_numeric_value
@@ -423,7 +420,6 @@ attributes:
     owner: QuantityValue
     domain_of:
     - QuantityValue
-    - NamedQuantityValue
     range: float
   minimum_numeric_value:
     name: minimum_numeric_value
@@ -438,11 +434,10 @@ attributes:
     owner: QuantityValue
     domain_of:
     - QuantityValue
-    - NamedQuantityValue
     range: float
   numeric_value:
     name: numeric_value
-    description: The number part of the quantity
+    description: The numerical part of a quantity value.
     from_schema: https://w3id.org/ber-data/bertron-schema
     mappings:
     - nmdc:numeric_value
@@ -453,11 +448,11 @@ attributes:
     owner: QuantityValue
     domain_of:
     - QuantityValue
-    - NamedQuantityValue
     range: float
   unit:
     name: unit
-    description: The unit of the quantity
+    description: Links a QuantityValue to a unit. Units should be taken from the UCUM
+      unit collection or the Unit Ontology.
     from_schema: https://w3id.org/ber-data/bertron-schema
     aliases:
     - scale
@@ -465,17 +460,27 @@ attributes:
     - nmdc:unit
     - qud:unit
     - schema:unitCode
+    - UO:0000000
     rank: 1000
     alias: unit
     owner: QuantityValue
     domain_of:
     - QuantityValue
-    - NamedQuantityValue
-    range: unit
+    range: string
+  unit_cv_id:
+    name: unit_cv_id
+    description: The unit of the quantity, expressed as a CURIE from the Unit Ontology.
+    from_schema: https://w3id.org/ber-data/bertron-schema
+    rank: 1000
+    alias: unit_cv_id
+    owner: QuantityValue
+    domain_of:
+    - QuantityValue
+    range: curie
   attribute:
     name: attribute
     description: The attribute being represented.
-    from_schema: https://w3id.org/ber-data/bertron_types
+    from_schema: https://w3id.org/ber-data/bertron-schema
     rank: 1000
     alias: attribute
     owner: QuantityValue
@@ -487,12 +492,14 @@ attributes:
     name: raw_value
     description: Unnormalized atomic string representation, suggested syntax {number}
       {unit}
-    from_schema: https://w3id.org/ber-data/bertron_types
+    from_schema: https://w3id.org/ber-data/bertron-schema
+    mappings:
+    - nmdc:raw_value
+    rank: 1000
     alias: raw_value
     owner: QuantityValue
     domain_of:
     - AttributeValue
-    - NamedQuantityValue
     range: string
 class_uri: nmdc:QuantityValue
 

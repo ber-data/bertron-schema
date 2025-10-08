@@ -458,8 +458,12 @@
 <td>The value for any value of attribute for an entity. This object can hold both the un-normalized atomic value and the structured value.</td>
 </tr>
 <tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="DateTimeValue/">DateTimeValue</a></td>
+<td>A date or date and time value.</td>
+</tr>
+<tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="QuantityValue/">QuantityValue</a></td>
-<td>A simple quantity, e.g. 2cm</td>
+<td>A simple quantity, e.g. 2cm.</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="TextValue/">TextValue</a></td>
@@ -480,10 +484,6 @@
 <tr>
 <td><a href="Name/">Name</a></td>
 <td>The name or label for an entity. This may be a primary name, alternative name, synonym, acronym, or any other label used to refer to an entity.</td>
-</tr>
-<tr>
-<td><a href="NamedQuantityValue/">NamedQuantityValue</a></td>
-<td>A quantity value where the attribute is already specified.</td>
 </tr>
 </tbody>
 </table>
@@ -562,7 +562,7 @@
 </tr>
 <tr>
 <td><a href="numeric_value/">numeric_value</a></td>
-<td>Links a quantity value to a number</td>
+<td>The numerical part of a quantity value.</td>
 </tr>
 <tr>
 <td><a href="part_of_collection/">part_of_collection</a></td>
@@ -583,6 +583,10 @@
 <tr>
 <td><a href="unit/">unit</a></td>
 <td>Links a QuantityValue to a unit. Units should be taken from the UCUM unit collection or the Unit Ontology.</td>
+</tr>
+<tr>
+<td><a href="unit_cv_id/">unit_cv_id</a></td>
+<td>The unit of the quantity, expressed as a CURIE from the Unit Ontology.</td>
 </tr>
 <tr>
 <td><a href="uri/">uri</a></td>
@@ -705,10 +709,6 @@
 <tr>
 <td><a href="Time/">Time</a></td>
 <td>A time object represents a (local) time of day, independent of any particular day</td>
-</tr>
-<tr>
-<td><a href="Unit/">Unit</a></td>
-<td></td>
 </tr>
 <tr>
 <td><a href="Uri/">Uri</a></td>

@@ -231,6 +231,8 @@
         click QuantityValue href "../QuantityValue/"
       AttributeValue &lt;|-- TextValue
         click TextValue href "../TextValue/"
+      AttributeValue &lt;|-- DateTimeValue
+        click DateTimeValue href "../DateTimeValue/"
 
       AttributeValue : attribute
 
@@ -252,6 +254,7 @@
 <li><strong>AttributeValue</strong><ul>
 <li><a href="../QuantityValue/">QuantityValue</a></li>
 <li><a href="../TextValue/">TextValue</a></li>
+<li><a href="../DateTimeValue/">DateTimeValue</a></li>
 </ul>
 </li>
 </ul>
@@ -275,7 +278,7 @@
 <tr>
 <td><a href="../raw_value/">raw_value</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
-<td>The raw value.</td>
+<td>The value that was specified for an annotation in raw form, i.e. a string. E.g. "2 cm" or "2-4 cm"</td>
 <td>direct</td>
 </tr>
 </tbody>
@@ -313,24 +316,9 @@ description: The value for any value of attribute for an entity. This object can
   both the un-normalized atomic value and the structured value.
 from_schema: https://w3id.org/ber-data/bertron-schema
 abstract: true
-attributes:
-  attribute:
-    name: attribute
-    description: The attribute being represented.
-    from_schema: https://w3id.org/ber-data/bertron_types
-    rank: 1000
-    domain_of:
-    - AttributeValue
-    range: Attribute
-    required: true
-  raw_value:
-    name: raw_value
-    description: The raw value.
-    from_schema: https://w3id.org/ber-data/bertron_types
-    domain_of:
-    - AttributeValue
-    - NamedQuantityValue
-    range: string
+slots:
+- attribute
+- raw_value
 class_uri: nmdc:AttributeValue
 
 </code></pre>
@@ -346,7 +334,7 @@ attributes:
   attribute:
     name: attribute
     description: The attribute being represented.
-    from_schema: https://w3id.org/ber-data/bertron_types
+    from_schema: https://w3id.org/ber-data/bertron-schema
     rank: 1000
     alias: attribute
     owner: AttributeValue
@@ -356,13 +344,16 @@ attributes:
     required: true
   raw_value:
     name: raw_value
-    description: The raw value.
-    from_schema: https://w3id.org/ber-data/bertron_types
+    description: The value that was specified for an annotation in raw form, i.e.
+      a string. E.g. "2 cm" or "2-4 cm"
+    from_schema: https://w3id.org/ber-data/bertron-schema
+    mappings:
+    - nmdc:raw_value
+    rank: 1000
     alias: raw_value
     owner: AttributeValue
     domain_of:
     - AttributeValue
-    - NamedQuantityValue
     range: string
 class_uri: nmdc:AttributeValue
 

@@ -379,6 +379,11 @@ Alias: value</p>
 <td>A quality, described using a text string.</td>
 <td>no</td>
 </tr>
+<tr>
+<td><a href="../DateTimeValue/">DateTimeValue</a></td>
+<td>A date or date and time value.</td>
+<td>yes</td>
+</tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
@@ -417,9 +422,9 @@ description: The value, as a text string.
 from_schema: https://w3id.org/ber-data/bertron-schema
 rank: 1000
 alias: value
-owner: TextValue
 domain_of:
 - TextValue
+- DateTimeValue
 range: string
 
 </code></pre>

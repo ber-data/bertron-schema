@@ -298,15 +298,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#usages" class="md-nav__link">
-    <span class="md-ellipsis">
-      Usages
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#aliases" class="md-nav__link">
     <span class="md-ellipsis">
       Aliases
@@ -393,46 +384,16 @@ Alias: unit</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../NamedQuantityValue/">NamedQuantityValue</a></td>
-<td>A quantity value where the attribute is already specified.</td>
-<td>no</td>
-</tr>
-<tr>
 <td><a href="../QuantityValue/">QuantityValue</a></td>
-<td>A simple quantity, e.g. 2cm</td>
-<td>yes</td>
+<td>A simple quantity, e.g. 2cm.</td>
+<td>no</td>
 </tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>Range: <a href="./">unit</a></li>
+<li>Range: <a href="../String/">String</a></li>
 </ul>
-<h2 id="usages">Usages</h2>
-<table>
-<thead>
-<tr>
-<th>used by</th>
-<th>used in</th>
-<th>type</th>
-<th>used</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="../QuantityValue/">QuantityValue</a></td>
-<td><a href="./">unit</a></td>
-<td>range</td>
-<td><a href="./">unit</a></td>
-</tr>
-<tr>
-<td><a href="../NamedQuantityValue/">NamedQuantityValue</a></td>
-<td><a href="./">unit</a></td>
-<td>range</td>
-<td><a href="./">unit</a></td>
-</tr>
-</tbody>
-</table>
 <h2 id="aliases">Aliases</h2>
 <ul>
 <li>scale</li>
@@ -461,7 +422,7 @@ Alias: unit</p>
 </tr>
 <tr>
 <td>undefined</td>
-<td>nmdc:unit, qud:unit, schema:unitCode</td>
+<td>nmdc:unit, qud:unit, schema:unitCode, UO:0000000</td>
 </tr>
 </tbody>
 </table>
@@ -478,12 +439,12 @@ mappings:
 - nmdc:unit
 - qud:unit
 - schema:unitCode
+- UO:0000000
 rank: 1000
 alias: unit
 domain_of:
 - QuantityValue
-- NamedQuantityValue
-range: unit
+range: string
 
 </code></pre>
 

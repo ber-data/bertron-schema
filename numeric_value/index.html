@@ -368,7 +368,7 @@
 
 
 <h1 id="slot-numeric_value">Slot: numeric_value</h1>
-<p><em>Links a quantity value to a number</em></p>
+<p><em>The numerical part of a quantity value.</em></p>
 <p>URI: <a href="https://w3id.org/ber-data/bertron-schema/numeric_value">bertron:numeric_value</a>
 Alias: numeric_value</p>
 <h2 id="inheritance">Inheritance</h2>
@@ -390,14 +390,9 @@ Alias: numeric_value</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../NamedQuantityValue/">NamedQuantityValue</a></td>
-<td>A quantity value where the attribute is already specified.</td>
-<td>no</td>
-</tr>
-<tr>
 <td><a href="../QuantityValue/">QuantityValue</a></td>
-<td>A simple quantity, e.g. 2cm</td>
-<td>yes</td>
+<td>A simple quantity, e.g. 2cm.</td>
+<td>no</td>
 </tr>
 </tbody>
 </table>
@@ -437,7 +432,7 @@ Alias: numeric_value</p>
 <details>
 
 <pre><code class="language-yaml">name: numeric_value
-description: Links a quantity value to a number
+description: The numerical part of a quantity value.
 from_schema: https://w3id.org/ber-data/bertron-schema
 mappings:
 - nmdc:numeric_value
@@ -447,7 +442,6 @@ rank: 1000
 alias: numeric_value
 domain_of:
 - QuantityValue
-- NamedQuantityValue
 range: float
 
 </code></pre>

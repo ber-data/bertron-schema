@@ -279,7 +279,7 @@
 </tr>
 <tr>
 <td><a href="../value_cv_id/">value_cv_id</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>0..1 <br/> <a href="../Curie/">Curie</a></td>
 <td>For values that are in a controlled vocabulary (CV), this attribute should capture the controlled vocabulary ID for the value.</td>
 <td>direct</td>
 </tr>
@@ -292,7 +292,7 @@
 <tr>
 <td><a href="../raw_value/">raw_value</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
-<td>The raw value.</td>
+<td>The value that was specified for an annotation in raw form, i.e. a string. E.g. "2 cm" or "2-4 cm"</td>
 <td><a href="../AttributeValue/">AttributeValue</a></td>
 </tr>
 </tbody>
@@ -348,22 +348,9 @@
 description: A quality, described using a text string.
 from_schema: https://w3id.org/ber-data/bertron-schema
 is_a: AttributeValue
-attributes:
-  value:
-    name: value
-    description: The value, as a text string.
-    from_schema: https://w3id.org/ber-data/bertron_types
-    rank: 1000
-    domain_of:
-    - TextValue
-  value_cv_id:
-    name: value_cv_id
-    description: For values that are in a controlled vocabulary (CV), this attribute
-      should capture the controlled vocabulary ID for the value.
-    from_schema: https://w3id.org/ber-data/bertron_types
-    rank: 1000
-    domain_of:
-    - TextValue
+slots:
+- value
+- value_cv_id
 class_uri: nmdc:TextValue
 
 </code></pre>
@@ -378,28 +365,29 @@ attributes:
   value:
     name: value
     description: The value, as a text string.
-    from_schema: https://w3id.org/ber-data/bertron_types
+    from_schema: https://w3id.org/ber-data/bertron-schema
     rank: 1000
     alias: value
     owner: TextValue
     domain_of:
     - TextValue
+    - DateTimeValue
     range: string
   value_cv_id:
     name: value_cv_id
     description: For values that are in a controlled vocabulary (CV), this attribute
       should capture the controlled vocabulary ID for the value.
-    from_schema: https://w3id.org/ber-data/bertron_types
+    from_schema: https://w3id.org/ber-data/bertron-schema
     rank: 1000
     alias: value_cv_id
     owner: TextValue
     domain_of:
     - TextValue
-    range: string
+    range: curie
   attribute:
     name: attribute
     description: The attribute being represented.
-    from_schema: https://w3id.org/ber-data/bertron_types
+    from_schema: https://w3id.org/ber-data/bertron-schema
     rank: 1000
     alias: attribute
     owner: TextValue
@@ -409,13 +397,16 @@ attributes:
     required: true
   raw_value:
     name: raw_value
-    description: The raw value.
-    from_schema: https://w3id.org/ber-data/bertron_types
+    description: The value that was specified for an annotation in raw form, i.e.
+      a string. E.g. "2 cm" or "2-4 cm"
+    from_schema: https://w3id.org/ber-data/bertron-schema
+    mappings:
+    - nmdc:raw_value
+    rank: 1000
     alias: raw_value
     owner: TextValue
     domain_of:
     - AttributeValue
-    - NamedQuantityValue
     range: string
 class_uri: nmdc:TextValue
 
