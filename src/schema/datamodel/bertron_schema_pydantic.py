@@ -156,7 +156,9 @@ class AttributeValue(ConfiguredBaseModel):
          'from_schema': 'https://w3id.org/ber-data/bertron_types'})
 
     attribute: Attribute = Field(default=..., description="""The attribute being represented.""", json_schema_extra = { "linkml_meta": {'alias': 'attribute', 'domain_of': ['AttributeValue']} })
-    raw_value: Optional[str] = Field(default=None, description="""The raw value.""", json_schema_extra = { "linkml_meta": {'alias': 'raw_value', 'domain_of': ['AttributeValue', 'NamedQuantityValue']} })
+    raw_value: Optional[str] = Field(default=None, description="""The value that was specified for an annotation in raw form, i.e. a string. E.g. \"2 cm\" or \"2-4 cm\"""", json_schema_extra = { "linkml_meta": {'alias': 'raw_value',
+         'domain_of': ['AttributeValue'],
+         'mappings': ['nmdc:raw_value']} })
 
 
 class Attribute(ConfiguredBaseModel):
@@ -173,63 +175,35 @@ class Attribute(ConfiguredBaseModel):
 
 class QuantityValue(AttributeValue):
     """
-    A simple quantity, e.g. 2cm
+    A simple quantity, e.g. 2cm.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'nmdc:QuantityValue',
          'from_schema': 'https://w3id.org/ber-data/bertron_types',
          'mappings': ['schema:QuantityValue'],
-         'slot_usage': {'numeric_value': {'description': 'The number part of the '
-                                                         'quantity',
-                                          'name': 'numeric_value'},
-                        'raw_value': {'description': 'Unnormalized atomic string '
+         'slot_usage': {'raw_value': {'description': 'Unnormalized atomic string '
                                                      'representation, suggested syntax '
                                                      '{number} {unit}',
-                                      'name': 'raw_value'},
-                        'unit': {'description': 'The unit of the quantity',
-                                 'name': 'unit'}}})
+                                      'name': 'raw_value'}}})
 
     maximum_numeric_value: Optional[float] = Field(default=None, description="""The maximum value part, expressed as number, of the quantity value when the value covers a range.""", json_schema_extra = { "linkml_meta": {'alias': 'maximum_numeric_value',
-         'domain_of': ['QuantityValue', 'NamedQuantityValue'],
+         'domain_of': ['QuantityValue'],
          'is_a': 'numeric_value',
          'mappings': ['nmdc:maximum_numeric_value']} })
     minimum_numeric_value: Optional[float] = Field(default=None, description="""The minimum value part, expressed as number, of the quantity value when the value covers a range.""", json_schema_extra = { "linkml_meta": {'alias': 'minimum_numeric_value',
-         'domain_of': ['QuantityValue', 'NamedQuantityValue'],
+         'domain_of': ['QuantityValue'],
          'is_a': 'numeric_value',
          'mappings': ['nmdc:minimum_numeric_value']} })
-    numeric_value: Optional[float] = Field(default=None, description="""The number part of the quantity""", json_schema_extra = { "linkml_meta": {'alias': 'numeric_value',
-         'domain_of': ['QuantityValue', 'NamedQuantityValue'],
-         'mappings': ['nmdc:numeric_value', 'qud:quantityValue', 'schema:value']} })
-    unit: Optional[str] = Field(default=None, description="""The unit of the quantity""", json_schema_extra = { "linkml_meta": {'alias': 'unit',
-         'aliases': ['scale'],
-         'domain_of': ['QuantityValue', 'NamedQuantityValue'],
-         'mappings': ['nmdc:unit', 'qud:unit', 'schema:unitCode']} })
-    attribute: Attribute = Field(default=..., description="""The attribute being represented.""", json_schema_extra = { "linkml_meta": {'alias': 'attribute', 'domain_of': ['AttributeValue']} })
-    raw_value: Optional[str] = Field(default=None, description="""Unnormalized atomic string representation, suggested syntax {number} {unit}""", json_schema_extra = { "linkml_meta": {'alias': 'raw_value', 'domain_of': ['AttributeValue', 'NamedQuantityValue']} })
-
-
-class NamedQuantityValue(ConfiguredBaseModel):
-    """
-    A quantity value where the attribute is already specified.
-    """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/ber-data/bertron_types'})
-
-    maximum_numeric_value: Optional[float] = Field(default=None, description="""The maximum value part, expressed as number, of the quantity value when the value covers a range.""", json_schema_extra = { "linkml_meta": {'alias': 'maximum_numeric_value',
-         'domain_of': ['QuantityValue', 'NamedQuantityValue'],
-         'is_a': 'numeric_value',
-         'mappings': ['nmdc:maximum_numeric_value']} })
-    minimum_numeric_value: Optional[float] = Field(default=None, description="""The minimum value part, expressed as number, of the quantity value when the value covers a range.""", json_schema_extra = { "linkml_meta": {'alias': 'minimum_numeric_value',
-         'domain_of': ['QuantityValue', 'NamedQuantityValue'],
-         'is_a': 'numeric_value',
-         'mappings': ['nmdc:minimum_numeric_value']} })
-    numeric_value: Optional[float] = Field(default=None, description="""Links a quantity value to a number""", json_schema_extra = { "linkml_meta": {'alias': 'numeric_value',
-         'domain_of': ['QuantityValue', 'NamedQuantityValue'],
+    numeric_value: Optional[float] = Field(default=None, description="""The numerical part of a quantity value.""", json_schema_extra = { "linkml_meta": {'alias': 'numeric_value',
+         'domain_of': ['QuantityValue'],
          'mappings': ['nmdc:numeric_value', 'qud:quantityValue', 'schema:value']} })
     unit: Optional[str] = Field(default=None, description="""Links a QuantityValue to a unit. Units should be taken from the UCUM unit collection or the Unit Ontology.""", json_schema_extra = { "linkml_meta": {'alias': 'unit',
          'aliases': ['scale'],
-         'domain_of': ['QuantityValue', 'NamedQuantityValue'],
-         'mappings': ['nmdc:unit', 'qud:unit', 'schema:unitCode']} })
-    raw_value: Optional[str] = Field(default=None, description="""The value that was specified for an annotation in raw form, i.e. a string. E.g. \"2 cm\" or \"2-4 cm\"""", json_schema_extra = { "linkml_meta": {'alias': 'raw_value',
-         'domain_of': ['AttributeValue', 'NamedQuantityValue'],
+         'domain_of': ['QuantityValue'],
+         'mappings': ['nmdc:unit', 'qud:unit', 'schema:unitCode', 'UO:0000000']} })
+    unit_cv_id: Optional[str] = Field(default=None, description="""The unit of the quantity, expressed as a CURIE from the Unit Ontology.""", json_schema_extra = { "linkml_meta": {'alias': 'unit_cv_id', 'domain_of': ['QuantityValue']} })
+    attribute: Attribute = Field(default=..., description="""The attribute being represented.""", json_schema_extra = { "linkml_meta": {'alias': 'attribute', 'domain_of': ['AttributeValue']} })
+    raw_value: Optional[str] = Field(default=None, description="""Unnormalized atomic string representation, suggested syntax {number} {unit}""", json_schema_extra = { "linkml_meta": {'alias': 'raw_value',
+         'domain_of': ['AttributeValue'],
          'mappings': ['nmdc:raw_value']} })
 
 
@@ -240,10 +214,38 @@ class TextValue(AttributeValue):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'nmdc:TextValue',
          'from_schema': 'https://w3id.org/ber-data/bertron_types'})
 
-    value: Optional[str] = Field(default=None, description="""The value, as a text string.""", json_schema_extra = { "linkml_meta": {'alias': 'value', 'domain_of': ['TextValue']} })
+    value: Optional[str] = Field(default=None, description="""The value, as a text string.""", json_schema_extra = { "linkml_meta": {'alias': 'value', 'domain_of': ['TextValue', 'DateTimeValue']} })
     value_cv_id: Optional[str] = Field(default=None, description="""For values that are in a controlled vocabulary (CV), this attribute should capture the controlled vocabulary ID for the value.""", json_schema_extra = { "linkml_meta": {'alias': 'value_cv_id', 'domain_of': ['TextValue']} })
     attribute: Attribute = Field(default=..., description="""The attribute being represented.""", json_schema_extra = { "linkml_meta": {'alias': 'attribute', 'domain_of': ['AttributeValue']} })
-    raw_value: Optional[str] = Field(default=None, description="""The raw value.""", json_schema_extra = { "linkml_meta": {'alias': 'raw_value', 'domain_of': ['AttributeValue', 'NamedQuantityValue']} })
+    raw_value: Optional[str] = Field(default=None, description="""The value that was specified for an annotation in raw form, i.e. a string. E.g. \"2 cm\" or \"2-4 cm\"""", json_schema_extra = { "linkml_meta": {'alias': 'raw_value',
+         'domain_of': ['AttributeValue'],
+         'mappings': ['nmdc:raw_value']} })
+
+
+class DateTimeValue(AttributeValue):
+    """
+    A date or date and time value.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'nmdc:DateTimeValue',
+         'from_schema': 'https://w3id.org/ber-data/bertron_types',
+         'slot_usage': {'value': {'description': 'The date or date/time value, '
+                                                 'expressed in ISO 8601-compatible '
+                                                 'form. Dates should be expressed as '
+                                                 'YYYY-MM-DD; times should be '
+                                                 'expressed as HH:MM:SS with optional '
+                                                 'milliseconds and an indication of '
+                                                 'the timezone.',
+                                  'examples': [{'value': '2025-11-09'},
+                                               {'value': '2025-09-16T22:48:54Z'}],
+                                  'name': 'value'}}})
+
+    value: Optional[str] = Field(default=None, description="""The date or date/time value, expressed in ISO 8601-compatible form. Dates should be expressed as YYYY-MM-DD; times should be expressed as HH:MM:SS with optional milliseconds and an indication of the timezone.""", json_schema_extra = { "linkml_meta": {'alias': 'value',
+         'domain_of': ['TextValue', 'DateTimeValue'],
+         'examples': [{'value': '2025-11-09'}, {'value': '2025-09-16T22:48:54Z'}]} })
+    attribute: Attribute = Field(default=..., description="""The attribute being represented.""", json_schema_extra = { "linkml_meta": {'alias': 'attribute', 'domain_of': ['AttributeValue']} })
+    raw_value: Optional[str] = Field(default=None, description="""The value that was specified for an annotation in raw form, i.e. a string. E.g. \"2 cm\" or \"2-4 cm\"""", json_schema_extra = { "linkml_meta": {'alias': 'raw_value',
+         'domain_of': ['AttributeValue'],
+         'mappings': ['nmdc:raw_value']} })
 
 
 class Entity(ConfiguredBaseModel):
@@ -393,8 +395,8 @@ class DataCollection(ConfiguredBaseModel):
 AttributeValue.model_rebuild()
 Attribute.model_rebuild()
 QuantityValue.model_rebuild()
-NamedQuantityValue.model_rebuild()
 TextValue.model_rebuild()
+DateTimeValue.model_rebuild()
 Entity.model_rebuild()
 Coordinates.model_rebuild()
 Name.model_rebuild()
